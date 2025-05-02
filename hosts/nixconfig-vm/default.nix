@@ -3,7 +3,7 @@ let
   # TODO: use defaults and override as needed
   systemProperties = {
     architecture = "x86_64-linux";
-    hostname = "nixconfig-vm";
+    hostname = builtins.baseNameOf ./. ;
   };
 
   userProperties = rec {
