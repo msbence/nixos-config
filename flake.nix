@@ -27,7 +27,7 @@
     }@inputs:
     {
       nixosConfigurations = {
-        nixconfig-vm = (import ./hosts/nixconfig-vm { inherit inputs nixpkgs; });
+        vm-nixos-test = (import ./hosts/vm-nixos-test { inherit inputs nixpkgs; });
       };
     };
 }

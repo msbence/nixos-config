@@ -29,6 +29,7 @@ nixpkgs.lib.nixosSystem {
     ./disk-configuration.nix
     inputs.impermanence.nixosModules.impermanence
     ./configuration.nix
+    ../../system-modules/default.nix
     inputs.home-manager.nixosModules.home-manager
     ../../user-modules/default.nix
   ];
