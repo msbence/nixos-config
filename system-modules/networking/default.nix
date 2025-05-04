@@ -13,12 +13,20 @@
 
   programs = {
     mtr.enable = true;
+    wireshark.enable = true;
   };
 
   services = {
     openssh = {
       enable = true;
       settings.PermitRootLogin = "yes";
+    };
+
+    gns3-server = {
+      enable = false;
+      dynamips.enable = false;
+      ubridge.enable = false;
+      vpcs.enable = false;
     };
   };
 }

@@ -20,13 +20,26 @@
 
         username = "${userProperties.username}";
         homeDirectory = "/home/${userProperties.username}";
+
+        sessionVariables = {
+          EDITOR = "nano";
+          XDG_SESSION_TYPE = "wayland";
+          XDG_SESSION_DESKTOP = "Hyprland";
+          XDG_CURRENT_DESKTOP = "Hyprland";
+          NIXOS_OZONE_WL = "1";
+          QT_QPA_PLATFORM = "wayland";
+          SDL_VIDEODRIVER = "wayland";
+          _JAVA_AWT_WM_NONREPARENTING = "1";
+        };
       };
 
-      imports = lib.lists.map (directoryName: ./${directoryName}) (
-        builtins.attrNames (
-          lib.attrsets.filterAttrs (name: type: type == "directory") (builtins.readDir ./.)
+      imports =
+        lib.lists.map (directoryName: ./${directoryName}) (
+          builtins.attrNames (
+            lib.attrsets.filterAttrs (name: type: type == "directory") (builtins.readDir ./.)
+          )
         )
-      );
+        ++ [ ];
     };
   };
 }

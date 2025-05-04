@@ -21,4 +21,18 @@
       nixfmt-rfc-style
     ];
   };
+
+  services.greetd = {
+    enable = false; # TODO: make this dynamic
+    settings = {
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "${userProperties.username}";
+      };
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'AUTHORIZED ACCESS ONLY' --asterisks --remember --remember-user-session --time --issue --cmd ${pkgs.hyprland}/bin/Hyprland";
+        user = "greeter";
+      };
+    };
+  };
 }
