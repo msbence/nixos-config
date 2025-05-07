@@ -26,8 +26,17 @@
       ...
     }@inputs:
     {
-      nixosConfigurations = {
-        vm-nixos-test = (import ./hosts/vm-nixos-test { inherit inputs nixpkgs; });
-      };
+      nixosConfigurations = builtins.listToAttrs ( # 4: "flatten the list of hosts to one single attributeSet"
+        map
+          (hostName: { # 3: build an attributeSet with the hostname as key, and the host configuration as value
+            name = hostName;
+            value = (import ./hosts/${hostName} { inherit inputs nixpkgs; });
+          })
+          (
+            (builtins.filter (name: (builtins.readDir ./hosts).${name} == "directory") ( # 2: since we have no lib.attrsets.filterAttrs here, filter for dir one-by-one
+              builtins.attrNames (builtins.readDir ./hosts) # 1: reading dir and file names under "hosts"
+            ))
+          )
+      );
     };
 }

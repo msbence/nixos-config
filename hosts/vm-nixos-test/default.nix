@@ -4,6 +4,7 @@ let
   systemProperties = {
     architecture = "x86_64-linux";
     hostname = builtins.baseNameOf ./. ;
+    type = "server"; # or desktop
   };
 
   userProperties = rec {
@@ -32,5 +33,6 @@ nixpkgs.lib.nixosSystem {
     ../../system-modules/default.nix
     inputs.home-manager.nixosModules.home-manager
     ../../user-modules/default.nix
+    ./overrides.nix
   ];
 }

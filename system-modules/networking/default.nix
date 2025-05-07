@@ -1,4 +1,4 @@
-{ systemProperties, ... }:
+{ lib, config, systemProperties, ... }:
 {
   networking = {
     networkmanager.enable = true;
@@ -19,7 +19,7 @@
   services = {
     openssh = {
       enable = true;
-      settings.PermitRootLogin = "yes";
+      settings.PermitRootLogin = config.enableAutologin;
     };
 
     gns3-server = {
@@ -30,3 +30,4 @@
     };
   };
 }
+ 
