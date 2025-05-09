@@ -1,5 +1,6 @@
 { lib, ... }:
 with lib;
 {
-  services.openssh.settings.PermitRootLogin = mkForce "yes";
+  services.fprintd.enable = mkForce true;
+  networking.firewall.enable = mkForce false;
 }

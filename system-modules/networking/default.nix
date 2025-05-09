@@ -19,7 +19,7 @@
   services = {
     openssh = {
       enable = true;
-      settings.PermitRootLogin = config.enableAutologin;
+      settings.PermitRootLogin = "no";
     };
 
     gns3-server = {
