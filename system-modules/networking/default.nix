@@ -1,9 +1,15 @@
-{ lib, config, systemProperties, ... }:
+{
+  lib,
+  config,
+  systemProperties,
+  userProperties,
+  ...
+}:
 {
   networking = {
-    networkmanager.enable = true;
+    networkmanager.enable = config.systemOptions.enableNetworkManager;
     resolvconf.enable = true;
-    wireguard.enable = true;
+    wireguard.enable = config.systemOptions.enableWireguard;
 
     hostName = "${systemProperties.hostname}";
     hosts = {
@@ -13,21 +19,28 @@
 
   programs = {
     mtr.enable = true;
-    wireshark.enable = true;
+    wireshark.enable = config.systemOptions.enableWireshark;
   };
 
   services = {
     openssh = {
-      enable = true;
-      settings.PermitRootLogin = "no";
+      enable = config.systemOptions.enableSsh;
+      settings.PermitRootLogin = config.systemOptions.permitSshRootLogin;
     };
 
-    gns3-server = {
-      enable = false;
-      dynamips.enable = false;
-      ubridge.enable = false;
-      vpcs.enable = false;
+    gns3-server = lib.mkIf config.systemOptions.enableGns3 {
+      enable = true;
+      dynamips.enable = true;
+      ubridge.enable = true;
+      vpcs.enable = true;
     };
   };
+
+  users.users.${userProperties.username}.extraGroups =
+    lib.optionals config.systemOptions.enableNetworkManager [ "networkmanager" ]
+    ++ lib.optionals config.systemOptions.enableWireshark [ "wireshark" ];
+
+  environment.persistence."/persisted/system".directories =
+    lib.optionals config.systemOptions.enableNetworkManager
+      [ "/etc/NetworkManager/system-connections" ];
 }
- 

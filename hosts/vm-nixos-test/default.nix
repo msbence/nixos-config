@@ -4,7 +4,7 @@ let
   systemProperties = {
     architecture = "x86_64-linux";
     hostname = builtins.baseNameOf ./. ;
-    type = "server"; # or desktop
+    type = "desktop"; # or desktop
   };
 
   userProperties = rec {

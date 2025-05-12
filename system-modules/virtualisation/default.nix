@@ -1,8 +1,15 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  userProperties,
+  ...
+}:
 {
   virtualisation = {
-    docker.enable = true;
-    libvirtd = {
+    docker.enable = config.systemOptions.enableDocker;
+
+    libvirtd = lib.mkIf config.systemOptions.enableQemu {
       enable = true;
 
       qemu = {
@@ -17,8 +24,15 @@
     };
   };
 
+  users.users.${userProperties.username}.extraGroups =
+    lib.optionals config.systemOptions.enableDocker [ "docker" ]
+    ++ lib.optionals config.systemOptions.enableQemu [
+      "kvm"
+      "libvirtd"
+    ];
+
   services = {
-    cockpit = {
+    cockpit = lib.mkIf config.systemOptions.enableCockpit {
       enable = true;
       port = 9090;
       settings = {

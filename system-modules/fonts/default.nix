@@ -1,6 +1,11 @@
-{ pkgs, ... }:
 {
-  fonts = {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  fonts = lib.mkIf config.systemOptions.enableAdditionalFonts {
     fontDir.enable = true;
 
     packages = with pkgs; [
