@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-lib.mkIf config.systemOptions.windowManager != "none" {
+lib.mkIf (config.systemOptions.windowManager != "none") {
   xdg.portal = {
     enable = true;
     config.common.default = "*";
