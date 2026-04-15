@@ -1,10 +1,9 @@
-{ nixpkgs, inputs, ... }:
+{ nixpkgs, inputs, nixos-hardware, ... }:
 let
-  # TODO: use defaults and override as needed
   systemProperties = {
     architecture = "x86_64-linux";
     hostname = builtins.baseNameOf ./. ;
-    type = "desktop"; # or desktop
+    type = "desktop";
   };
 
   userProperties = rec {
@@ -26,12 +25,11 @@ nixpkgs.lib.nixosSystem {
 
   modules = [
     ./hardware-configuration.nix
+    #nixos-hardware.nixosModules.framework-13th-gen-intel
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
-    inputs.impermanence.nixosModules.impermanence
     ./configuration.nix
     ../../system-modules/default.nix
-    inputs.home-manager.nixosModules.home-manager
     ../../user-modules/default.nix
     ./overrides.nix
   ];

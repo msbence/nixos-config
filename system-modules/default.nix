@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   systemProperties,
   userProperties,
@@ -11,5 +12,8 @@
         lib.attrsets.filterAttrs (name: type: type == "directory") (builtins.readDir ./.)
       )
     )
-    ++ [ ./options.nix ];
+    ++ [
+      inputs.impermanence.nixosModules.impermanence
+      ./options.nix
+    ];
 }
