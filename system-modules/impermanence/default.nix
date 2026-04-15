@@ -1,6 +1,7 @@
 { ... }:
 {
   fileSystems."/persisted".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
   environment.persistence."/persisted/system" = {
     hideMounts = true;
     directories = [

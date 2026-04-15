@@ -23,6 +23,7 @@
     {
       self,
       nixpkgs,
+      nixos-hardware,
       ...
     }@inputs:
     {
@@ -30,7 +31,7 @@
         map
           (hostName: { # 3: build an attributeSet with the hostname as key, and the host configuration as value
             name = hostName;
-            value = (import ./hosts/${hostName} { inherit inputs nixpkgs; });
+            value = (import ./hosts/${hostName} { inherit inputs nixpkgs nixos-hardware; });
           })
           (
             (builtins.filter (name: (builtins.readDir ./hosts).${name} == "directory") ( # 2: since we have no lib.attrsets.filterAttrs here, filter for dir one-by-one
