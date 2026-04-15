@@ -1,8 +1,8 @@
-{ ... }:
+{ lib, config, ... }:
 {
   hardware = {
-    bluetooth = {
-      enable = false;
+    bluetooth = lib.mkIf config.systemOptions.enableBluetooth {
+      enable = true;
       powerOnBoot = true;
       settings = {
         General = {
@@ -13,6 +13,6 @@
   };
 
   services = {
-    blueman.enable = true;
+    blueman.enable = config.systemOptions.enableBluetooth;
   };
 }

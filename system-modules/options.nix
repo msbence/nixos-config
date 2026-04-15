@@ -2,19 +2,50 @@
 {
   options.systemOptions = with lib; {
     ###> AUDIO
-
+    enableAudio = mkOption {
+      type = types.bool;
+      default = if systemProperties.type == "server" then false else true;
+      description = "Enable audio services";
+    };
     ###<
     ###> BLUETOOTH
-
+    enableBluetooth = mkOption {
+      type = types.bool;
+      default = if systemProperties.type == "server" then false else true;
+      description = "Enable audio services";
+    };
     ###<
     ###> BOOT
-
-    ###<
-    ###> COMPATIBILITY
-
+    enablePlymouth = mkOption {
+      type = types.bool;
+      default = if systemProperties.type == "server" then false else true;
+      description = "Display Plymouth instead of console logging";
+    };
+    plymouthTheme = mkOption {
+      type = types.str;
+      default = "blockchain";
+      description = "Name of the adi1090x Plymouth theme to use";
+    };
+    plymouthScale = mkOption {
+      type = types.int;
+      default = 1;
+      description = "Scaling factor for Plymouth";
+    };
+    enableNetbootXyz = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Add netboot.xyz to the systemd-boot menu";
+    };
     ###<
     ###> DISPLAY
-
+    windowManager = mkOption {
+      type = types.enum [
+        "none"
+        "hyprland"
+      ];
+      default = if systemProperties.type == "server" then "none" else "hyprland";
+      description = "Sets the window manager to use";
+    };
     ###<
     ###> FONTS
     enableAdditionalFonts = mkOption {
