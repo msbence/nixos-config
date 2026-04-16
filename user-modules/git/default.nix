@@ -2,8 +2,15 @@
 {
   programs.git = {
     enable = true;
-    user.name = userProperties.fullName;
-    user.email = userProperties.email;
+
+    settings = {
+      user = {
+        name  = userProperties.fullName;
+        email = userProperties.email;
+      };
+      init.defaultBranch = "master";
+    };
+    
     package = pkgs.git;
 
     signing = {
