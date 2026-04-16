@@ -67,16 +67,16 @@
         "udev.log_priority=3"
       ]
       ++ lib.optionals config.systemOptions.enablePlymouth [
-        #"quiet"
-        #"splash"
-        #"plymouth.use-simpledrm"
-        #"rd.systemd.show_status=false"
+        "quiet"
+        "splash"
+        "plymouth.use-simpledrm"
+        "rd.systemd.show_status=false"
       ];
 
     consoleLogLevel = if config.systemOptions.enablePlymouth then 0 else 3;
 
     plymouth = lib.mkIf config.systemOptions.enablePlymouth {
-      enable = false;
+      enable = true;
       theme = config.systemOptions.plymouthTheme;
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override { selected_themes = [ config.systemOptions.plymouthTheme ]; })

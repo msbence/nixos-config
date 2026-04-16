@@ -27,8 +27,8 @@
       description = "Name of the adi1090x Plymouth theme to use";
     };
     plymouthScale = mkOption {
-      type = types.int;
-      default = 1;
+      type = types.str;
+      default = "1";
       description = "Scaling factor for Plymouth";
     };
     enableNetbootXyz = mkOption {

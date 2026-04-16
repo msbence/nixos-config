@@ -7,7 +7,7 @@
 - echo -n "lukspw" > /tmp/secret.key
 - sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount --yes-wipe-all-disks ./hosts/HOSTNAME/disk-configuration.nix
 - [...]
-- nixos-install --flake .#hostname
+- sudo nixos-install --flake .#hostname
 
 ## Add new host
 
@@ -15,9 +15,9 @@
 - cd nixos-config
 - echo -n "lukspw" > /tmp/secret.key
 - sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount --yes-wipe-all-disks ./hosts/HOSTNAME/disk-configuration.nix
-- nixos-generate-config --no-filesystems --root /mnt
+- sudo nixos-generate-config --no-filesystems --root /mnt
 - [...]
-- nixos-install --flake .#hostname
+- sudo nixos-install --flake .#hostname
 
 ## Upgrade host
 
