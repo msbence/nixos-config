@@ -1,4 +1,10 @@
-{ config, lib, pkgs, userProperties, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  userProperties,
+  ...
+}:
 {
   services = {
     fprintd = lib.mkIf config.systemOptions.enableFingerprint {

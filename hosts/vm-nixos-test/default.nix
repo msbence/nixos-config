@@ -1,8 +1,13 @@
-{ nixpkgs, inputs, nixos-hardware, ... }:
+{
+  nixpkgs,
+  inputs,
+  nixos-hardware,
+  ...
+}:
 let
   systemProperties = {
     architecture = "x86_64-linux";
-    hostname = builtins.baseNameOf ./. ;
+    hostname = builtins.baseNameOf ./.;
     type = "desktop";
   };
 

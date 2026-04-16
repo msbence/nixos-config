@@ -5,12 +5,12 @@
 
     settings = {
       user = {
-        name  = userProperties.fullName;
+        name = userProperties.fullName;
         email = userProperties.email;
       };
       init.defaultBranch = "master";
     };
-    
+
     package = pkgs.git;
 
     signing = {

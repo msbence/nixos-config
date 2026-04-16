@@ -2,6 +2,7 @@
   inputs,
   lib,
   config,
+  pkgs,
   userProperties,
   ...
 }:
@@ -37,6 +38,8 @@
           _JAVA_AWT_WM_NONREPARENTING = "1";
         };
       };
+
+      home.packages = [ pkgs.nixfmt ];
 
       imports =
         lib.lists.map (directoryName: ./${directoryName}) (

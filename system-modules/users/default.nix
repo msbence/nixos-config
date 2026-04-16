@@ -1,4 +1,10 @@
-{ config, lib, pkgs, userProperties, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  userProperties,
+  ...
+}:
 {
   users.users.${userProperties.username} = {
     isNormalUser = true;

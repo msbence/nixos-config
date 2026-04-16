@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 with lib;
 {
   services.fprintd.enable = mkForce true;
