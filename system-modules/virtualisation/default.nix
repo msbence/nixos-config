@@ -15,11 +15,6 @@
       qemu = {
         swtpm.enable = true;
         runAsRoot = true;
-
-        ovmf = {
-          enable = true;
-          packages = with pkgs; [ OVMFFull.fd ];
-        };
       };
     };
   };

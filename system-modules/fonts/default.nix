@@ -13,7 +13,7 @@
       fira-code-symbols
       hack-font
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       open-sans
       roboto
       roboto-mono

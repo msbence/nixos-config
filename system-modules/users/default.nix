@@ -28,7 +28,7 @@
         user = "${userProperties.username}";
       };
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'AUTHORIZED ACCESS ONLY' --asterisks --remember --remember-user-session --time --issue --cmd ${pkgs.hyprland}/bin/Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'AUTHORIZED ACCESS ONLY' --asterisks --remember --remember-user-session --time --issue --cmd ${pkgs.hyprland}/bin/Hyprland";
         user = "greeter";
       };
     };

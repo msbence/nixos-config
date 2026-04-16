@@ -2,8 +2,8 @@
 {
   programs.git = {
     enable = true;
-    userName = userProperties.fullName;
-    userEmail = userProperties.email;
+    user.name = userProperties.fullName;
+    user.email = userProperties.email;
     package = pkgs.git;
 
     signing = {
