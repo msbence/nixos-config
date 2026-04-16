@@ -12,7 +12,6 @@
       dejavu_fonts
       fira-code-symbols
       hack-font
-      nerdfonts
       noto-fonts
       noto-fonts-emoji
       open-sans
@@ -23,6 +22,6 @@
       font-awesome
       powerline-fonts
       powerline-symbols
-    ];
+    ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   };
 }

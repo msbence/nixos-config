@@ -21,7 +21,7 @@
 
     users.${userProperties.username} = {
       home = {
-        stateVersion = "24.11";
+        stateVersion = "25.05";
 
         username = "${userProperties.username}";
         homeDirectory = "/home/${userProperties.username}";
