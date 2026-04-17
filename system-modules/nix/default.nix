@@ -1,14 +1,7 @@
 {
-  config,
-  lib,
-  pkgs,
-  systemProperties,
   ...
 }:
-
 {
-  system.stateVersion = "25.11";
-
   nix = {
     settings = {
       experimental-features = [

@@ -10,6 +10,6 @@
   };
 
   users.users.${userProperties.username}.extraGroups =
-    lib.optionals config.systemOptions.enableDocker
+    lib.optionals config.systemOptions.enablePrinting
       [ "cups" ];
 }

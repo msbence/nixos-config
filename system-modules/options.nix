@@ -12,7 +12,7 @@
     enableBluetooth = mkOption {
       type = types.bool;
       default = if systemProperties.type == "server" then false else true;
-      description = "Enable audio services";
+      description = "Enable bluetooth services";
     };
     ###<
     ###> BOOT

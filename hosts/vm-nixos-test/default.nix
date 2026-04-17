@@ -27,6 +27,7 @@ nixpkgs.lib.nixosSystem {
   };
 
   system = systemProperties.architecture;
+  config.system.stateVersion = "25.11";
 
   modules = [
     ./hardware-configuration.nix
