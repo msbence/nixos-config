@@ -1,5 +1,5 @@
-{ ... }:
-{
+{ lib, ... }:
+lib.mkIf (config.systemOptions.impermanenceType != "none") {
   fileSystems."/persisted".neededForBoot = true;
   fileSystems."/home".neededForBoot = true;
   environment.persistence."/persisted/system" = {

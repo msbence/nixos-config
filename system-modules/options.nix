@@ -71,6 +71,17 @@
       description = "Enable libinput and touchpad support";
     };
     ###<
+    ###> IMPERMANENCE
+    impermanenceType = mkOption {
+      type = types.enum [
+        "none"
+        "btrfs"
+        "tmpfs"
+      ];
+      default = "tmpfs";
+      description = "Enables and sets impermanence method used";
+    };
+    ###<
     ###> LOCALE
     timeZone = mkOption {
       type = types.str;
