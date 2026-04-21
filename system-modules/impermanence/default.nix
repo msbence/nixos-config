@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 lib.mkIf (config.systemOptions.impermanenceType != "none") {
   fileSystems."/persisted".neededForBoot = true;
   fileSystems."/home".neededForBoot = true;

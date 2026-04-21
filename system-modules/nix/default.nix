@@ -1,7 +1,10 @@
 {
+  config,
   ...
 }:
 {
+  system.stateVersion = config.systemOptions.systemStateVersion;
+
   nix = {
     settings = {
       experimental-features = [

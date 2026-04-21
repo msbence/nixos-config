@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  userProperties,
   ...
 }:
 {
@@ -11,7 +10,8 @@
       enable = true;
     };
 
-    getty.autologinUser = lib.mkIf config.systemOptions.enableAutologin "${userProperties.username}";
+    getty.autologinUser = lib.mkIf config.systemOptions.enableAutologin "${config.userOptions.username
+    }";
   };
 
   security = {

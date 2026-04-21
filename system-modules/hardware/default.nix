@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  userProperties,
   ...
 }:
 {
@@ -12,7 +11,7 @@
     hardware.bolt.enable = config.systemOptions.enableThunderbolt;
   };
 
-  users.users.${userProperties.username}.extraGroups =
+  users.users.${config.userOptions.username}.extraGroups =
     lib.optionals config.systemOptions.enableFirmwareUpdates
       [ "fwupd" ];
 }

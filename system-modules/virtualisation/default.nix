@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  userProperties,
   ...
 }:
 {
@@ -19,7 +18,7 @@
     };
   };
 
-  users.users.${userProperties.username}.extraGroups =
+  users.users.${config.userOptions.username}.extraGroups =
     lib.optionals config.systemOptions.enableDocker [ "docker" ]
     ++ lib.optionals config.systemOptions.enableQemu [
       "kvm"

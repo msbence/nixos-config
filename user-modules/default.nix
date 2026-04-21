@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  userProperties,
   ...
 }:
 {
@@ -14,18 +13,17 @@
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
-      inherit userProperties;
     };
 
     useGlobalPkgs = true;
     useUserPackages = true;
 
-    users.${userProperties.username} = {
+    users.${config.userOptions.username} = {
       home = {
-        stateVersion = userProperties.homeManagerStateVersion;
+        stateVersion = config.userOptions.homeManagerStateVersion;
 
-        username = "${userProperties.username}";
-        homeDirectory = "/home/${userProperties.username}";
+        username = "${config.userOptions.username}";
+        homeDirectory = "/home/${config.userOptions.username}";
 
         sessionVariables = {
           EDITOR = "nano";
@@ -41,13 +39,14 @@
 
       home.packages = [ pkgs.nixfmt ];
 
-      imports =
-        lib.lists.map (directoryName: ./${directoryName}) (
-          builtins.attrNames (
-            lib.attrsets.filterAttrs (name: type: type == "directory") (builtins.readDir ./.)
-          )
+      imports = [
+        ./options.nix
+      ]
+      ++ lib.lists.map (directoryName: ./${directoryName}) (
+        builtins.attrNames (
+          lib.attrsets.filterAttrs (name: type: type == "directory") (builtins.readDir ./.)
         )
-        ++ [ ];
+      );
     };
   };
 }

@@ -1,5 +1,10 @@
 { ... }:
 {
+  systemOptions.systemStateVersion = "25.11";
+  userOptions.homeManagerStateVersion = "25.11";
+
+  systemOptions.deviceType = "desktop";
+
   systemOptions.enableFingerprint = true;
   systemOptions.enableFirewall = false;
   systemOptions.powerManagementProfile = {

@@ -1,8 +1,6 @@
 {
   lib,
   config,
-  systemProperties,
-  userProperties,
   ...
 }:
 {
@@ -11,9 +9,9 @@
     resolvconf.enable = true;
     wireguard.enable = config.systemOptions.enableWireguard;
 
-    hostName = "${systemProperties.hostname}";
+    hostName = "${config.systemOptions.hostname}";
     hosts = {
-      "127.0.0.1" = [ "${systemProperties.hostname}" ];
+      "127.0.0.1" = [ "${config.systemOptions.hostname}" ];
     };
   };
 
@@ -36,7 +34,7 @@
     };
   };
 
-  users.users.${userProperties.username}.extraGroups =
+  users.users.${config.userOptions.username}.extraGroups =
     lib.optionals config.systemOptions.enableNetworkManager [ "networkmanager" ]
     ++ lib.optionals config.systemOptions.enableWireshark [ "wireshark" ];
 

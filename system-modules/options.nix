@@ -1,24 +1,58 @@
-{ lib, systemProperties, ... }:
+{
+  lib,
+  config,
+  hostname,
+  ...
+}:
 {
   options.systemOptions = with lib; {
+    ###> GENERAL
+    architecture = mkOption {
+      type = types.enum [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      default = "x86_64-linux";
+    };
+    hostname = mkOption {
+      type = types.str;
+      readOnly = true;
+      default = hostname;
+    };
+    deviceType = mkOption {
+      type = types.enum [
+        "desktop"
+        "laptop"
+        "server"
+      ];
+      description = "Machine role, controls most defaults";
+    };
+    deviceIsVirtual = mkOption {
+      type = types.bool;
+      default = if config.systemOptions.deviceType == "server" then true else false;
+    };
+    systemStateVersion = mkOption {
+      type = types.str;
+    };
+    ###<
     ###> AUDIO
     enableAudio = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable audio services";
     };
     ###<
     ###> BLUETOOTH
     enableBluetooth = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable bluetooth services";
     };
     ###<
     ###> BOOT
     enablePlymouth = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Display Plymouth instead of console logging";
     };
     plymouthTheme = mkOption {
@@ -43,21 +77,21 @@
         "none"
         "hyprland"
       ];
-      default = if systemProperties.type == "server" then "none" else "hyprland";
+      default = if config.systemOptions.deviceType == "server" then "none" else "hyprland";
       description = "Sets the window manager to use";
     };
     ###<
     ###> FONTS
     enableAdditionalFonts = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Install additional fonts";
     };
     ###<
     ###> HARDWARE
     enableFirmwareUpdates = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable fwupd";
     };
     enableThunderbolt = mkOption {
@@ -67,7 +101,7 @@
     };
     enableLibInput = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable libinput and touchpad support";
     };
     ###<
@@ -85,7 +119,7 @@
     ###> LOCALE
     timeZone = mkOption {
       type = types.str;
-      default = if systemProperties.type == "server" then "Etc/UTC" else "Europe/Vienna";
+      default = if config.systemOptions.deviceType == "server" then "Etc/UTC" else "Europe/Vienna";
       description = "Set the timezone";
     };
     keyboardLayout = mkOption {
@@ -96,7 +130,7 @@
     additionalLocaleSettings = mkOption {
       type = types.attrs;
       default =
-        if systemProperties.type == "server" then
+        if config.systemOptions.deviceType == "server" then
           { }
         else
           {
@@ -115,27 +149,27 @@
     ###> NETWORKING
     enableNetworkManager = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable NetworkManager";
     };
     enableWireguard = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable Wireguard VPN";
     };
     enableWireshark = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable Wireshark packet capturing";
     };
     enableGns3 = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable GNS3 network simulator";
     };
     enableSsh = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then true else false;
+      default = if config.systemOptions.deviceType == "server" then true else false;
       description = "Enable SSH server";
     };
     permitSshRootLogin = mkOption {
@@ -150,7 +184,7 @@
     ###> POWER
     enablePowerManagement = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable TLP for power management";
     };
     powerManagementProfile = mkOption {
@@ -173,14 +207,14 @@
     ###> PRINTING
     enablePrinting = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable CUPS for printing";
     };
     ###<
     ###> SECURITY
     enableAutologin = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable automatic login";
     };
     enableFingerprint = mkOption {
@@ -190,12 +224,12 @@
     };
     enableTpm = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable TPM2 services";
     };
     enableGpg = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable GPG services";
     };
     enableFirewall = mkOption {
@@ -210,19 +244,19 @@
     ###> VIRTUALISATION
     enableDocker = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable the Docker daemon";
     };
 
     enableQemu = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable libvirt and QEMU";
     };
 
     enableCockpit = mkOption {
       type = types.bool;
-      default = if systemProperties.type == "server" then false else true;
+      default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable Cockpit and it's webUI";
     };
     ###<

@@ -1,12 +1,12 @@
-{ pkgs, userProperties, ... }:
+{ pkgs, config, ... }:
 {
   programs.git = {
     enable = true;
 
     settings = {
       user = {
-        name = userProperties.fullName;
-        email = userProperties.email;
+        name = config.userOptions.fullName;
+        email = config.userOptions.email;
       };
       init.defaultBranch = "master";
     };

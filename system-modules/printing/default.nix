@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  userProperties,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     printing.enable = config.systemOptions.enablePrinting;
   };
 
-  users.users.${userProperties.username}.extraGroups =
+  users.users.${config.userOptions.username}.extraGroups =
     lib.optionals config.systemOptions.enablePrinting
       [ "cups" ];
 }
