@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +27,6 @@
     {
       self,
       nixpkgs,
-      nixos-hardware,
       ...
     }@inputs:
     {
@@ -32,7 +36,7 @@
           (hostName: {
             # 3: build an attributeSet with the hostname as key, and the host configuration as value
             name = hostName;
-            value = (import ./hosts/${hostName} { inherit inputs nixpkgs nixos-hardware; });
+            value = (import ./hosts/${hostName} { inherit inputs nixpkgs; });
           })
           (
             (builtins.filter (name: (builtins.readDir ./hosts).${name} == "directory") (

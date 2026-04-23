@@ -10,6 +10,7 @@ lib.mkIf (config.systemOptions.impermanenceType != "none") {
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
+      "/var/lib/sops-nix"
     ];
     files = [
       "/etc/machine-id"

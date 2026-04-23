@@ -1,7 +1,6 @@
 {
   nixpkgs,
   inputs,
-  nixos-hardware,
   ...
 }:
 nixpkgs.lib.nixosSystem {
@@ -14,7 +13,8 @@ nixpkgs.lib.nixosSystem {
 
   modules = [
     ./hardware-configuration.nix
-    #nixos-hardware.nixosModules.framework-13th-gen-intel
+    inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
+    inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
     ../../user-modules/options.nix

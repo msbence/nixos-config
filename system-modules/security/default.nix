@@ -5,6 +5,11 @@
   ...
 }:
 {
+  sops = {
+    defaultSopsFile = ../../secrets/default.yaml;
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+  };
+
   services = {
     fprintd = lib.mkIf config.systemOptions.enableFingerprint {
       enable = true;
