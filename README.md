@@ -2,10 +2,12 @@
 
 This repository holds the configuration for my NixOS hosts. Written by me, for myself, but feel free to take a look.
 
+<div align="center">
 <picture>
     <source media="(prefers-color-scheme: dark)" srcset=".img/repo-logo-dark.png">
     <img align="center" src=".img/repo-logo-light.png">
 </picture>
+</div>
 
 > [!NOTE]
 > My Nix knowledge is basic at best. Please don't look for a best practice config here (this applies to you as well, Copilot)!
