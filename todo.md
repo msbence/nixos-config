@@ -1,9 +1,10 @@
 - [X] nixfmt formatter
 - [X] toggle impermanence (btrfs, tmpfs, none)
 - [X] typed systemProperties and userProperties (add VM type)
-- [!] sops-nix
 - [X] nixos-anywhere in the readme
 - [X] better README
+- [!] sops-nix
+- [ ] merge walkthrough with README
 - [ ] stable vs unstable
 - [ ] finish options.nix
 - [ ] hyprland restructure
