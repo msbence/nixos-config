@@ -7,11 +7,11 @@
 {
   sops = {
     defaultSopsFile = ../../secrets/default.yaml;
-    age.keyFile = "/var/lib/sops-nix/key.txt";
+    age.keyFile = "/persisted/var/lib/sops-nix/key.txt";
   };
 
   environment.variables = {
-    SOPS_AGE_KEY_FILE = "/var/lib/sops-nix/key.txt";
+    SOPS_AGE_KEY_FILE = "/persisted/var/lib/sops-nix/key.txt";
   };
 
   environment.systemPackages = with pkgs; [
