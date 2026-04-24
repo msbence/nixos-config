@@ -3,6 +3,7 @@
 - [X] typed systemProperties and userProperties (add VM type)
 - [ ] sops-nix
 - [ ] nixos-anywhere in the readme
+- [ ] stable vs unstable
 - [ ] better README
 - [ ] finish options.nix
 - [ ] hyprland restructure

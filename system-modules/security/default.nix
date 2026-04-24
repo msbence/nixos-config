@@ -10,6 +10,15 @@
     age.keyFile = "/var/lib/sops-nix/key.txt";
   };
 
+  environment.variables = {
+    SOPS_AGE_KEY_FILE = "/var/lib/sops-nix/key.txt";
+  };
+
+  environment.systemPackages = with pkgs; [
+    age
+    sops
+  ];
+
   services = {
     fprintd = lib.mkIf config.systemOptions.enableFingerprint {
       enable = true;
