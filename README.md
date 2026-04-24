@@ -4,8 +4,8 @@ This repository holds the configuration for my NixOS hosts. Written by me, for m
 
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: light)" srcset=".img/repo-logo-light.png">
-        <img src=".img/repo-logo-dark.png">
+        <source media="(prefers-color-scheme: dark)" srcset=".img/repo-logo-dark.png">
+        <img src=".img/repo-logo-light.png">
     </picture>
 </div>
 
