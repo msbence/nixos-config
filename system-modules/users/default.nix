@@ -5,7 +5,7 @@
   ...
 }:
 {
-  sops.secrets.user-raptor-password = {};
+  sops.secrets.user-raptor-password = { };
 
   users.users.${config.userOptions.username} = {
     isNormalUser = true;

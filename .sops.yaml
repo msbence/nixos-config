@@ -1,9 +1,11 @@
 keys:
 #  - &user_yubikey_5c age1yubikey1q27ute0qtans6fqnghlcpngk2k0k0dcgwuzegm36xmvckhm9lqrkguvfwe3
+  - &host_nb_framework age1lv7py8qxw3lgn8980rva0lwz88fsvqfar0szx7yacjxv60cpa3vqgwn7km
   - &host_vm_nixos_test age16k6zekwj3p50kfhzkhwk4dzpj6du6w7twwyzjyvqrqxfy9uxafpqxsa5sm
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json)$
     key_groups:
     - age:
 #      - *user_yubikey_5c
+      - *host_nb_framework
       - *host_vm_nixos_test
