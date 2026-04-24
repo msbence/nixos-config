@@ -20,6 +20,6 @@ nixpkgs.lib.nixosSystem {
     ../../user-modules/options.nix
     ../../system-modules/default.nix
     ../../user-modules/default.nix
-    ./overrides.nix
+    ./settings.nix
   ];
 }
