@@ -3,10 +3,10 @@
 This repository holds the configuration for my NixOS hosts. Written by me, for myself, but feel free to take a look.
 
 <div align="center">
-<picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".img/repo-logo-dark.png">
-    <img align="center" src=".img/repo-logo-light.png">
-</picture>
+    <picture>
+        <source media="(prefers-color-scheme: light)" srcset=".img/repo-logo-light.png">
+        <img src=".img/repo-logo-dark.png">
+    </picture>
 </div>
 
 > [!NOTE]
