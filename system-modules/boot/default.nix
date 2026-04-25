@@ -58,7 +58,7 @@
       '';
     };
 
-    kernelPackages = lib.mkIf (config.systemOptions.deviceType != "server") pkgs.linuxPackages_zen;
+    kernelPackages = lib.mkIf (config.systemOptions.deviceType != "server") (lib.mkDefault pkgs.linuxPackages_zen);
 
     kernelParams = [
       "boot.shell_on_fail"

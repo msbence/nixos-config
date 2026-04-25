@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   systemOptions.systemStateVersion = "25.11";
   userOptions.homeManagerStateVersion = "25.11";
@@ -20,4 +20,5 @@
     CPU_MAX_PERF_ON_BAT = 75;
   };
   systemOptions.enableSsh = true;
+  boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
 }
