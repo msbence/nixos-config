@@ -25,7 +25,7 @@
 
   nixpkgs = {
     config.allowUnfree = true;
-    
+
     overlays = [
       (final: prev: {
         unstable = import inputs.nixpkgs-unstable {
