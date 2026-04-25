@@ -24,6 +24,60 @@ This configuration is using Nix Flakes (_"experimental", you know..._), tries to
 - `secrets/`: Anything that normally should not live on git, but required by my config. Managed using `sops-nix`, `sops` and `age`.
 - `flake.nix`: The main entrypoint of the repository that defines external inputs and glues the hosts, and modules together.
 
+### Impermanence
+
+The configuration is capable to handle ephemeral deployments where `/` is wiped on boot, and there is a dedicated persistent `/persisted` mountpoint used with impermancence.
+- **System state** → `/persisted` (mainly used by system modules, handled by the impermancence module)
+- **User home** → `/home` (home directories are safe, as they are located on a dedicated BTRFS subvolume)
+- Each system module contributes its own persistence entries where relevant
+- The type of impermance can be controlled by the `systemOptions.impermanenceType` option:
+   - `none`: No impermanence at all, `/` will NOT be wiped
+   - `btrfs`: `/` is a BTRFS subvolume as well, and an systemd-initrd service rollbacks it to the initial state on every boot
+   - `tmpfs`: This one is clean and easy, as long as you have plenty of RAM. `/` is a tmpfs, everything stored in memory
+
+> [!NOTE]
+> Please note that setting the impermanence type above is just one side of the coin, your Disko layout has to reflect what you want as well.
+
+### Adding a New System Module
+
+1. Create `system-modules/<name>/default.nix`.
+2. If the module needs a toggle, add an option to `system-modules/options.nix` first.
+3. Accept `{ config, lib, pkgs, ... }:`.
+4. Use `lib.mkIf config.systemOptions.<yourOption>` to make the settings conditional.
+5. Add persistence entries inline if the module creates stateful data not in the configuration.
+6. No registration needed as the auto-import logic picks it up.
+
+**Example snippet:**
+```nix
+{ config, lib, pkgs, ... }:
+{
+  services.myservice = lib.mkIf config.systemOptions.enableMyService {
+    enable = true;
+  };
+
+  environment.persistence."/persisted".directories =
+    lib.optionals config.systemOptions.enableMyService [ "/var/lib/myservice" ];
+}
+```
+
+### Adding a New User Module
+
+1. Create `user-modules/<name>/default.nix`.
+2. Accept `{ pkgs, ... }:` (and `inputs` if needed).
+3. Write the Home Manager config inside the file body (it's already scoped to the right user by `user-modules/default.nix`).
+4. No registration needed as the auto-import logic picks it up.
+
+**Example snippet:**
+```nix
+{ pkgs, userProperties, ... }:
+{
+  programs.myapp = {
+    enable = true;
+    # ...
+  };
+}
+```
+
 ## Upgrade
 
 The configuration sets all necessary envvars and installs the required helpers. Just run these two commands as a normal user, from any path:
@@ -94,6 +148,24 @@ This requires a NixOS host already. If you have none available, then scroll down
 10. If you have added a new host then don't forget to commit and push
 11. Reboot
 
+---
+
 ## License
 
 [WTFPL](https://www.wtfpl.net/about/)
+
+---
+
+## TODOs
+
+- [X] nixfmt formatter
+- [X] toggle impermanence (btrfs, tmpfs, none)
+- [X] typed systemProperties and userProperties (add VM type)
+- [X] nixos-anywhere in the readme
+- [X] better README
+- [X] sops-nix
+- [X] merge walkthrough with README
+- [ ] stable vs unstable
+- [ ] finish options.nix
+- [ ] hyprland restructure
+- [ ] add user-modules
