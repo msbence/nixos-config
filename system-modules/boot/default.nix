@@ -58,6 +58,8 @@
       '';
     };
 
+    kernelPackages = lib.mkIf (config.systemOptions.deviceType != "server") pkgs.linuxPackages_zen;
+
     kernelParams = [
       "boot.shell_on_fail"
       "loglevel=3"
