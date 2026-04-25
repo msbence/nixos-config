@@ -20,11 +20,6 @@
       "audio"
       "video"
     ];
-    # use this block carefully, as only base system-level packages should be put here
-    packages = with pkgs; [
-      htop
-      nixfmt-rfc-style
-    ];
   };
 
   services.greetd =

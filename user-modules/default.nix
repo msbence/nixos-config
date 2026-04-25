@@ -36,9 +36,12 @@
           SDL_VIDEODRIVER = "wayland";
           _JAVA_AWT_WM_NONREPARENTING = "1";
         };
-      };
 
-      home.packages = [ pkgs.nixfmt ];
+        packages = with pkgs; [
+          htop
+          nixfmt-rfc-style
+        ];
+      };
 
       imports = [
         ./options.nix

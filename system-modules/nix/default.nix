@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -16,7 +17,7 @@
       auto-optimise-store = true;
     };
 
-    gc = {
+    gc = lib.mkDefault {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 1w";
@@ -24,13 +25,13 @@
   };
 
   nixpkgs = {
-    config.allowUnfree = true;
+    config.allowUnfree = config.systemOptions.allowUnfreePackages;
 
     overlays = [
       (final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           system = prev.system;
-          config.allowUnfree = true;
+          config.allowUnfree = config.systemOptions.allowUnfreePackages;
         };
       })
     ];

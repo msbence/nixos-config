@@ -153,6 +153,13 @@
       description = "Enable GNS3 network simulator";
     };
     ###<
+    ###> NIX
+    allowUnfreePackages = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enables un-free packages from nixpkgs";
+    };
+    ###<
     ###> PRINTING
     enablePrinting = mkOption {
       type = types.bool;
