@@ -3,7 +3,9 @@
   ...
 }:
 let
-  useUnstableChannels = false; 
+  systemArchitecture = "x86_64-linux";
+  useUnstableChannels = false;
+  
   active-nixpkgs = if useUnstableChannels then inputs.nixpkgs-unstable else inputs.nixpkgs;
   active-home-manager = if useUnstableChannels then inputs.home-manager-unstable else inputs.home-manager;
 in
@@ -13,7 +15,7 @@ active-nixpkgs.lib.nixosSystem {
     hostname = builtins.baseNameOf ./.;
   };
 
-  system = "x86_64-linux";
+  system = systemArchitecture;
 
   modules = [
     ./hardware-configuration.nix

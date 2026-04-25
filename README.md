@@ -166,7 +166,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 - [X] better README
 - [X] sops-nix
 - [X] merge walkthrough with README
-- [!] stable vs unstable
+- [X] stable vs unstable
 - [ ] finish options.nix
 - [ ] hyprland restructure
 - [ ] add user-modules
