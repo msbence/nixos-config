@@ -1,9 +1,8 @@
 {
-  nixpkgs,
   inputs,
   ...
 }:
-nixpkgs.lib.nixosSystem {
+inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {
     inherit inputs;
     hostname = builtins.baseNameOf ./.;
