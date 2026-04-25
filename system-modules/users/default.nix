@@ -10,7 +10,7 @@
   users.users.${config.userOptions.username} = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.user-raptor-password.path;
-    extraGroups = lib.mkDefault [
+    extraGroups = [
       "wheel"
       "dialout"
       "plugdev"

@@ -18,6 +18,7 @@
 
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = ".autobak";
 
     users.${config.userOptions.username} = {
       home = {
