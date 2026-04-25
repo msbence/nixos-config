@@ -31,7 +31,7 @@
                 type = "luks";
                 name = "encrypted";
                 settings.allowDiscards = true;
-                passwordFile = "/tmp/luks.key"; # use `echo -n "password" > /tmp/secret.key`
+                passwordFile = "/tmp/luks.key";
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
