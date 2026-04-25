@@ -100,7 +100,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 > This section assumes you have an `age` key dedicated to the host that is able to decrypt the secrets. Refer to the "Add new host" section if that's not the case.
 
 1. Clone this repository and `cd` to the root of it
-2. Create a directory for the `age` key: `mkdir -p copy/persisted/var/lib/sops-nix`
+2. Create a directory for the `age` key (omit `/persisted`, if not using impermanence): `mkdir -p copy/persisted/var/lib/sops-nix`
 3. Put the `age` key in the `sops-nix` directory, named `key.txt`
 4. Write a LUKS encryption key to a file: `echo -n "lukspw" > ./luks.key`
 5. Fire up the NixOS Minimal Installer ISO, and set a password for the `root` user: `sudo passwd root`
@@ -119,7 +119,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 1. Clone this repository and `cd` to the root of it
 2. Copy a host of your choice and name your host: `cp -r hosts/<SOURCE_HOST> hosts/<HOSTNAME>`
 3. Remove the hardware configuration as it most likely will differ: `rm hosts/<HOSTNAME>/hardware-configuration.nix`
-4. Create a directory for the `age` key: `mkdir -p copy/persisted/var/lib/sops-nix`
+4. Create a directory for the `age` key (omit `/persisted` here and in the next step, if not using impermanence): `mkdir -p copy/persisted/var/lib/sops-nix`
 5. Generate an `age` key in the `sops-nix` directory, named `key.txt`: `age-keygen -pq copy/persisted/var/lib/sops-nix/key.txt`
 6. Add the **public key** to `.sops.yaml`, and re-encrypt the secrets: `sops updatekeys secrets/default.yaml && sops rotate secrets/default.yaml` 
 7. Write a LUKS encryption key to a file: `echo -n "lukspw" > ./luks.key`
@@ -138,7 +138,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 3. Switch to the root user: `sudo -s`
 4. Write a LUKS encryption key to a file: `echo -n "lukspw" > /tmp/luks.key`
 5. Format the disk using Disko: `nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount --yes-wipe-all-disks ./hosts/HOSTNAME/disk-configuration.nix`
-6. Create a directory for the `age` key: `mkdir -p /mnt/persisted/var/lib/sops-nix`
+6. Create a directory for the `age` key (omit `/persisted`, if not using impermanence): `mkdir -p /mnt/persisted/var/lib/sops-nix`
 7. Put the `age` key in the `sops-nix` directory, named `key.txt`
 8. If you are deploying a brand new host:
    1. Copy a host of your choice and name your host: `cp -r hosts/<SOURCE_HOST> hosts/<HOSTNAME>`
@@ -167,6 +167,6 @@ This requires a NixOS host already. If you have none available, then scroll down
 - [X] sops-nix
 - [X] merge walkthrough with README
 - [X] stable vs unstable
-- [ ] finish options.nix
+- [X] finish options.nix
 - [ ] hyprland restructure
 - [ ] add user-modules

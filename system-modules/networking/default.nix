@@ -7,7 +7,7 @@
   networking = {
     networkmanager.enable = config.systemOptions.enableNetworkManager;
     resolvconf.enable = true;
-    wireguard.enable = config.systemOptions.enableWireguard;
+    wireguard.enable = lib.mkDefault (config.systemOptions.deviceType != "server");
 
     hostName = "${config.systemOptions.hostname}";
     hosts = {
@@ -22,8 +22,8 @@
 
   services = {
     openssh = {
-      enable = config.systemOptions.enableSsh;
-      settings.PermitRootLogin = config.systemOptions.permitSshRootLogin;
+      enable = lib.mkDefault (config.systemOptions.deviceType == "server");
+      settings.PermitRootLogin = lib.mkDefault "no";
     };
 
     gns3-server = lib.mkIf config.systemOptions.enableGns3 {

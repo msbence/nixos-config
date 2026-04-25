@@ -10,34 +10,36 @@
   users.users.${config.userOptions.username} = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.user-raptor-password.path;
-    extraGroups = [
+    extraGroups = lib.mkDefault [
       "wheel"
       "dialout"
       "plugdev"
       "netdev"
       "cdrom"
       "floppy"
-      "adbusers"
       "audio"
       "video"
     ];
+    # use this block carefully, as only base system-level packages should be put here
     packages = with pkgs; [
       htop
       nixfmt-rfc-style
     ];
   };
 
-  services.greetd = lib.mkIf config.systemOptions.enableAutologin {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "${config.userOptions.username}";
+  services.greetd =
+    lib.mkIf (config.systemOptions.enableAutologin && config.systemOptions.windowManager == "hyprland")
+      {
+        enable = true;
+        settings = {
+          initial_session = {
+            command = "${pkgs.hyprland}/bin/Hyprland";
+            user = "${config.userOptions.username}";
+          };
+          default_session = {
+            command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'AUTHORIZED ACCESS ONLY' --asterisks --remember --remember-user-session --time --issue --cmd ${pkgs.hyprland}/bin/Hyprland";
+            user = "greeter";
+          };
+        };
       };
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'AUTHORIZED ACCESS ONLY' --asterisks --remember --remember-user-session --time --issue --cmd ${pkgs.hyprland}/bin/Hyprland";
-        user = "greeter";
-      };
-    };
-  };
 }

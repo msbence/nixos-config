@@ -7,11 +7,11 @@
 {
   sops = {
     defaultSopsFile = ../../secrets/default.yaml;
-    age.keyFile = "/persisted/var/lib/sops-nix/key.txt";
+    age.keyFile = config.systemOptions.sopsKeyPath;
   };
 
   environment.variables = {
-    SOPS_AGE_KEY_FILE = "/persisted/var/lib/sops-nix/key.txt";
+    SOPS_AGE_KEY_FILE = config.systemOptions.sopsKeyPath;
   };
 
   environment.systemPackages = with pkgs; [
@@ -20,8 +20,8 @@
   ];
 
   services = {
-    fprintd = lib.mkIf config.systemOptions.enableFingerprint {
-      enable = true;
+    fprintd = {
+      enable = lib.mkOverride 100 false;
     };
 
     getty.autologinUser = lib.mkIf config.systemOptions.enableAutologin "${config.userOptions.username
@@ -29,7 +29,7 @@
   };
 
   security = {
-    tpm2.enable = config.systemOptions.enableTpm;
+    tpm2.enable = lib.mkDefault (config.systemOptions.deviceType != "server");
     polkit.enable = true;
     rtkit.enable = true;
     sudo.wheelNeedsPassword = false;

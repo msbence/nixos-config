@@ -11,7 +11,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 8;
-      systemd-boot.netbootxyz.enable = config.systemOptions.enableNetbootXyz;
+      systemd-boot.netbootxyz.enable = lib.mkDefault true;
     };
 
     initrd = {
@@ -58,7 +58,9 @@
       '';
     };
 
-    kernelPackages = lib.mkIf (config.systemOptions.deviceType != "server") (lib.mkDefault pkgs.linuxPackages_zen);
+    kernelPackages = lib.mkIf (config.systemOptions.deviceType != "server") (
+      lib.mkDefault pkgs.linuxPackages_zen
+    );
 
     kernelParams = [
       "boot.shell_on_fail"

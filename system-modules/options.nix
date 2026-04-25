@@ -65,11 +65,6 @@
       default = "1";
       description = "Scaling factor for Plymouth";
     };
-    enableNetbootXyz = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Add netboot.xyz to the systemd-boot menu";
-    };
     ###<
     ###> DISPLAY
     windowManager = mkOption {
@@ -117,15 +112,10 @@
     };
     ###<
     ###> LOCALE
-    timeZone = mkOption {
-      type = types.str;
-      default = if config.systemOptions.deviceType == "server" then "Etc/UTC" else "Europe/Vienna";
-      description = "Set the timezone";
-    };
     keyboardLayout = mkOption {
       type = types.str;
       default = "uk";
-      description = "Set the used keyboard layout";
+      description = "Sets the used keyboard layout";
     };
     additionalLocaleSettings = mkOption {
       type = types.attrs;
@@ -152,11 +142,6 @@
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable NetworkManager";
     };
-    enableWireguard = mkOption {
-      type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then false else true;
-      description = "Enable Wireguard VPN";
-    };
     enableWireshark = mkOption {
       type = types.bool;
       default = if config.systemOptions.deviceType == "server" then false else true;
@@ -166,42 +151,6 @@
       type = types.bool;
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable GNS3 network simulator";
-    };
-    enableSsh = mkOption {
-      type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then true else false;
-      description = "Enable SSH server";
-    };
-    permitSshRootLogin = mkOption {
-      type = types.enum [
-        "yes"
-        "no"
-      ];
-      default = "no";
-      description = "Enable root login using SSH";
-    };
-    ###<
-    ###> POWER
-    enablePowerManagement = mkOption {
-      type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then false else true;
-      description = "Enable TLP for power management";
-    };
-    powerManagementProfile = mkOption {
-      type = types.attrs;
-      default = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
-
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
-
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 100;
-      };
-      description = "Set TLP Power Profile settings";
     };
     ###<
     ###> PRINTING
@@ -215,17 +164,7 @@
     enableAutologin = mkOption {
       type = types.bool;
       default = if config.systemOptions.deviceType == "server" then false else true;
-      description = "Enable automatic login";
-    };
-    enableFingerprint = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable fingerprint services";
-    };
-    enableTpm = mkOption {
-      type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then false else true;
-      description = "Enable TPM2 services";
+      description = "Enable automatic login (one password will be presented anyhow due to FDE)";
     };
     enableGpg = mkOption {
       type = types.bool;
@@ -237,9 +176,15 @@
       default = true;
       description = "Enable firewall";
     };
-    ###<
-    ###> USERS
-
+    sopsKeyPath = mkOption {
+      type = types.str;
+      default =
+        if config.systemOptions.impermanenceType == "none" then
+          "/var/lib/sops-nix/key.txt"
+        else
+          "/persisted/var/lib/sops-nix/key.txt";
+      description = "Sets the path where the age key is stored for sops-nix";
+    };
     ###<
     ###> VIRTUALISATION
     enableDocker = mkOption {

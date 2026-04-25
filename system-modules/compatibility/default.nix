@@ -5,6 +5,6 @@
   };
 
   services = {
-    envfs.enable = false; # TODO: fixme
+    envfs.enable = true;
   };
 }

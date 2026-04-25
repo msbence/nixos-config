@@ -4,7 +4,9 @@
   ...
 }:
 {
-  time.timeZone = config.systemOptions.timeZone;
+  time.timeZone = lib.mkDefault (
+    if config.systemOptions.deviceType == "server" then "Etc/UTC" else "Europe/Vienna"
+  );
   console = {
     keyMap = config.systemOptions.keyboardLayout;
   };
