@@ -136,7 +136,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 1. Fire up the NixOS Minimal Installer ISO (you may want to set a password for the `nixos` user with `passwd`)
 2. Clone this repository and `cd` to the root of it
 3. Switch to the root user: `sudo -s`
-4. Write a LUKS encryption key to a file: `echo -n "lukspw" > ./luks.key`
+4. Write a LUKS encryption key to a file: `echo -n "lukspw" > /tmp/luks.key`
 5. Format the disk using Disko: `nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount --yes-wipe-all-disks ./hosts/HOSTNAME/disk-configuration.nix`
 6. Create a directory for the `age` key: `mkdir -p /mnt/persisted/var/lib/sops-nix`
 7. Put the `age` key in the `sops-nix` directory, named `key.txt`
@@ -144,7 +144,8 @@ This requires a NixOS host already. If you have none available, then scroll down
    1. Copy a host of your choice and name your host: `cp -r hosts/<SOURCE_HOST> hosts/<HOSTNAME>`
    2. Remove the hardware configuration as it most likely will differ: `rm hosts/<HOSTNAME>/hardware-configuration.nix`
    3. Generate hardware configuration: `nixos-generate-config --no-filesystems --dir hosts/<HOSTNAME>`
-9. Build your system: `nixos-install --flake .#hostname`
+   4. Remove the generated software configuration, we don't use that: `rm hosts/<HOSTNAME>/configuration.nix`
+9. Build your system: `nixos-install --no-root-password --flake .#hostname`
 10. If you have added a new host then don't forget to commit and push
 11. Reboot
 
@@ -165,7 +166,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 - [X] better README
 - [X] sops-nix
 - [X] merge walkthrough with README
-- [ ] stable vs unstable
+- [!] stable vs unstable
 - [ ] finish options.nix
 - [ ] hyprland restructure
 - [ ] add user-modules

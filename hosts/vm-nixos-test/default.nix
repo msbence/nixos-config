@@ -2,9 +2,14 @@
   inputs,
   ...
 }:
-inputs.nixpkgs.lib.nixosSystem {
+let
+  useUnstableChannels = false; 
+  active-nixpkgs = if useUnstableChannels then inputs.nixpkgs-unstable else inputs.nixpkgs;
+  active-home-manager = if useUnstableChannels then inputs.home-manager-unstable else inputs.home-manager;
+in
+active-nixpkgs.lib.nixosSystem {
   specialArgs = {
-    inherit inputs;
+    inherit inputs active-home-manager;
     hostname = builtins.baseNameOf ./.;
   };
 

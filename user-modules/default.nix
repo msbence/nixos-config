@@ -3,11 +3,12 @@
   lib,
   config,
   pkgs,
+  active-home-manager,
   ...
 }:
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    active-home-manager.nixosModules.home-manager
   ];
 
   home-manager = {
