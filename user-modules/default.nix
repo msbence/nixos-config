@@ -41,6 +41,7 @@
         packages = with pkgs; [
           htop
           nixfmt-rfc-style
+          vivaldi
         ];
       };
 
