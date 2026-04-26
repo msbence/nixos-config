@@ -13,7 +13,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/vda";
+        device = "/dev/disk/by-id/ata-WD_Blue_SA510_2.5_1000GB_2227E9460806";
         content = {
           type = "gpt";
           partitions = {
