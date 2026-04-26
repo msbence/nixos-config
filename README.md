@@ -104,7 +104,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 3. Put the `age` key in the `sops-nix` directory, named `key.txt`
 4. Write a LUKS encryption key to a file: `echo -n "lukspw" > ./luks.key`
 5. Fire up the NixOS Minimal Installer ISO, and set a password for the `root` user: `sudo passwd root`
-6. Build your system using nixos-anywhere: `nix run github:nix-community/nixos-anywhere -- --flake .#<HOSTNAME> --disk-encryption-keys ./luks.key /tmp/luks.key --extra-files ./copy --target-host root@<HOST_IP>`
+6. Build your system using nixos-anywhere: `nix run github:nix-community/nixos-anywhere -- --flake .#<HOSTNAME> --disk-encryption-keys /tmp/luks.key ./luks.key --extra-files ./copy --chown 1000:100 --target-host root@<HOST_IP>`
 7. Clean up the secrets: `rm luks.key; rm -rf copy`
 
 > [!TIP]
@@ -124,7 +124,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 6. Add the **public key** to `.sops.yaml`, and re-encrypt the secrets: `sops updatekeys secrets/default.yaml && sops rotate secrets/default.yaml` 
 7. Write a LUKS encryption key to a file: `echo -n "lukspw" > ./luks.key`
 8. Fire up the NixOS Minimal Installer ISO, and set a password for the `root` user: `sudo passwd root`
-9. Build your system using nixos-anywhere (and generate a hardware config at the same time): `nix run github:nix-community/nixos-anywhere -- --flake .#<HOSTNAME> --generate-hardware-config nixos-generate-config ./hosts/<HOSTNAME>/hardware-configuration.nix --disk-encryption-keys ./luks.key /tmp/luks.key --extra-files ./copy --target-host root@<HOST_IP>`
+9. Build your system using nixos-anywhere (and generate a hardware config at the same time): `nix run github:nix-community/nixos-anywhere -- --flake .#<HOSTNAME> --generate-hardware-config nixos-generate-config ./hosts/<HOSTNAME>/hardware-configuration.nix --disk-encryption-keys /tmp/luks.key ./luks.key --extra-files ./copy --chown 1000:100 --target-host root@<HOST_IP>`
 10. Clean up the secrets: `rm luks.key; rm -rf copy`
 11. Commit and push your shiny new host (don't forget to `git add .`)
 
@@ -140,6 +140,7 @@ This requires a NixOS host already. If you have none available, then scroll down
 5. Format the disk using Disko: `nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount --yes-wipe-all-disks ./hosts/HOSTNAME/disk-configuration.nix`
 6. Create a directory for the `age` key (omit `/persisted`, if not using impermanence): `mkdir -p /mnt/persisted/var/lib/sops-nix`
 7. Put the `age` key in the `sops-nix` directory, named `key.txt`
+8. Set permissions on the key: `chown 1000:100 /mnt/persisted/var/lib/sops-nix/key.txt`
 8. If you are deploying a brand new host:
    1. Copy a host of your choice and name your host: `cp -r hosts/<SOURCE_HOST> hosts/<HOSTNAME>`
    2. Remove the hardware configuration as it most likely will differ: `rm hosts/<HOSTNAME>/hardware-configuration.nix`
@@ -154,20 +155,3 @@ This requires a NixOS host already. If you have none available, then scroll down
 ## License
 
 [WTFPL](https://www.wtfpl.net/about/)
-
----
-
-## TODOs
-
-- [X] nixfmt formatter
-- [X] toggle impermanence (btrfs, tmpfs, none)
-- [X] typed systemProperties and userProperties (add VM type)
-- [X] nixos-anywhere in the readme
-- [X] better README
-- [X] sops-nix
-- [X] merge walkthrough with README
-- [X] stable vs unstable
-- [X] kernel selection
-- [X] finish options.nix
-- [ ] hyprland restructure
-- [ ] add user-modules
