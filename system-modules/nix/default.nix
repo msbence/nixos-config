@@ -15,6 +15,7 @@
         "flakes"
       ];
       auto-optimise-store = true;
+      trusted-users = [ "${config.userOptions.username}" ];
     };
 
     gc = lib.mkDefault {

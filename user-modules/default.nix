@@ -21,6 +21,8 @@
     backupFileExtension = ".autobak";
 
     users.${config.userOptions.username} = {
+      programs.home-manager.enable = true;
+
       home = {
         stateVersion = config.userOptions.homeManagerStateVersion;
 
@@ -41,6 +43,7 @@
         packages = with pkgs; [
           htop
           nixfmt-rfc-style
+          nil
           vivaldi
         ];
       };

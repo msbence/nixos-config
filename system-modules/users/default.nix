@@ -9,6 +9,8 @@
 
   users.users.${config.userOptions.username} = {
     isNormalUser = true;
+    shell = pkgs.zsh;
+    ignoreShellProgramCheck = true;
     hashedPasswordFile = config.sops.secrets.user-raptor-password.path;
     extraGroups = [
       "wheel"

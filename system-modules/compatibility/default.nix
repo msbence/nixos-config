@@ -5,6 +5,6 @@
   };
 
   services = {
-    envfs.enable = false;  # TODO: investigate why this fails on fresh install when true
+    envfs.enable = false; # TODO: investigate why this fails on fresh install when true
   };
 }

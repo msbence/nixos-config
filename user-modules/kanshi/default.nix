@@ -9,10 +9,6 @@
         profile.name = "HOME";
         profile.outputs = [
           {
-            criteria = "eDP-1";
-            status = "disable";
-          }
-          {
             criteria = "Philips Consumer Electronics Company PHL 273V7 0x00000DDD";
             mode = "1920x1080@60.000";
             position = "0,0";
@@ -33,7 +29,7 @@
           }
         ];
         profile.exec = [
-          "echo HOME > /home/${user}/.current_screenlayout"
+          "echo HOME > $HOME/.current_screenlayout"
         ];
       }
     ];

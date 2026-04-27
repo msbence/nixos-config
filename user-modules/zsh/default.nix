@@ -12,11 +12,11 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      cd = "z";
-      cdi = "zi";
-      cp = "xcp";
-      cat = "bat -P";
-      ls = "colorls";
+      #cd = "z";
+      #cdi = "zi";
+      #cp = "xcp";
+      #cat = "bat -P";
+      #ls = "colorls";
       venva = "source venv/bin/activate";
       venvc = "python3 -m venv venv";
       code = "${pkgs.vscodium}/bin/codium";
@@ -40,7 +40,7 @@
         "python"
         "virtualenv"
       ];
-      theme = "bullet-train";
+      theme = "agnoster";
       extraConfig = ''
         zstyle ':omz:alpha:lib:git' async-prompt no
         ZSH_CUSTOM=$HOME/.zsh-themes
