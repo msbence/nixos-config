@@ -2,6 +2,7 @@
   lib,
   config,
   hostname,
+  systemArchitecture,
   ...
 }:
 {
@@ -12,7 +13,7 @@
         "x86_64-linux"
         "aarch64-linux"
       ];
-      default = "x86_64-linux";
+      default = systemArchitecture;
     };
     hostname = mkOption {
       type = types.str;

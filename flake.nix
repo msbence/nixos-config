@@ -23,6 +23,7 @@
     ###> OTHERS
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
 
     disko = {
       url = "github:nix-community/disko/latest";

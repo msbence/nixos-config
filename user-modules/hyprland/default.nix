@@ -9,6 +9,8 @@
     ];
 
     extraConfig = ''
+      source = ~/.config/hypr/monitors.conf
+      
       plugin {
         hyprbars {
           bar_height = 24

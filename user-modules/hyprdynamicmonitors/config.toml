@@ -1,0 +1,18 @@
+[general]
+destination = "$HOME/.config/hypr/monitors.conf"
+
+[profiles.desktop]
+config_file = "profiles/desktop.conf"
+config_file_type = "static"
+
+[[profiles.desktop.conditions.required_monitors]]
+description = "LG Electronics LG ULTRAGEAR+ 308NTBK9U373"
+monitor_tag = "middle"
+
+[[profiles.desktop.conditions.required_monitors]]
+description = "Philips Consumer Electronics Company PHL 273V7 0x00006CA1"
+monitor_tag = "right"
+
+[[profiles.desktop.conditions.required_monitors]]
+description = "Philips Consumer Electronics Company PHL 273V7 0x00000DDD"
+monitor_tag = "left"

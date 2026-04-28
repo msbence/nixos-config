@@ -12,7 +12,7 @@ let
 in
 active-nixpkgs.lib.nixosSystem {
   specialArgs = {
-    inherit inputs active-home-manager;
+    inherit inputs systemArchitecture active-home-manager;
     hostname = builtins.baseNameOf ./.;
   };
 

@@ -14,13 +14,25 @@
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
+      systemOptions = config.systemOptions;
+      userOptions = config.userOptions;
     };
 
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = ".autobak";
+    backupFileExtension = "hm-backup";
 
     users.${config.userOptions.username} = {
+      imports = [
+        inputs.hyprdynamicmonitors.homeManagerModules.default
+        ./options.nix
+      ]
+      ++ lib.lists.map (directoryName: ./${directoryName}) (
+        builtins.attrNames (
+          lib.attrsets.filterAttrs (name: type: type == "directory") (builtins.readDir ./.)
+        )
+      );
+
       programs.home-manager.enable = true;
 
       home = {
@@ -47,15 +59,6 @@
           vivaldi
         ];
       };
-
-      imports = [
-        ./options.nix
-      ]
-      ++ lib.lists.map (directoryName: ./${directoryName}) (
-        builtins.attrNames (
-          lib.attrsets.filterAttrs (name: type: type == "directory") (builtins.readDir ./.)
-        )
-      );
     };
   };
 }
