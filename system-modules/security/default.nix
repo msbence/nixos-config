@@ -39,7 +39,7 @@
     gnupg.agent = lib.mkIf config.systemOptions.enableGpg {
       enable = true;
       enableSSHSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentryPackage = pkgs.pinentry-gnome3;
     };
   };
 

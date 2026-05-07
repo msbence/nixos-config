@@ -60,7 +60,69 @@
           nixfmt-rfc-style
           nil
           vivaldi
-          hyprlauncher
+          unstable.hyprlauncher
+          slurp
+          grim
+          swappy
+          #
+          tree
+          nautilus
+          nemo
+          gns3-gui
+          colorls
+          bat
+          xcp
+          ansible
+          ansible-lint
+          pylint
+          yamllint
+          fzf
+          kubectl
+          kubectx
+          fluxcd
+          terraform
+          opentofu
+          tofu-ls
+          file
+          vault
+          pulsemixer
+          slack
+          xdg-desktop-portal-wlr
+          gimp
+          k9s
+          openrgb
+          pgadmin4
+          rclone
+          remmina
+          vlc
+          element-desktop
+          jq
+          yq
+          velero
+          google-cloud-sdk
+          unzip
+          p7zip
+          stu
+          speedtest-cli
+          inetutils
+          nmap
+          shellcheck
+          dmidecode
+          ethtool
+          pwgen
+          usbutils
+          minikube
+          kubernetes-helm
+          terraform-docs
+          s3cmd
+          imagemagick
+          minicom
+          adoptopenjdk-icedtea-web
+          hex
+          packer
+          expect
+          gettext
+          anydesk
         ];
       };
     };
