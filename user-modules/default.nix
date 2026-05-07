@@ -36,6 +36,7 @@
       );
 
       programs.home-manager.enable = true;
+      programs.bash.enable = true; # required for working home session envvars
 
       home = {
         stateVersion = config.userOptions.homeManagerStateVersion;
@@ -43,7 +44,6 @@
         username = "${config.userOptions.username}";
         homeDirectory = "/home/${config.userOptions.username}";
 
-        programs.bash.enable = true; # required for working home session envvars
         sessionVariables = {
           EDITOR = "nano";
           XDG_SESSION_TYPE = "wayland";
