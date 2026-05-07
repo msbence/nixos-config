@@ -10,7 +10,7 @@
 
     extraConfig = ''
       source = ~/.config/hypr/monitors.conf
-      
+
       plugin {
         hyprbars {
           bar_height = 24
@@ -29,7 +29,7 @@
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
       "$fileManager" = "nemo";
-      "$menu" = "anyrun";
+      "$menu" = "hyprlauncher";
 
       exec-once = [ ];
 
@@ -109,11 +109,6 @@
         ",XF86AudioPrev, exec, playerctl previous"
       ];
 
-      env = [
-        "HYPRCURSOR_THEME,Bibata-Modern-Ice"
-        "HYPRCURSOR_SIZE,24"
-      ];
-
       input = {
         kb_layout = "gb,hu";
         kb_options = "grp:alt_shift_toggle";
@@ -127,8 +122,8 @@
         gaps_in = 4;
         gaps_out = 8;
         border_size = 2;
-        "col\.active_border" = "rgb(c0d9f9)";
-        "col\.inactive_border" = "rgb(1f3a5b)";
+        #        "col\.active_border" = "rgb(c0d9f9)";
+        #        "col\.inactive_border" = "rgb(1f3a5b)";
         resize_on_border = true;
         layout = "hy3";
       };

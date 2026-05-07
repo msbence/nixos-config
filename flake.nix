@@ -9,6 +9,11 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ###<
 
     ###> UNSTABLE
@@ -18,12 +23,18 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    stylix-unstable = {
+      url = "github:nix-community/stylix/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     ###<
 
     ###> OTHERS
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
+    future-hyprcursor.url = "github:mvayk/nix-future-hyprcursor";
 
     disko = {
       url = "github:nix-community/disko/latest";

@@ -9,10 +9,16 @@ let
   active-nixpkgs = if useUnstableChannels then inputs.nixpkgs-unstable else inputs.nixpkgs;
   active-home-manager =
     if useUnstableChannels then inputs.home-manager-unstable else inputs.home-manager;
+  active-stylix = if useUnstableChannels then inputs.stylix-unstable else inputs.stylix;
 in
 active-nixpkgs.lib.nixosSystem {
   specialArgs = {
-    inherit inputs systemArchitecture active-home-manager;
+    inherit
+      inputs
+      systemArchitecture
+      active-home-manager
+      active-stylix
+      ;
     hostname = builtins.baseNameOf ./.;
   };
 

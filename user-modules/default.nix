@@ -4,6 +4,7 @@
   config,
   pkgs,
   active-home-manager,
+  active-stylix,
   ...
 }:
 {
@@ -24,8 +25,9 @@
 
     users.${config.userOptions.username} = {
       imports = [
-        inputs.hyprdynamicmonitors.homeManagerModules.default
         ./options.nix
+        inputs.hyprdynamicmonitors.homeManagerModules.default
+        active-stylix.homeModules.stylix
       ]
       ++ lib.lists.map (directoryName: ./${directoryName}) (
         builtins.attrNames (
@@ -57,6 +59,7 @@
           nixfmt-rfc-style
           nil
           vivaldi
+          hyprlauncher
         ];
       };
     };
