@@ -30,11 +30,11 @@
         enable = true;
         settings = {
           initial_session = {
-            command = "${pkgs.hyprland}/bin/Hyprland";
+            command = "${pkgs.bash}/bin/bash -l -c Hyprland";
             user = "${config.userOptions.username}";
           };
           default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'AUTHORIZED ACCESS ONLY' --asterisks --remember --remember-user-session --time --issue --cmd ${pkgs.hyprland}/bin/Hyprland";
+            command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'AUTHORIZED ACCESS ONLY' --asterisks --remember --remember-user-session --time --issue --cmd '${pkgs.bash}/bin/bash -l -c Hyprland'";
             user = "greeter";
           };
         };

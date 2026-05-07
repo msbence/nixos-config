@@ -9,6 +9,7 @@
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/railscasts.yaml";
     override = {
+      base08 = "9d6c7c"; # pale pink
       base0D = "4e7da4"; # darker blue
     };
 
