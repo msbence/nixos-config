@@ -28,10 +28,12 @@
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
-      "$fileManager" = "nemo";
-      "$menu" = "hyprlauncher";
+      "$fileManager" = "nautilus";
+      "$menu" = "rofi -show drun -show-icons";
 
-      exec-once = [ ];
+      exec-once = [
+        "hyprctl dispatch workspace 1"
+      ];
 
       bind = [
         "$mod, Return, exec, $terminal"
@@ -131,7 +133,7 @@
       decoration = {
         rounding = 8;
         active_opacity = 1.0;
-        inactive_opacity = 0.8;
+        inactive_opacity = 0.98;
 
         #drop_shadow = true;
         #shadow_range = 4;

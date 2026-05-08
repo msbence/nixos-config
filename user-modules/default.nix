@@ -60,7 +60,7 @@
           nixfmt-rfc-style
           nil
           vivaldi
-          unstable.hyprlauncher
+          #unstable.hyprlauncher
           slurp
           grim
           swappy

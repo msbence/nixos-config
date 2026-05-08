@@ -1,5 +1,7 @@
 [general]
 destination = "$HOME/.config/hypr/monitors.conf"
+
+[notifications]
 disabled = true
 
 [profiles.desktop]

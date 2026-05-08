@@ -61,9 +61,5 @@
     };
   };
 
-  stylix.targets.vscode.fonts.override = {
-    sizes = {
-      terminal = 11;
-    };
-  };
+  stylix.targets.vscode.fonts.override.sizes.terminal = 11;
 }

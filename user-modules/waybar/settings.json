@@ -1,0 +1,19 @@
+[
+    {
+        "layer": "top",
+        "position": "top",
+        "name": "waybar-top",
+        "modules-left": [ "hyprland/workspaces" ],
+        "modules-center": [
+            "clock"
+        ]
+    },
+    {
+        "layer": "top",
+        "position": "bottom",
+        "name": "waybar-bottom",
+        "modules-right": [
+            "clock"
+        ]
+    }
+]
