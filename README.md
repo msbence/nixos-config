@@ -120,11 +120,11 @@ This requires a NixOS host already. If you have none available, then scroll down
 2. Copy a host of your choice and name your host: `cp -r hosts/<SOURCE_HOST> hosts/<HOSTNAME>`
 3. Remove the hardware configuration as it most likely will differ: `rm hosts/<HOSTNAME>/hardware-configuration.nix`
 4. Create a directory for the `age` key (omit `/persisted` here and in the next step, if not using impermanence): `mkdir -p copy/persisted/var/lib/sops-nix`
-5. Generate an `age` key in the `sops-nix` directory, named `key.txt`: `age-keygen -pq copy/persisted/var/lib/sops-nix/key.txt`
+5. Generate an `age` key in the `sops-nix` directory, named `key.txt`: `age-keygen -pq -o copy/persisted/var/lib/sops-nix/key.txt`
 6. Add the **public key** to `.sops.yaml`, and re-encrypt the secrets: `sops updatekeys secrets/default.yaml && sops rotate secrets/default.yaml` 
 7. Write a LUKS encryption key to a file: `echo -n "lukspw" > ./luks.key`
 8. Fire up the NixOS Minimal Installer ISO, and set a password for the `root` user: `sudo passwd root`
-9. Build your system using nixos-anywhere (and generate a hardware config at the same time): `nix run github:nix-community/nixos-anywhere -- --flake .#<HOSTNAME> --generate-hardware-config nixos-generate-config ./hosts/<HOSTNAME>/hardware-configuration.nix --disk-encryption-keys /tmp/luks.key ./luks.key --extra-files ./copy --chown 1000:100 --target-host root@<HOST_IP>`
+9. Build your system using nixos-anywhere (and generate a hardware config at the same time): `nix run github:nix-community/nixos-anywhere -- --flake .#<HOSTNAME> --generate-hardware-config nixos-generate-config ./hosts/<HOSTNAME>/hardware-configuration.nix --disk-encryption-keys /tmp/luks.key ./luks.key --extra-files ./copy --chown /persisted/var/lib/sops-nix 1000:100 --target-host root@<HOST_IP>`
 10. Clean up the secrets: `rm luks.key; rm -rf copy`
 11. Commit and push your shiny new host (don't forget to `git add .`)
 
