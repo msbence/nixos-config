@@ -79,11 +79,6 @@
       default = "1";
       description = "Scaling factor for Plymouth";
     };
-    refindTheme = mkOption {
-      type = types.str;
-      default = "refind";
-      description = "Name of the local rEFInd theme to use";
-    };
     ###<
     ###> DISPLAY
     windowManager = mkOption {

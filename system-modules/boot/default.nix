@@ -28,7 +28,7 @@
           src = config.themeOptions.refindTheme;
           description = "${config.themeOptions.colorScheme} rEFInd theme";
         };
-        themeName = config.systemOptions.refindTheme;
+        themeName = "refind";
         showTools = [ ];
         defaultSelection = "NixOS";
         extraConfig = ''
