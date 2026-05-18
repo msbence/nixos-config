@@ -31,8 +31,9 @@
     ###<
 
     ###> OTHERS
-    impermanence.url = "github:nix-community/impermanence";
+    preservation.url = "github:nix-community/preservation";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    refind-nix.url = "github:msbence/refind-nix";
     hyprdynamicmonitors.url = "github:fiffeek/hyprdynamicmonitors";
     future-hyprcursor.url = "github:mvayk/nix-future-hyprcursor";
 

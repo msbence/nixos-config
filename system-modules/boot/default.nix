@@ -7,11 +7,35 @@
 {
   boot = {
     loader = {
-      timeout = 0;
-      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      systemd-boot.configurationLimit = 8;
-      systemd-boot.netbootxyz.enable = lib.mkDefault true;
+      efi.efiSysMountPoint = "/boot";
+      grub.enable = false;
+      timeout = config.systemOptions.bootloaderTimeout;
+
+      systemd-boot = lib.mkIf (config.systemOptions.bootloaderType == "systemd-boot") {
+        enable = true;
+        configurationLimit = config.systemOptions.bootloaderGenerations;
+        netbootxyz.enable = lib.mkDefault true;
+        memtest86.enable = lib.mkDefault true;
+        edk2-uefi-shell.enable = lib.mkDefault true;
+      };
+
+      refind = lib.mkIf (config.systemOptions.bootloaderType == "refind") {
+        enable = true;
+        maxGenerations = config.systemOptions.bootloaderGenerations;
+        theme = pkgs.mkRefindTheme {
+          name = config.systemOptions.refindTheme;
+          src = ./refind-themes/${config.systemOptions.refindTheme};
+          description = "${config.systemOptions.refindTheme} rEFInd theme";
+        };
+        themeName = config.systemOptions.refindTheme;
+        showTools = [ ];
+        defaultSelection = "NixOS";
+        extraConfig = ''
+          resolution max
+          dont_scan_dirs EFI/netbootxyz,EFI/edk2-uefi-shell,EFI/memtest86,EFI/systemd,EFI/nixos,EFI/BOOT,efi/refind/kernels
+        '';
+      };
     };
 
     initrd = {
@@ -87,7 +111,6 @@
 
       extraConfig = ''
         DeviceScale=${config.systemOptions.plymouthScale}
-        ShowDelay=0
       '';
     };
   };

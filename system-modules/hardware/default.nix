@@ -4,6 +4,10 @@
   ...
 }:
 {
+  boot.swraid.mdadmConf = ''
+    MAILADDR=${config.userOptions.email}
+  '';
+
   services = {
     fwupd.enable = config.systemOptions.enableFirmwareUpdates;
     fstrim.enable = true;

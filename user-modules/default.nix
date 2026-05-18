@@ -123,6 +123,7 @@
           expect
           gettext
           anydesk
+          virt-manager
         ];
       };
     };

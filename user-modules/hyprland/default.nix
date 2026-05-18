@@ -175,6 +175,10 @@
       misc = {
         "disable_hyprland_logo" = true;
       };
+
+      cursor = {
+        "no_hardware_cursors" = 1;
+      };
     };
   };
 }

@@ -38,7 +38,7 @@
     lib.optionals config.systemOptions.enableNetworkManager [ "networkmanager" ]
     ++ lib.optionals config.systemOptions.enableWireshark [ "wireshark" ];
 
-  environment.persistence."/persisted/system".directories =
+  preservation.preserveAt."/persisted".directories =
     lib.optionals config.systemOptions.enableNetworkManager
       [ "/etc/NetworkManager/system-connections" ];
 }

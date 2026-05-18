@@ -26,8 +26,8 @@ This configuration is using Nix Flakes (_"experimental", you know..._), tries to
 
 ### Impermanence
 
-The configuration is capable to handle ephemeral deployments where `/` is wiped on boot, and there is a dedicated persistent `/persisted` mountpoint used with impermancence.
-- **System state** → `/persisted` (mainly used by system modules, handled by the impermancence module)
+The configuration is capable to handle ephemeral deployments where `/` is wiped on boot, and there is a dedicated persistent `/persisted` mountpoint used with preservation.
+- **System state** → `/persisted` (mainly used by system modules, handled by the preservation module)
 - **User home** → `/home` (home directories are safe, as they are located on a dedicated BTRFS subvolume)
 - Each system module contributes its own persistence entries where relevant
 - The type of impermance can be controlled by the `systemOptions.impermanenceType` option:
@@ -55,7 +55,7 @@ The configuration is capable to handle ephemeral deployments where `/` is wiped 
     enable = true;
   };
 
-  environment.persistence."/persisted".directories =
+  preservation.preserveAt."/persisted".directories =
     lib.optionals config.systemOptions.enableMyService [ "/var/lib/myservice" ];
 }
 ```

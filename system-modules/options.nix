@@ -51,6 +51,24 @@
     };
     ###<
     ###> BOOT
+    bootloaderType = mkOption {
+      type = types.enum [
+        "systemd-boot"
+        "refind"
+      ];
+      default = "systemd-boot";
+      description = "The type of bootloader to use";
+    };
+    bootloaderTimeout = mkOption {
+      type = types.int;
+      default = if config.systemOptions.bootloaderType == "refind" then -1 else 0;
+      description = "Timeout for the bootloader";
+    };
+    bootloaderGenerations = mkOption {
+      type = types.int;
+      default = 4;
+      description = "NixOS generations to display on the bootloader";
+    };
     enablePlymouth = mkOption {
       type = types.bool;
       default = if config.systemOptions.deviceType == "server" then false else true;
@@ -58,13 +76,18 @@
     };
     plymouthTheme = mkOption {
       type = types.str;
-      default = "blockchain";
+      default = "deus_ex";
       description = "Name of the adi1090x Plymouth theme to use";
     };
     plymouthScale = mkOption {
       type = types.str;
       default = "1";
       description = "Scaling factor for Plymouth";
+    };
+    refindTheme = mkOption {
+      type = types.str;
+      default = "rEFInd-glassy";
+      description = "Name of the local rEFInd theme to use";
     };
     ###<
     ###> DISPLAY
@@ -195,16 +218,24 @@
     };
     ###<
     ###> VIRTUALISATION
-    enableDocker = mkOption {
-      type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then false else true;
-      description = "Enable the Docker daemon";
+    containerizationType = mkOption {
+      type = types.enum [
+        "none"
+        "docker"
+        "podman"
+      ];
+      default = if config.systemOptions.deviceType == "server" then "docker" else "podman";
+      description = "Sets the type of containerization engine to install";
     };
 
-    enableQemu = mkOption {
-      type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then false else true;
-      description = "Enable libvirt and QEMU";
+    virtualizationType = mkOption {
+      type = types.enum [
+        "none"
+        "kvm"
+        "vmware"
+      ];
+      default = if config.systemOptions.deviceType == "server" then "none" else "kvm";
+      description = "Sets the type of hypervisor to install";
     };
 
     enableCockpit = mkOption {
