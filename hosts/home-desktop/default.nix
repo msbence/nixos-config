@@ -31,6 +31,7 @@ active-nixpkgs.lib.nixosSystem {
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
     ../../user-modules/options.nix
+    ../../themes/default.nix
     ../../system-modules/default.nix
     ../../user-modules/default.nix
     ./settings.nix

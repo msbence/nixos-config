@@ -31,15 +31,5 @@
       type = types.str;
     };
     ###<
-    ###> STYLIX
-    themeColor = mkOption {
-      type = types.enum [
-        "blue"
-        "brown"
-      ];
-      description = "The color that dominates in the theme";
-      default = "blue";
-    };
-    ###<
   };
 }

@@ -17,6 +17,7 @@
       inherit inputs;
       systemOptions = config.systemOptions;
       userOptions = config.userOptions;
+      themeOptions = config.themeOptions;
     };
 
     useGlobalPkgs = true;
@@ -124,6 +125,7 @@
           gettext
           anydesk
           virt-manager
+          wl-clipboard
         ];
       };
     };

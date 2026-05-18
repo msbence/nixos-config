@@ -1,0 +1,93 @@
+// LLM-generated for now, TODO: improve by hand
+
+// --- 1. SET UP THE BACKGROUND & LOGO ---
+screen_width = Window.GetWidth();
+screen_height = Window.GetHeight();
+
+bg_image = Image("background.png").Scale(screen_width, screen_height);
+bg_sprite = Sprite(bg_image);
+bg_sprite.SetZ(-100); 
+
+//logo_image = Image("logo.png");
+//logo_sprite = Sprite(logo_image);
+//logo_sprite.SetX(screen_width / 2 - logo_image.GetWidth() / 2);
+//logo_sprite.SetY(screen_height / 2 - logo_image.GetHeight() / 2);
+
+// --- 2. GLOBAL VARIABLES ---
+prompt_text_sprite = Sprite();
+prompt_text_sprite.SetZ(10); 
+
+status_text_sprite = Sprite();
+status_text_sprite.SetZ(10);
+
+bullet_image = Image("bullet.png");
+bullet_sprites = []; 
+
+// --- 3. SYSTEM STATUS UPDATES (Kernel/Systemd Logs) ---
+fun update_status_callback(status) {
+    // Draws the underlying log text at the bottom of the screen
+    status_image = Image.Text(status, 0.8, 0.8, 0.8);
+    status_text_sprite.SetImage(status_image);
+    status_text_sprite.SetX(screen_width / 2 - status_image.GetWidth() / 2);
+    status_text_sprite.SetY(screen_height - 60);
+}
+Plymouth.SetUpdateStatusFunction(update_status_callback);
+
+// --- 4. PASSWORD PROMPT ---
+fun display_password_callback(prompt_string, num_bullets) {
+    //logo_sprite.SetOpacity(0);
+
+    // Fallback if the system sends an empty prompt string
+    if (prompt_string == "") {
+        prompt_string = "Please enter disk decryption password:";
+    }
+
+    text_image = Image.Text(prompt_string, 1.0, 1.0, 1.0);
+    prompt_text_sprite.SetImage(text_image);
+    
+    text_x = screen_width / 2 - text_image.GetWidth() / 2;
+    text_y = screen_height / 2 - text_image.GetHeight();
+    prompt_text_sprite.SetX(text_x);
+    prompt_text_sprite.SetY(text_y);
+
+    // Clear old bullets
+    for (i = 0; bullet_sprites[i]; i++) {
+        bullet_sprites[i].SetOpacity(0);
+    }
+    
+    // Draw new bullets
+    bullet_spacing = bullet_image.GetWidth() * 1.5;
+    total_bullet_width = num_bullets * bullet_spacing;
+    start_x = screen_width / 2 - total_bullet_width / 2;
+    
+    for (i = 0; i < num_bullets; i++) {
+        if (!bullet_sprites[i]) {
+            bullet_sprites[i] = Sprite(bullet_image);
+            bullet_sprites[i].SetZ(10);
+        }
+        bullet_sprites[i].SetX(start_x + (i * bullet_spacing));
+        bullet_sprites[i].SetY(text_y + text_image.GetHeight() + 20); 
+        bullet_sprites[i].SetOpacity(1);
+    }
+}
+
+// --- 5. NORMAL BOOT (Post-Password) ---
+fun display_normal_callback() {
+    // Clear bullets
+    for (i = 0; bullet_sprites[i]; i++) {
+        bullet_sprites[i].SetOpacity(0);
+    }
+    
+    // Show loading text
+    loading_text = Image.Text("Decrypting and starting system...", 1.0, 1.0, 1.0);
+    prompt_text_sprite.SetImage(loading_text);
+    prompt_text_sprite.SetX(screen_width / 2 - loading_text.GetWidth() / 2);
+    
+    // Bring logo back
+    //logo_sprite.SetOpacity(1);
+}
+
+// --- 6. REGISTER CALLBACKS ---
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+Plymouth.SetDisplayQuestionFunction(display_password_callback);

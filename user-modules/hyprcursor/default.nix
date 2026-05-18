@@ -1,9 +1,12 @@
-{ inputs, systemOptions, ... }:
+{
+  themeOptions,
+  ...
+}:
 {
   home.pointerCursor = {
     hyprcursor.enable = true;
-    package = inputs.future-hyprcursor.packages.${systemOptions.architecture}.default;
-    name = "future-original-hyprcursor";
+    package = themeOptions.cursorTheme.package;
+    name = themeOptions.cursorTheme.name;
     size = 42;
     gtk.enable = true;
     x11.enable = true;

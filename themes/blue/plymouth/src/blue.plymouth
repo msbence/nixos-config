@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Blue Plymouth Theme
+Description=Blue Plymouth Theme
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/blue
+ScriptFile=/usr/share/plymouth/themes/blue/blue.script

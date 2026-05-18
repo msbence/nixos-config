@@ -74,11 +74,6 @@
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Display Plymouth instead of console logging";
     };
-    plymouthTheme = mkOption {
-      type = types.str;
-      default = "deus_ex";
-      description = "Name of the adi1090x Plymouth theme to use";
-    };
     plymouthScale = mkOption {
       type = types.str;
       default = "1";
@@ -86,7 +81,7 @@
     };
     refindTheme = mkOption {
       type = types.str;
-      default = "rEFInd-glassy";
+      default = "refind";
       description = "Name of the local rEFInd theme to use";
     };
     ###<

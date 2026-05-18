@@ -24,14 +24,15 @@
         enable = true;
         maxGenerations = config.systemOptions.bootloaderGenerations;
         theme = pkgs.mkRefindTheme {
-          name = config.systemOptions.refindTheme;
-          src = ./refind-themes/${config.systemOptions.refindTheme};
-          description = "${config.systemOptions.refindTheme} rEFInd theme";
+          name = config.themeOptions.colorScheme;
+          src = config.themeOptions.refindTheme;
+          description = "${config.themeOptions.colorScheme} rEFInd theme";
         };
         themeName = config.systemOptions.refindTheme;
         showTools = [ ];
         defaultSelection = "NixOS";
         extraConfig = ''
+          use_graphics_for osx,linux,elilo,grub,windows
           resolution max
           dont_scan_dirs EFI/netbootxyz,EFI/edk2-uefi-shell,EFI/memtest86,EFI/systemd,EFI/nixos,EFI/BOOT,efi/refind/kernels
         '';
@@ -104,10 +105,12 @@
 
     plymouth = lib.mkIf config.systemOptions.enablePlymouth {
       enable = true;
-      theme = config.systemOptions.plymouthTheme;
-      themePackages = with pkgs; [
-        (adi1090x-plymouth-themes.override { selected_themes = [ config.systemOptions.plymouthTheme ]; })
+      theme = config.themeOptions.colorScheme;
+      themePackages = [
+        config.themeOptions.plymouthThemePackage
       ];
+
+      font = "${pkgs.dejavu_fonts}/share/fonts/truetype/DejaVuSans.ttf";
 
       extraConfig = ''
         DeviceScale=${config.systemOptions.plymouthScale}

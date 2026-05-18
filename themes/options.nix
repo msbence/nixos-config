@@ -1,0 +1,98 @@
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+{
+  options.themeOptions = with lib; {
+    enableTheming = mkOption {
+      type = types.bool;
+      default = if config.systemOptions.deviceType == "server" then false else true;
+      description = "Enable custom theming";
+    };
+
+    colorScheme = mkOption {
+      type = types.enum [
+        "blue"
+        "brown"
+      ];
+      description = "The color that dominates in the theme";
+      default = "blue";
+    };
+
+    base16ColorScheme = mkOption {
+      type = types.str;
+      description = "base16 compatible color scheme"; # https://tinted-theming.github.io/tinted-gallery
+    };
+
+    stylixColorOverrides = mkOption {
+      type = types.attrs;
+      description = "Color palettes to override in stylix";
+      default = {};
+    };
+
+    fontFamilies = mkOption {
+      type = types.attrs;
+      description = "Font families to use";
+      default = {
+        serif = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Serif";
+        };
+
+        sansSerif = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Sans";
+        };
+
+        monospace = {
+          package = pkgs.dejavu_fonts;
+          name = "DejaVu Sans Mono";
+        };
+
+        emoji = {
+          package = pkgs.noto-fonts-color-emoji;
+          name = "Noto Color Emoji";
+        };
+      };
+    };
+
+    fontSizing = mkOption {
+      type = types.attrs;
+      description = "Font size to use";
+      default = {
+        desktop = 10;
+        popups = 10;
+        applications = 12;
+        terminal = 12;
+      };
+    };
+
+    refindTheme = mkOption {
+      type = types.path;
+      default = ./${config.themeOptions.colorScheme}/refind;
+    };
+
+    wallpapers = mkOption {
+      type = types.path;
+      default = ./${config.themeOptions.colorScheme}/wallpapers;
+    };
+
+    cursorTheme.package = mkOption {
+      type = types.attrs;
+      description = "Package containing the cursor theme";
+    };
+
+    cursorTheme.name = mkOption {
+      type = types.str;
+      description = "Name of the cursor theme";
+    };
+
+    plymouthThemePackage = mkOption {
+      type = lib.types.nullOr types.attrs;
+      description = "Package of the plymouth theme";
+      default = if config.systemOptions.enablePlymouth then pkgs.callPackage ./${config.themeOptions.colorScheme}/plymouth/default.nix {} else null;
+    };
+  };
+}

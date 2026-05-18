@@ -1,44 +1,17 @@
 {
-  pkgs,
-  userOptions,
+  themeOptions,
   ...
 }:
 {
-  imports = [
-    ./themes/${userOptions.themeColor}.nix
-  ];
-
   stylix = {
     enable = true;
     overlays.enable = false;
 
-    fonts = {
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
-      };
+    base16Scheme = themeOptions.base16ColorScheme;
+    override = themeOptions.stylixColorOverrides;
 
-      sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
-      };
-
-      monospace = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans Mono";
-      };
-
-      emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
-      };
-    };
-
-    fonts.sizes = {
-      desktop = 10;
-      popups = 10;
-      applications = 12;
-      terminal = 12;
+    fonts = themeOptions.fontFamilies // {
+      sizes = themeOptions.fontSizing;
     };
   };
 }

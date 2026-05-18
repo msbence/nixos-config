@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -14,8 +18,8 @@
       plugin {
         hyprbars {
           bar_height = 24
-          bar_color = rgb(1f3a5b)
-          col.text = rgb(c0d9f9)
+          bar_color = rgb(${config.lib.stylix.colors.base01})
+          col.text = rgb(${config.lib.stylix.colors.base0D})
           bar_text_align = left
           bar_text_font = DejaVu Sans
           bar_text_size = 10

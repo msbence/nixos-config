@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 {
   systemOptions.systemStateVersion = "25.11";
   userOptions.homeManagerStateVersion = "25.11";
@@ -12,7 +12,8 @@
   systemOptions.bootloaderType = "refind";
   systemOptions.bootloaderTimeout = 4;
   services.openssh.enable = true;
-  userOptions.themeColor = "brown";
+
+  themeOptions.colorScheme = "brown";
 
   home-manager.users.${config.userOptions.username}.programs.git.signing.signByDefault = false;
 
