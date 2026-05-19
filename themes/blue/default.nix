@@ -16,7 +16,7 @@ lib.mkIf (config.themeOptions.colorScheme == "blue") {
       base0D = "4e7da4"; # darker blue
     };
 
-    cursorTheme = { 
+    cursorTheme = {
       package = inputs.future-hyprcursor.packages.${config.systemOptions.architecture}.default;
       name = "future-cyan-hyprcursor";
     };

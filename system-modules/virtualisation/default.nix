@@ -28,9 +28,9 @@
     };
   };
 
-  environment.systemPackages = lib.optionals (
-    config.systemOptions.virtualizationType == "kvm"
-  ) [ pkgs.virt-viewer ];
+  environment.systemPackages = lib.optionals (config.systemOptions.virtualizationType == "kvm") [
+    pkgs.virt-viewer
+  ];
 
   users.users.${config.userOptions.username}.extraGroups =
     lib.optionals (config.systemOptions.containerizationType == "docker") [ "docker" ]

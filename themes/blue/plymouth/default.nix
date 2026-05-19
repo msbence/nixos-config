@@ -1,10 +1,12 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 pkgs.stdenv.mkDerivation {
   pname = "blue-plymouth-theme";
   version = "1.0";
 
-  src = ./src; 
+  src = ./src;
 
   installPhase = ''
     runHook preInstall

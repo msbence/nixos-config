@@ -29,7 +29,7 @@
     stylixColorOverrides = mkOption {
       type = types.attrs;
       description = "Color palettes to override in stylix";
-      default = {};
+      default = { };
     };
 
     fontFamilies = mkOption {
@@ -92,7 +92,11 @@
     plymouthThemePackage = mkOption {
       type = lib.types.nullOr types.attrs;
       description = "Package of the plymouth theme";
-      default = if config.systemOptions.enablePlymouth then pkgs.callPackage ./${config.themeOptions.colorScheme}/plymouth/default.nix {} else null;
+      default =
+        if config.systemOptions.enablePlymouth then
+          pkgs.callPackage ./${config.themeOptions.colorScheme}/plymouth/default.nix { }
+        else
+          null;
     };
   };
 }

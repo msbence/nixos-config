@@ -19,7 +19,6 @@
       venva = "source venv/bin/activate";
       venvc = "python3 -m venv venv";
       code = "${pkgs.vscodium}/bin/codium";
-      kanshi = "systemctl --user restart kanshi";
     };
     history = {
       size = 10000;

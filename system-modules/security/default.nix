@@ -21,7 +21,7 @@
 
   services = {
     fprintd = {
-      enable = lib.mkOverride 100 false;
+      enable = config.systemOptions.enableFingerprint;
     };
 
     getty.autologinUser = lib.mkIf config.systemOptions.enableAutologin "${config.userOptions.username

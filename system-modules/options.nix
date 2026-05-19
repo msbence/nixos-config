@@ -192,6 +192,11 @@
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable GPG services";
     };
+    enableFingerprint = mkOption {
+      type = types.bool;
+      default = if config.systemOptions.deviceType == "server" then false else true;
+      description = "Enable fingerprint services";
+    };
     enableFirewall = mkOption {
       type = types.bool;
       default = true;
