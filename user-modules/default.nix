@@ -91,7 +91,6 @@
           xdg-desktop-portal-wlr
           gimp
           k9s
-          openrgb
           pgadmin4
           rclone
           remmina
