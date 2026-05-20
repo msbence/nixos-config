@@ -113,6 +113,7 @@
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Enable libinput and touchpad support";
     };
+    hasRgbLeds = mkEnableOption "Denotes if the HW has RGB leds";
     ###<
     ###> IMPERMANENCE
     impermanenceType = mkOption {

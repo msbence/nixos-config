@@ -5,6 +5,7 @@
 
   systemOptions.deviceType = "desktop";
   systemOptions.deviceIsVirtual = false;
+  systemOptions.hasRgbLeds = true;
 
   systemOptions.enableFirewall = false;
   #systemOptions.virtualizationType = "vmware";  # not surprised, broadcom doesn't think wayland needs to be supported

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -18,4 +19,10 @@
   users.users.${config.userOptions.username}.extraGroups =
     lib.optionals config.systemOptions.enableFirmwareUpdates
       [ "fwupd" ];
+
+  environment.systemPackages = lib.optionals config.systemOptions.hasRgbLeds [
+    pkgs.openrgb
+  ];
+
+  services.hardware.openrgb.enable = config.systemOptions.hasRgbLeds;
 }
