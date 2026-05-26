@@ -20,8 +20,9 @@
     lib.optionals config.systemOptions.enableFirmwareUpdates
       [ "fwupd" ];
 
-  environment.systemPackages = lib.optionals config.systemOptions.hasRgbLeds [
-    pkgs.openrgb
+  environment.systemPackages = lib.optionals (config.systemOptions.hasRgbLeds) [
+    pkgs.unstable.openrgb
+    pkgs.i2c-tools
   ];
 
   services.hardware.openrgb.enable = config.systemOptions.hasRgbLeds;

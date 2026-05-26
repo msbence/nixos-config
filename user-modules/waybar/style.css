@@ -1,3 +1,4 @@
-.waybar-bottom > box {
-    padding: 6px;
+* {
+    background-color: @base00;
+    color: @base0D;
 }
