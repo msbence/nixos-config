@@ -1,4 +1,58 @@
 * {
-    background-color: @base00;
+    font-family: Inter, Noto Sans, sans-serif;
     color: @base0D;
+    min-height: 0;
+}
+
+window#topBar,
+window#bottomBar {
+    background-color: @base00;
+}
+
+label.module {
+    padding: 0 0.5em;
+    background-color: @base0D;
+    color: @base00;
+    margin: 0.4em 0.3em;
+    border-radius: 0.25em;
+}
+
+#custom-user, #custom-hostname {
+    background-color: @base02;
+    color: @base0D;
+}
+
+#datetime {
+    margin: 0.4em 0.3em;
+    border-radius: 0.25em;
+}
+
+#clock.date, #clock.time, #clock.day {
+    margin: 0.25em 0;
+    padding: 0 1.5em;
+}
+
+#clock.time {
+    border-left: 0.1em solid @base02;
+    border-right: 0.1em solid @base02;
+    border-radius: 0;
+}
+
+#workspaces button {
+    background-color: @base02;
+    padding: 0 1.4em;
+    margin: 0.4em 0.3em;
+    border-radius: 0.25em;
+}
+
+#workspaces button.active,
+#workspaces button.active .workspace-label {
+    background-color: @base0D;
+    color: @base00;
+}
+
+#workspaces button.urgent,
+#workspaces button.urgent .workspace-label {
+    background-color: @base08;
+    color: @base00;
 }

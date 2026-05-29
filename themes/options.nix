@@ -37,18 +37,18 @@
       description = "Font families to use";
       default = {
         serif = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Serif";
+          package = pkgs.inter;
+          name = "Inter";
         };
 
         sansSerif = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Sans";
+          package = pkgs.inter;
+          name = "Inter";
         };
 
         monospace = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Sans Mono";
+          package = pkgs.source-code-pro;
+          name = "Source Code Pro Medium";
         };
 
         emoji = {
@@ -62,9 +62,9 @@
       type = types.attrs;
       description = "Font size to use";
       default = {
-        desktop = 10;
-        popups = 10;
-        applications = 12;
+        desktop = 12;
+        popups = 12;
+        applications = 14;
         terminal = 12;
       };
     };

@@ -10,6 +10,7 @@ lib.mkIf (config.themeOptions.colorScheme == "brown") {
     base16ColorScheme = "${pkgs.base16-schemes}/share/themes/bespin.yaml";
     stylixColorOverrides = {
       base01 = "282321"; # darker brown
+      base02 = "584b3d"; # brown-gray
       base05 = "bdbbb7"; # lighter gray
       base06 = "dedbd4"; # lighter gray
       base08 = "9d6c7c"; # pale pink

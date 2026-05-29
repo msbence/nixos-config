@@ -60,6 +60,4 @@
       "git.confirmSync" = false;
     };
   };
-
-  stylix.targets.vscode.fonts.override.sizes.terminal = 11;
 }

@@ -15,6 +15,7 @@
         fira-code-symbols
         hack-font
         noto-fonts
+        inter
         noto-fonts-color-emoji
         open-sans
         roboto
@@ -22,6 +23,7 @@
         source-sans
         source-serif
         font-awesome
+        source-code-pro
         powerline-fonts
         powerline-symbols
       ]
