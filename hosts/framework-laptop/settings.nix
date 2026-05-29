@@ -10,7 +10,7 @@
   systemOptions.enableFirewall = false;
   #systemOptions.virtualizationType = "vmware";  # not surprised, broadcom doesn't think wayland needs to be supported
 
-  systemOptions.bootloaderType = "systemd-boot";
+  systemOptions.bootloaderType = "refind";
   systemOptions.bootloaderTimeout = 4;
   services.openssh.enable = true;
 

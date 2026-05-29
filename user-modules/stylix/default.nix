@@ -13,5 +13,7 @@
     fonts = themeOptions.fontFamilies // {
       sizes = themeOptions.fontSizing;
     };
+
+  targets.gnome.enable = false;
   };
 }

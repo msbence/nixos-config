@@ -4,6 +4,13 @@ destination = "$HOME/.config/hypr/monitors.conf"
 [notifications]
 disabled = true
 
+[profiles.framework]
+config_file = "profiles/framework.conf"
+config_file_type = "static"
+
+[[profiles.framework.conditions.required_monitors]]
+description = "BOE 0x0BCA"
+
 [profiles.desktop]
 config_file = "profiles/desktop.conf"
 config_file_type = "static"
