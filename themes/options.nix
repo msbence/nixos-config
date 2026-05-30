@@ -64,7 +64,7 @@
       default = {
         desktop = 12;
         popups = 12;
-        applications = 14;
+        applications = 12;
         terminal = 12;
       };
     };

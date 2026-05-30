@@ -4,6 +4,14 @@ destination = "$HOME/.config/hypr/monitors.conf"
 [notifications]
 disabled = true
 
+[profiles.default]
+config_file = "profiles/default.conf"
+config_file_type = "static"
+
+[[profiles.default.conditions.required_monitors]]
+description = ".*"
+match_description_using_regex = true
+
 [profiles.framework]
 config_file = "profiles/framework.conf"
 config_file_type = "static"
@@ -12,8 +20,11 @@ config_file_type = "static"
 description = "BOE 0x0BCA"
 
 [profiles.desktop]
-config_file = "profiles/desktop.conf"
-config_file_type = "static"
+config_file = "profiles/desktop.go.tmpl"
+config_file_type = "template"
+
+[profiles.desktop.static_template_values]
+mode = "default" # or single
 
 [[profiles.desktop.conditions.required_monitors]]
 description = "Dell Inc. DELL U2722D BNB85P3"

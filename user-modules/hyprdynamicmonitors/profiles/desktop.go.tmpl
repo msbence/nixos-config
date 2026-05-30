@@ -1,0 +1,9 @@
+{{ if eq .mode "single" }}
+monitor = desc:Dell Inc. DELL U2722D BNB85P3,disable
+monitor = desc:LG Electronics LG ULTRAGEAR+ 308NTBK9U373,3840x2160@144.05,2560x0,1.50000000,transform,0,bitdepth,10,vrr,2
+monitor = desc:Dell Inc. DELL U2722D BPB85P3,disable
+{{ else }}
+monitor = desc:Dell Inc. DELL U2722D BNB85P3,2560x1440@59.95,0x0,1.00000000,transform,0
+monitor = desc:LG Electronics LG ULTRAGEAR+ 308NTBK9U373,3840x2160@144.05,2560x0,1.50000000,transform,0,bitdepth,10,vrr,2
+monitor = desc:Dell Inc. DELL U2722D BPB85P3,2560x1440@59.95,5120x0,1.00000000,transform,0
+{{ end }}

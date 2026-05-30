@@ -146,6 +146,7 @@ This requires a NixOS host already. If you have none available, then scroll down
    2. Remove the hardware configuration as it most likely will differ: `rm hosts/<HOSTNAME>/hardware-configuration.nix`
    3. Generate hardware configuration: `nixos-generate-config --no-filesystems --dir hosts/<HOSTNAME>`
    4. Remove the generated software configuration, we don't use that: `rm hosts/<HOSTNAME>/configuration.nix`
+   5. Add stuff to git, to make it visible for nix: `git add .`
 9. Build your system: `nixos-install --no-root-password --flake .#hostname`
 10. If you have added a new host then don't forget to commit and push
 11. Reboot

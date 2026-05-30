@@ -2,7 +2,7 @@
 {
   xdg.configFile."swappy/config".text = lib.generators.toINI { } {
     Default = {
-      save_dir = "$HOME/screenshots";
+      save_dir = "${config.home.homeDirectory}/screenshots";
       save_filename_format = "${config.userOptions.username}-%Y%m%d-%H%M%S.png";
       show_panel = true;
       line_size = 5;

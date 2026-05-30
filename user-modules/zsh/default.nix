@@ -41,12 +41,12 @@
       theme = "agnoster";
       extraConfig = ''
         zstyle ':omz:alpha:lib:git' async-prompt no
-        ZSH_CUSTOM=$HOME/.zsh-themes
+        ZSH_CUSTOM=${config.home.homeDirectory}/.zsh-themes
 
-        #source /home/${config.userOptions.username}/nixos-config/home-packages/zsh/secrets.env
-        #eval "$(/home/${config.userOptions.username}/nixos-config/home-packages/kubectl/setup_env.sh)"
+        #source ${config.home.homeDirectory}/nixos-config/home-packages/zsh/secrets.env
+        #eval "$(${config.home.homeDirectory}/nixos-config/home-packages/kubectl/setup_env.sh)"
 
-        export PATH=$PATH:/home/bence.madarasz/.bin
+        export PATH=$PATH:${config.home.homeDirectory}/.bin
       '';
     };
   };
