@@ -53,7 +53,7 @@
         "$mod&Shift, Space, togglefloating,"
         "$mod, F, fullscreen, 1"
         "$mod, P, pseudo,"
-        "$mod, J, togglesplit,"
+        #"$mod, J, togglesplit," # TODO: fix for 26.05
         "$mod, V, hy3:makegroup, v"
         "$mod, H, hy3:makegroup, h"
         "$mod, X, exec, bash ~/nixos-config/home-packages/hyprland/scripts/menu_shutdown.sh"
@@ -169,10 +169,11 @@
         ];
       };
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
+      # TODO: fix for 26.05
+      #dwindle = {
+      #  pseudotile = true;
+      #  preserve_split = true;
+      #};
 
       gestures = {
         gesture = "3, horizontal, workspace";

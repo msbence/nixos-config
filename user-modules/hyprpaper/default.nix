@@ -7,17 +7,22 @@
     enable = true;
 
     settings = {
-      ipc = "on";
       splash = false;
 
-      preload = [
-        "${themeOptions.wallpapers + "/3840x2160.png"}"
-      ];
-
       wallpaper = [
-        ",${themeOptions.wallpapers + "/3840x2160.png"}"
-        "eDP-1,${themeOptions.wallpapers + "/3840x2160.png"}"
-        "desc:Dell Inc. DELL U2719D GG3DR83,${themeOptions.wallpapers + "/3840x2160.png"}"
+        {
+          monitor = "";
+          path = "${themeOptions.wallpapers + "/3840x2160.png"}";
+          fit_mode = "fill";
+        }
+        {
+          monitor = "eDP-1";
+          path = "${themeOptions.wallpapers + "/3840x2160.png"}";
+        }
+        {
+          monitor = "desc:Dell Inc. DELL U2719D GG3DR83";
+          path = "${themeOptions.wallpapers + "/3840x2160.png"}";
+        }
       ];
     };
   };
