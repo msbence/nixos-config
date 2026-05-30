@@ -31,7 +31,7 @@
     overlays = [
       (final: prev: {
         unstable = import inputs.nixpkgs-unstable {
-          system = prev.system;
+          system = prev.stdenv.hostPlatform.system;
           config.allowUnfree = config.systemOptions.allowUnfreePackages;
         };
       })

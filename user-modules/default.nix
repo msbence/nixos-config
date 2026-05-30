@@ -58,7 +58,7 @@
 
         packages = with pkgs; [
           htop
-          nixfmt-rfc-style
+          nixfmt
           nil
           vivaldi
           #unstable.hyprlauncher

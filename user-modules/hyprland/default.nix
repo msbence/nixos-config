@@ -12,6 +12,8 @@
       pkgs.hyprlandPlugins.hyprbars
     ];
 
+    configType = "hyprlang"; # TODO: to be migrated over to lua
+
     extraConfig = ''
       source = ~/.config/hypr/monitors.conf
 
