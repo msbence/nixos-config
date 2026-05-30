@@ -12,7 +12,6 @@ lib.mkIf (config.systemOptions.impermanenceType != "none") {
 
     directories = [
       "/var/log"
-      "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/sops-nix"

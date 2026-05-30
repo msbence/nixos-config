@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkMenu" id="menu">
+        <child>
+            <object class="GtkMenuItem" id="single">
+                <property name="label">Single display</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="all">
+                <property name="label">All displays</property>
+            </object>
+        </child>
+    </object>
+</interface>

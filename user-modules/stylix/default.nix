@@ -14,6 +14,6 @@
       sizes = themeOptions.fontSizing;
     };
 
-  targets.gnome.enable = false;
+    targets.gnome.enable = false;
   };
 }
