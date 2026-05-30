@@ -25,5 +25,14 @@
     pkgs.i2c-tools
   ];
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   services.hardware.openrgb.enable = config.systemOptions.hasRgbLeds;
+
+  preservation.preserveAt."/persisted".directories = lib.optionals config.systemOptions.hasRgbLeds [
+    "/var/lib/OpenRGB"
+  ];
 }

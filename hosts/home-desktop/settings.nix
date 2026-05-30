@@ -1,4 +1,20 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
+let
+  set-rgb = pkgs.writeScriptBin "set-rgb" ''
+    #!/bin/sh
+
+    COLOR="E06501"
+
+    ${pkgs.unstable.openrgb}/bin/openrgb --noautoconnect --device "TUF GAMING X670E-PLUS" --zone 1 --size 36 --zone 2 --size 12 --zone 1 --size 24 --mode static --color $COLOR \
+    --device "Roccat Kone" --mode direct --color $COLOR \
+    --device "RX 7900 XT" --mode static --color $COLOR \
+    --device "Kingston Fury DDR5 DRAM" --mode static --color $COLOR
+  '';
+in
 {
   systemOptions.systemStateVersion = "25.11";
   userOptions.homeManagerStateVersion = "25.11";
@@ -24,4 +40,18 @@
     "d     /games/sata 0755 ${config.userOptions.username} users  -   -"
     "d     /raid1      0755 ${config.userOptions.username} users  -   -"
   ];
+
+  ###
+
+  environment.systemPackages = [ pkgs.unstable.headsetcontrol ];
+  services.udev.packages = [ pkgs.unstable.headsetcontrol ]; # For udev rules
+
+  systemd.services.set-rgb = {
+    description = "set-rgb";
+    serviceConfig = {
+      ExecStart = "${set-rgb}/bin/set-rgb";
+      Type = "oneshot";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
 }

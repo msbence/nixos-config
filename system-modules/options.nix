@@ -80,6 +80,13 @@
       description = "Scaling factor for Plymouth";
     };
     ###<
+    ###> COMPATIBILITY
+    enableWine = mkOption {
+      type = types.bool;
+      default = if config.systemOptions.deviceType == "server" then false else true;
+      description = "Install wine";
+    };
+    ###<
     ###> DISPLAY
     windowManager = mkOption {
       type = types.enum [
@@ -95,6 +102,18 @@
       type = types.bool;
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Install additional fonts";
+    };
+    ###<
+    ###> GAMING
+    enableSteam = mkOption {
+      type = types.bool;
+      default = if config.systemOptions.deviceType == "server" then false else true;
+      description = "Install Steam and related packages";
+    };
+    steamScale = mkOption {
+      type = types.str;
+      default = "1.6";
+      description = "Scaling factor for Steam";
     };
     ###<
     ###> HARDWARE

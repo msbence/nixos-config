@@ -1,4 +1,7 @@
-{ pkgs, config, ... }:
+{
+  config,
+  ...
+}:
 {
   systemOptions.systemStateVersion = "25.11";
   userOptions.homeManagerStateVersion = "25.11";

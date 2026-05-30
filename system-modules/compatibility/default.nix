@@ -1,10 +1,22 @@
-{ ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   programs = {
     nix-ld.enable = true;
   };
 
   services = {
-    envfs.enable = false; # TODO: investigate why this fails on fresh install when true
+    envfs.enable = true;
   };
+
+  environment.systemPackages = lib.mkIf config.systemOptions.enableWine [
+    pkgs.wine
+    pkgs.wine64
+    pkgs.wine-wayland
+    pkgs.winetricks
+  ];
 }

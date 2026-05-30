@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -12,4 +13,8 @@
       jack.enable = false;
     };
   };
+
+  environment.systemPackages = lib.mkIf config.systemOptions.enableAudio [
+    pkgs.pulseaudio
+  ];
 }

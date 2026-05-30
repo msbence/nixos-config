@@ -52,7 +52,7 @@
           XDG_CURRENT_DESKTOP = "Hyprland";
           NIXOS_OZONE_WL = "1";
           QT_QPA_PLATFORM = "wayland";
-          SDL_VIDEODRIVER = "wayland";
+          SDL_VIDEODRIVER = "wayland,x11";
           _JAVA_AWT_WM_NONREPARENTING = "1";
         };
 
@@ -61,7 +61,6 @@
           nixfmt
           nil
           vivaldi
-          #unstable.hyprlauncher
           slurp
           grim
           swappy
@@ -96,6 +95,7 @@
           remmina
           vlc
           element-desktop
+          schildi-revenge
           jq
           yq
           velero

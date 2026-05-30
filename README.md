@@ -151,6 +151,17 @@ This requires a NixOS host already. If you have none available, then scroll down
 10. If you have added a new host then don't forget to commit and push
 11. Reboot
 
+## Things that doesn't work
+
+- HDR
+- Display presets are not dynamic enough
+- On the very first boot after the install, monitors.conf cannot be sourced yet
+
+## LLM
+
+This configuration is done 90% by hand, but LLMs were a great help in explaining nix to me, and providing solutions where I couldn't see one.
+Still, I've opted to write the code myself as I like to understand what I do. Expceptions are the "layout" configurations like the plymouth theme, hyprlock widgets, etc... and this README which is LLM-improved.
+
 ---
 
 ## License
