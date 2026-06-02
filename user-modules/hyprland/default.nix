@@ -137,9 +137,9 @@
       };
 
       decoration = {
-        rounding = 8;
+        rounding = 6;
         active_opacity = 1.0;
-        inactive_opacity = 0.98;
+        inactive_opacity = 0.97;
 
         #drop_shadow = true;
         #shadow_range = 4;
@@ -148,11 +148,25 @@
 
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 5;
+          passes = 2;
           vibrancy = 0.1696;
         };
       };
+
+      layerrule = [
+        {
+          name = "lr-waybar";
+          "match:namespace" = "waybar";
+          no_anim = true;
+          blur = true;
+        }
+        {
+          name = "lr-hyprpaper";
+          "match:namespace" = "hyprpaper";
+          no_anim = true;
+        }
+      ];
 
       animations = {
         enabled = true;

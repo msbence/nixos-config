@@ -61,9 +61,11 @@
           nixfmt
           nil
           vivaldi
+          playerctl
           slurp
           grim
           swappy
+          pavucontrol
           #
           tree
           nautilus

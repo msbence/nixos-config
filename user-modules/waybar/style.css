@@ -1,59 +1,183 @@
 * {
-    font-family: Inter, Noto Sans, sans-serif;
+    font-family: "Symbols Nerd Font", Noto Sans, sans-serif;
     font-feature-settings: "tnum";
-    color: @base0D;
     min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
 }
 
-window#topBar,
-window#bottomBar {
+window#waybar.topBar,
+window#waybar.bottomBar {
+    background-color: transparent;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 4px 8px;
+}
+
+/* pills */
+#workspaces,
+#datetime,
+#tray,
+#layoutinfo,
+#custom-hostname,
+#battery,
+#hw-cpu,
+#hw-memory,
+#hw-disk,
+#bluetooth,
+#mpris,
+#networking,
+#pulseaudio,
+#custom-user {
+    background-color: alpha(@base02, 0.4);
+    border: 1px solid alpha(@base05, 0.2);
+    border-radius: 6px;
+}
+
+/* gaps between pills (bottom) */
+#custom-hostname,
+#battery,
+#hw-cpu,
+#hw-memory,
+#tray {
+    margin-right: 8px;
+}
+
+/* gaps between pills (top) */
+#bluetooth,
+#networking,
+#pulseaudio,
+#custom-user {
+    margin-left: 8px;
+}
+
+
+/* single module items */
+#bluetooth,
+#mpris,
+#pulseaudio,
+#custom-user,
+#custom-hostname,
+#battery {
+    padding: 4px 10px;
+    color: @base05;
+}
+
+/* grouped module items */
+#clock.date,
+#clock.time,
+#clock.day,
+#backlight,
+#custom-display,
+#language,
+#cpu,
+#cpu.freq,
+#temperature,
+#memory,
+#memory.swap,
+#disk,
+#temperature.disk,
+#custom-vpn,
+#network.wireless,
+#network.wired {
+    padding: 0 10px;
+    margin: 4px 0;
+    color: @base05;
+}
+
+/* tray and context menus */
+#tray {
+    padding: 4px;
+}
+
+#tray widget>image {
+    margin: 0 2px;
+}
+
+menu,
+#tray menu {
     background-color: @base00;
+    border: 1px solid @base05;
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 0 4px 12px alpha(@base00, 0.6);
 }
 
-label.module {
-    padding: 0 0.5em;
-    background-color: @base0D;
-    color: @base00;
-    margin: 0.4em 0.3em;
-    border-radius: 0.25em;
+menu menuitem,
+#tray menu menuitem {
+    padding: 4px 10px;
+    color: @base05;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
-#custom-user, #custom-hostname {
-    background-color: @base02;
+menu menuitem:hover,
+#tray menu menuitem:hover {
+    background-color: alpha(@base05, 0.2);
     color: @base0D;
 }
 
-#datetime {
-    margin: 0.4em 0.3em;
-    border-radius: 0.25em;
+/* desperate hack to have the date and time modules in the same group, but centered based on the clock */
+#clock.date,
+#clock.time,
+#clock.day {
+    min-width: 120px;
 }
 
-#clock.date, #clock.time, #clock.day {
-    margin: 0.25em 0;
-    padding: 0 1.5em;
-}
 
-#clock.time {
-    border-left: 0.1em solid @base02;
-    border-right: 0.1em solid @base02;
+/* separators */
+#clock.time,
+#cpu.freq,
+#temperature,
+#memory.swap,
+#temperature.disk,
+#network.wireless,
+#network.wired {
+    border-left: 1px solid alpha(@base05, 0.3);
     border-radius: 0;
 }
 
+
+#clock.time,
+#custom-display {
+    border-right: 1px solid alpha(@base05, 0.3);
+    border-radius: 0;
+}
+
+
+/* highlighting some modules */
+#custom-user,
+#custom-hostname {
+    color: @base0D;
+    font-weight: bold;
+}
+
+
+/* workspace switcher */
 #workspaces button {
-    background-color: @base02;
-    padding: 0 1.4em;
-    margin: 0.4em 0.3em;
-    border-radius: 0.25em;
+    color: @base05;
+    padding: 4px 10px;
+    margin: 0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
-#workspaces button.active,
-#workspaces button.active .workspace-label {
+#workspaces button:hover {
+    background-color: alpha(@base05, 0.2);
+}
+
+#workspaces button.active {
     background-color: @base0D;
-    color: @base00;
+    color: @base01;
+    font-weight: bold;
 }
 
-#workspaces button.urgent,
-#workspaces button.urgent .workspace-label {
+#workspaces button.urgent {
     background-color: @base08;
-    color: @base00;
+    color: @base01;
 }
