@@ -18,11 +18,18 @@
       ];
     };
 
+    gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
+
     gamemode.enable = true;
   };
 
   environment.systemPackages = lib.mkIf config.systemOptions.enableSteam [
     pkgs.steam-run
+    pkgs.gamescope-wsi
+    pkgs.mangohud
   ];
 
   services.udev.extraRules = lib.mkIf config.systemOptions.enableSteam ''

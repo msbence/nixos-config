@@ -9,6 +9,8 @@ let
 
     COLOR="E06501"
 
+    sleep 2
+    
     ${pkgs.unstable.openrgb}/bin/openrgb --noautoconnect --device "TUF GAMING X670E-PLUS" --zone 1 --size 36 --zone 2 --size 12 --zone 1 --size 24 --mode static --color $COLOR \
     --device "Roccat Kone" --mode direct --color $COLOR \
     --device "RX 7900 XT" --mode static --color $COLOR \
@@ -47,6 +49,7 @@ in
   services.udev.packages = [ pkgs.unstable.headsetcontrol ]; # For udev rules
 
   systemd.services.set-rgb = {
+    enable = true;
     description = "set-rgb";
     serviceConfig = {
       ExecStart = "${set-rgb}/bin/set-rgb";

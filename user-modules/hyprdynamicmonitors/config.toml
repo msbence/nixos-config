@@ -24,7 +24,7 @@ description = "BOE 0x0BCA"
 [profiles.desktop]
 config_file = "profiles/desktop.go.tmpl"
 config_file_type = "template"
-post_apply_exec = "echo 'desktop-all' > ~/.config/current_screen_layout && systemctl --user restart waybar"
+post_apply_exec = "echo 'desktop-all' > ~/.config/current_screen_layout && systemctl --user restart waybar && hyprctl dismissnotify"
 
 [profiles.desktop.static_template_values]
 mode = "desktop-all" # or desktop-single
