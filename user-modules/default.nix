@@ -57,6 +57,10 @@
         };
 
         packages = with pkgs; [
+          devenv
+          awscli2
+          ssm-session-manager-plugin
+          #
           htop
           nixfmt
           nil
