@@ -25,7 +25,6 @@
           "pulseaudio"
           "bluetooth"
           "group/networking"
-          "custom/user"
         ];
 
         "group/networking" = {
@@ -135,13 +134,6 @@
           "on-click-right" = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
           "tooltip" = false;
         };
-
-        "custom/user" = {
-          "format" = "  {}";
-          "exec" = "whoami";
-          "interval" = "once";
-          "tooltip" = false;
-        };
       };
 
       bottomBar = {
@@ -159,6 +151,7 @@
         modules-right = [
           "tray"
           "group/layoutinfo"
+          "custom/user"
         ];
 
         "group/layoutinfo" = {
@@ -193,6 +186,13 @@
             "disk"
             "temperature#disk"
           ];
+        };
+
+        "custom/user" = {
+          "format" = "  {}";
+          "exec" = "whoami";
+          "interval" = "once";
+          "tooltip" = false;
         };
 
         "custom/display" = {
