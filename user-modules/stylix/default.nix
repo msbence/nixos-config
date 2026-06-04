@@ -17,6 +17,4 @@
 
     targets.gnome.enable = false;
   };
-
-  gtk.gtk4.theme = config.gtk.theme;
 }
