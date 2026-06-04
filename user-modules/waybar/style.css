@@ -144,6 +144,7 @@ menu menuitem:hover,
 
 
 #clock.time,
+#backlight,
 #custom-display {
     border-right: 1px solid alpha(@base05, 0.3);
     border-radius: 0;

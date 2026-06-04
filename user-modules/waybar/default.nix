@@ -85,7 +85,7 @@
           "format" = "";
           "format-disabled" = "󰂲";
           "format-connected" = "󰂱  {device_alias}";
-          "format-connected-battery" = "󰂱  {device_alias} ({device_battery_percentage})";
+          "format-connected-battery" = "󰂱  {device_alias} ({device_battery_percentage}%)";
           "on-click" = "blueman-manager";
           "tooltip" = false;
         };
@@ -120,7 +120,11 @@
           "format" = "{icon}  {volume}%";
           "format-muted" = "  XX";
           "format-icons" = {
-            "default" = ["" "" ""];
+            "default" = [
+              ""
+              ""
+              ""
+            ];
             "headphone" = "";
             "headset" = "";
             "hands-free" = "";
@@ -129,16 +133,6 @@
           "max-volume" = 125;
           "on-click" = "pavucontrol";
           "on-click-right" = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "tooltip" = false;
-        };
-
-        "backlight" = {
-          "format" = "󰃠  {percent}%";
-          "tooltip" = false;
-        };
-
-        "battery" = {
-          "format" = "  {capacity}%";
           "tooltip" = false;
         };
 
@@ -228,6 +222,34 @@
           "interval" = "once";
           "format" = "  {}";
           "tooltip" = false;
+        };
+
+        "backlight" = {
+          "format" = "󰃟  {percent}%";
+          "scroll-step" = 10;
+          "tooltip" = false;
+        };
+
+        "battery" = {
+          "format" = "{icon}  {capacity}%";
+          "tooltip" = false;
+          "interval" = 120;
+          "format-icons" = {
+            "default" = [
+              "󰂎"
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󱈏"
+            ];
+            "charging" = [ "󰂄" ];
+          };
         };
 
         "cpu" = {

@@ -21,6 +21,17 @@ post_apply_exec = "echo 'framework' > ~/.config/current_screen_layout && systemc
 [[profiles.framework.conditions.required_monitors]]
 description = "BOE 0x0BCA"
 
+[profiles.bc]
+config_file = "profiles/bc.conf"
+config_file_type = "static"
+post_apply_exec = "echo 'bc' > ~/.config/current_screen_layout && systemctl --user restart waybar"
+
+[[profiles.bc.conditions.required_monitors]]
+description = "BOE 0x0BCA"
+
+[[profiles.bc.conditions.required_monitors]]
+description = "Ancor Communications Inc ASUS VS229 G9LMQS117476"
+
 [profiles.desktop]
 config_file = "profiles/desktop.go.tmpl"
 config_file_type = "template"
