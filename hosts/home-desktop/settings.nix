@@ -26,7 +26,7 @@ in
   systemOptions.hasRgbLeds = true;
 
   systemOptions.enableFirewall = false;
-  #systemOptions.virtualizationType = "vmware";  # not surprised, broadcom doesn't think wayland needs to be supported
+  systemOptions.virtualizationType = "vmware";  # not surprised, broadcom doesn't think wayland needs to be supported
 
   systemOptions.bootloaderType = "refind";
   systemOptions.bootloaderTimeout = 4;
