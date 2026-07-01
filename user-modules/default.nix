@@ -60,6 +60,12 @@
           devenv
           awscli2
           ssm-session-manager-plugin
+          python3
+          ansible-lint
+          python313Packages.boto3
+          python313Packages.botocore
+          python313Packages.awscrt
+          pre-commit
           #
           htop
           nixfmt
@@ -70,6 +76,7 @@
           grim
           swappy
           pavucontrol
+          nh
           #
           tree
           nautilus

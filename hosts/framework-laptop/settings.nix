@@ -12,7 +12,7 @@
 
   systemOptions.bootloaderType = "refind";
   systemOptions.bootloaderTimeout = 4;
-  services.openssh.enable = true;
+  services.openssh.enable = false;
 
   themeOptions.colorScheme = "brown";
 
