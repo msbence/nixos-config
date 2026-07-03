@@ -56,7 +56,7 @@
         #"$mod, J, togglesplit," # TODO: fix for 26.05
         "$mod, V, hy3:makegroup, v"
         "$mod, H, hy3:makegroup, h"
-        "$mod, X, exec, bash ~/nixos-config/home-packages/hyprland/scripts/menu_shutdown.sh"
+        "$mod, X, exec, wlogout -c 30"
 
         "$mod, left, hy3:movefocus, l"
         "$mod, right, hy3:movefocus, r"
@@ -165,6 +165,12 @@
           name = "lr-hyprpaper";
           "match:namespace" = "hyprpaper";
           no_anim = true;
+        }
+        {
+          name = "lr-wlogout";
+          "match:namespace" = "logout_dialog";
+          no_anim = true;
+          blur = true;
         }
       ];
 
