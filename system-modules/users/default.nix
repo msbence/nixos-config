@@ -21,6 +21,7 @@
       "floppy"
       "audio"
       "video"
+      "input"
     ];
   };
 

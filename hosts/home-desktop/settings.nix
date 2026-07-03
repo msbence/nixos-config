@@ -45,6 +45,13 @@ in
 
   ###
 
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
   environment.systemPackages = [ pkgs.unstable.headsetcontrol ];
   services.udev.packages = [ pkgs.unstable.headsetcontrol ]; # For udev rules
 
