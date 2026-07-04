@@ -33,13 +33,13 @@ This repository holds the configuration for my NixOS hosts. Written by me, for m
 
 ### Screenshots
 
-<details>
-
-<summary>Expand</summary>
-
 #### Desktop
 
 ![desktop](.img/desktop.png)
+
+<details>
+
+<summary>Expand for more</summary>
 
 #### Lockscreen
 
