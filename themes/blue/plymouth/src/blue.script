@@ -1,8 +1,8 @@
 // --- 1. CONFIGURATION & THEME COLORS ---
 // Use values from your Stylix palette (0.0 to 1.0 scale for Plymouth)
-text_r = 0.60;
-text_g = 0.75;
-text_b = 0.95;
+text_r = 0.45;
+text_g = 0.52;
+text_b = 0.63;
 
 screen_width = Window.GetWidth();
 screen_height = Window.GetHeight();
