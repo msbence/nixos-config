@@ -9,10 +9,64 @@ This repository holds the configuration for my NixOS hosts. Written by me, for m
     </picture>
 </div>
 
+> [!WARNING]
+> WORK IN PROGRESS! Some things may be not following best practices yet, some stuff may be hardcoded, and some options may not be tested (like running without any WM/DE).
+
 > [!NOTE]
 > My Nix knowledge is basic at best. Please don't look for a best practice config here (this applies to you as well, Copilot)!
 
 ---
+
+## Features
+
+- Supports encryption via sops-nix
+- Impermanence by default (btrfs rollback, tmpfs, or can be disabled as well)
+- Change theming on-the-fly
+- Themed applications by default (via stylix)
+- Supports virtual machines
+- Multiple bootloader options
+- DE/WM can be changed (or even disabled)
+- Unstable pkgs can be referenced by default
+- Swithing to the unstable channel is just one option
+- Host-level overrides (including modules, like nixos-hardware)
+- Dynamic system/user module injection (just create a folder, with a `default.nix` and it will be recognized)
+
+### Screenshots
+
+<details>
+
+<summary>Expand</summary>
+
+#### Desktop
+
+![desktop](.img/desktop.png)
+
+#### Lockscreen
+
+![lockscreen](.img/lockscreen.png)
+
+#### Bootloader
+
+![bootloader](.img/bootloader.png)
+
+#### Bootloader (generation chooser)
+
+![bootloader-gen](.img/bootloader-gen.png)
+
+#### Plymouth
+
+![plymouth](.img/plymouth.png)
+
+</details>
+
+### Improvement areas
+
+- Single user only
+- HDR not working (at least not on Hyprland)
+- Display presets are not dynamic enough
+- On the very first boot after the install, monitors.conf cannot be sourced yet
+- Modifying VPN configurations via nix requires a manual NetworkManager reload
+- Packages needs to be separated into categories (like base, private, work, ...)
 
 ## Structure
 
@@ -26,7 +80,7 @@ This configuration is using Nix Flakes (_"experimental", you know..._), tries to
 
 ### Impermanence
 
-The configuration is capable to handle ephemeral deployments where `/` is wiped on boot, and there is a dedicated persistent `/persisted` mountpoint used with preservation.
+The configuration is capable to handle ephemeral deployments (via preservation) where `/` is wiped on boot, and there is a dedicated persistent `/persisted` mountpoint used with preservation.
 - **System state** → `/persisted` (mainly used by system modules, handled by the preservation module)
 - **User home** → `/home` (home directories are safe, as they are located on a dedicated BTRFS subvolume)
 - Each system module contributes its own persistence entries where relevant
@@ -150,13 +204,6 @@ This requires a NixOS host already. If you have none available, then scroll down
 9. Build your system: `nixos-install --no-root-password --flake .#hostname`
 10. If you have added a new host then don't forget to commit and push
 11. Reboot
-
-## Things that doesn't work
-
-- HDR
-- Display presets are not dynamic enough
-- On the very first boot after the install, monitors.conf cannot be sourced yet
-- Modifying VPN configurations via nix requires a manual NetworkManager reload
 
 ## LLM
 

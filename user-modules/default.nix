@@ -80,6 +80,7 @@
           nh
           orca-slicer
           zoxide
+          fastfetch
           #
           tree
           nautilus
