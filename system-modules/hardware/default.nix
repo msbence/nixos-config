@@ -9,6 +9,11 @@
     MAILADDR=${config.userOptions.email}
   '';
 
+  # Override mdmonitor to log to syslog instead of emailing or alerting
+  systemd.services."mdmonitor".environment = {
+    MDADM_MONITOR_ARGS = "--scan --syslog";
+  };
+
   services = {
     fwupd.enable = config.systemOptions.enableFirmwareUpdates;
     fstrim.enable = true;

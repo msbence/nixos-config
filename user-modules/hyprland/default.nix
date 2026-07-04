@@ -35,7 +35,7 @@
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
       "$fileManager" = "nautilus";
-      "$menu" = "rofi -show drun -show-icons";
+      "$menu" = "walker";
 
       exec-once = [
         "hyprctl dispatch workspace 1"
@@ -169,6 +169,12 @@
         {
           name = "lr-wleave";
           "match:namespace" = "wleave";
+          no_anim = true;
+          blur = true;
+        }
+        {
+          name = "lr-walker";
+          "match:namespace" = "walker";
           no_anim = true;
           blur = true;
         }

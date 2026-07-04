@@ -3,6 +3,20 @@
   config,
   ...
 }:
+let
+  vpnEncConfigDir = ../../secrets/vpn;
+  vpnEncConfigFiles = lib.filterAttrs (vpnName: type: lib.hasSuffix ".nmconnection" vpnName) (builtins.readDir vpnEncConfigDir);
+
+  vpnSecrets = lib.mapAttrs' (vpnName: type: {
+    name = "vpn/${vpnName}";
+    value = {
+      sopsFile = "${vpnEncConfigDir}/${vpnName}";
+      format = "binary";
+      path = "/etc/NetworkManager/system-connections/${vpnName}";
+      mode = "0600";
+    };
+  }) vpnEncConfigFiles;
+in
 {
   networking = {
     networkmanager.enable = config.systemOptions.enableNetworkManager;
@@ -14,6 +28,8 @@
       "127.0.0.1" = [ "${config.systemOptions.hostname}" ];
     };
   };
+
+  sops.secrets = lib.mkIf config.systemOptions.enableNetworkManager vpnSecrets;
 
   programs = {
     mtr.enable = true;

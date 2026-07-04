@@ -1,8 +1,37 @@
 {
   config,
+  pkgs,
   systemOptions,
   ...
 }:
+let
+  vpn-status = pkgs.writeShellScriptBin "vpn-status" ''
+    active=$(nmcli -t -f NAME,TYPE connection show --active | grep -E 'vpn|wireguard' | cut -d: -f1 | head -n1)
+    if [ -n "$active" ]; then
+      echo "$active"
+    else
+      echo "OFF"
+    fi
+  '';
+
+  vpn-menu = pkgs.writeShellScriptBin "vpn-menu" ''
+    active=$(nmcli -t -f NAME,TYPE connection show --active | grep -E 'vpn|wireguard' | cut -d: -f1 | head -n1)
+
+    if [ -n "$active" ]; then
+      choice=$(echo "Disconnect VPN" | walker --theme topright-menu --dmenu -n --maxheight 500 --maxwidth 200)
+      if [ "$choice" = "Disconnect VPN" ]; then
+        nmcli connection down "$active"
+      fi
+    else
+      connections=$(nmcli -t -f NAME,TYPE connection show | grep -E 'vpn|wireguard' | cut -d: -f1)
+      choice=$(echo "$connections" | walker --theme topright-menu --dmenu -n --maxheight 500 --maxwidth 200)
+      
+      if [ -n "$choice" ]; then
+        nmcli connection up "$choice"
+      fi
+    fi
+  '';
+in
 {
   programs.waybar = {
     enable = true;
@@ -90,8 +119,11 @@
         };
 
         "custom/vpn" = {
-          "format" = "󱙱  VPN OFF";
-          "tooltip" = false;
+          format = "󱙱  VPN: {}";
+          exec = "${vpn-status}/bin/vpn-status";
+          interval = 5;
+          on-click = "${vpn-menu}/bin/vpn-menu";
+          tooltip = false;
         };
 
         "network#wireless" = {
