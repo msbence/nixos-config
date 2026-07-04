@@ -47,7 +47,6 @@
 
         sessionVariables = {
           EDITOR = "nano";
-          TERM = "x256-color";
           NH_OS_FLAKE = "/home/${config.userOptions.username}/nixos-config";
           XDG_SESSION_TYPE = "wayland";
           XDG_SESSION_DESKTOP = "Hyprland";
@@ -80,6 +79,7 @@
           pavucontrol
           nh
           orca-slicer
+          zoxide
           #
           tree
           nautilus

@@ -11,11 +11,12 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      #cd = "z";
-      #cdi = "zi";
-      #cp = "xcp";
-      #cat = "bat -P";
-      #ls = "colorls";
+      cd = "z";
+      cdi = "zi";
+      cp = "xcp";
+      cat = "bat -P";
+      ls = "colorls";
+      ssh = "TERM=xterm-256color ssh";
       venva = "source venv/bin/activate";
       venvc = "python3 -m venv venv";
       code = "${pkgs.vscodium}/bin/codium";
@@ -43,8 +44,7 @@
         zstyle ':omz:alpha:lib:git' async-prompt no
         ZSH_CUSTOM=${config.home.homeDirectory}/.zsh-themes
 
-        #source ${config.home.homeDirectory}/nixos-config/home-packages/zsh/secrets.env
-        #eval "$(${config.home.homeDirectory}/nixos-config/home-packages/kubectl/setup_env.sh)"
+        eval "$(zoxide init zsh)"
 
         export PATH=$PATH:${config.home.homeDirectory}/.bin
       '';
