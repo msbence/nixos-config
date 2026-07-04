@@ -56,7 +56,7 @@
         #"$mod, J, togglesplit," # TODO: fix for 26.05
         "$mod, V, hy3:makegroup, v"
         "$mod, H, hy3:makegroup, h"
-        "$mod, X, exec, wlogout -c 30"
+        "$mod, X, exec, wleave"
 
         "$mod, left, hy3:movefocus, l"
         "$mod, right, hy3:movefocus, r"
@@ -167,8 +167,8 @@
           no_anim = true;
         }
         {
-          name = "lr-wlogout";
-          "match:namespace" = "logout_dialog";
+          name = "lr-wleave";
+          "match:namespace" = "wleave";
           no_anim = true;
           blur = true;
         }

@@ -77,6 +77,7 @@
           swappy
           pavucontrol
           nh
+          orca-slicer
           #
           tree
           nautilus
