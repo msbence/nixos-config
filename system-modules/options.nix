@@ -165,7 +165,7 @@
             LC_NUMERIC = "en_US.UTF-8";
             LC_PAPER = "hu_HU.UTF-8";
             LC_TELEPHONE = "de_AT.UTF-8";
-            LC_TIME = "hu_HU.UTF-8";
+            LC_TIME = "en_DK.UTF-8";
           };
       description = "Set additional locale format";
     };

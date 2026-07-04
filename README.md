@@ -156,11 +156,12 @@ This requires a NixOS host already. If you have none available, then scroll down
 - HDR
 - Display presets are not dynamic enough
 - On the very first boot after the install, monitors.conf cannot be sourced yet
+- Modifying VPN configurations via nix requires a manual NetworkManager reload
 
 ## LLM
 
 This configuration is done 90% by hand, but LLMs were a great help in explaining nix to me, and providing solutions where I couldn't see one.
-Still, I've opted to write the code myself as I like to understand what I do. Expceptions are the "layout" configurations like the plymouth theme, hyprlock widgets, etc... and this README which is LLM-improved.
+Still, I've opted to write the code myself as I like to understand what I do. Exceptions are the "layout" configurations like the plymouth theme, hyprlock widgets, etc... and this README, which is LLM-improved.
 
 ---
 

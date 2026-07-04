@@ -1,6 +1,9 @@
-// LLM-generated for now, TODO: improve by hand
+// --- 1. CONFIGURATION & THEME COLORS ---
+// Use values from your Stylix palette (0.0 to 1.0 scale for Plymouth)
+text_r = 0.95;
+text_g = 0.93;
+text_b = 0.74;
 
-// --- 1. GLOBAL VARIABLES & STATE ---
 screen_width = Window.GetWidth();
 screen_height = Window.GetHeight();
 
@@ -9,10 +12,18 @@ current_prompt = "";
 current_bullets = 0;
 is_normal_mode = 0;
 
-// --- 2. SET UP THE BACKGROUND & SPRITES ---
-bg_image_raw = Image("background.png");
+// --- 2. SET UP SPRITES & IMAGES ---
+bg_image_raw = Image("background_blur.png");
 bg_sprite = Sprite();
 bg_sprite.SetZ(-100); 
+
+box_image = Image("box.png");
+box_sprite = Sprite();
+box_sprite.SetZ(-10);
+box_sprite.SetImage(box_image);
+box_sprite.SetX(screen_width / 2 - box_image.GetWidth() / 2);
+box_sprite.SetY(screen_height / 2 - box_image.GetHeight() / 2);
+box_sprite.SetOpacity(1);
 
 prompt_text_sprite = Sprite();
 prompt_text_sprite.SetZ(10); 
@@ -29,10 +40,10 @@ fun draw_background() {
 }
 draw_background();
 
-// --- 3. SYSTEM STATUS UPDATES (Kernel/Systemd Logs) ---
+// --- 3. SYSTEM STATUS UPDATES ---
 fun update_status_callback(status) {
     current_status = status;
-    status_image = Image.Text(status, 0.8, 0.8, 0.8);
+    status_image = Image.Text(status, text_r, text_g, text_b);
     status_text_sprite.SetImage(status_image);
     status_text_sprite.SetX(screen_width / 2 - status_image.GetWidth() / 2);
     status_text_sprite.SetY(screen_height - 60);
@@ -41,19 +52,17 @@ fun update_status_callback(status) {
 // --- 4. PASSWORD PROMPT ---
 fun display_password_callback(prompt_string, num_bullets) {
     is_normal_mode = 0;
-    
-    // Fallback if the system sends an empty prompt string
-    if (prompt_string == "") {
-        prompt_string = "Please enter disk decryption password:";
-    }
+
+    prompt_string = "Enter password:";
     current_prompt = prompt_string;
     current_bullets = num_bullets;
 
-    text_image = Image.Text(prompt_string, 1.0, 1.0, 1.0);
+    // Render prompt text inside the upper half of the box
+    text_image = Image.Text(prompt_string, text_r, text_g, text_b);
     prompt_text_sprite.SetImage(text_image);
     
     text_x = screen_width / 2 - text_image.GetWidth() / 2;
-    text_y = screen_height / 2 - text_image.GetHeight();
+    text_y = screen_height / 2 - 30; # Shifted slightly above center
     prompt_text_sprite.SetX(text_x);
     prompt_text_sprite.SetY(text_y);
 
@@ -62,7 +71,7 @@ fun display_password_callback(prompt_string, num_bullets) {
         bullet_sprites[i].SetOpacity(0);
     }
     
-    // Draw new bullets
+    // Draw new bullets centered below the text
     bullet_spacing = bullet_image.GetWidth() * 1.5;
     total_bullet_width = num_bullets * bullet_spacing;
     start_x = screen_width / 2 - total_bullet_width / 2;
@@ -73,29 +82,28 @@ fun display_password_callback(prompt_string, num_bullets) {
             bullet_sprites[i].SetZ(10);
         }
         bullet_sprites[i].SetX(start_x + (i * bullet_spacing));
-        bullet_sprites[i].SetY(text_y + text_image.GetHeight() + 20); 
+        bullet_sprites[i].SetY(screen_height / 2 + 15); # Shifted below center
         bullet_sprites[i].SetOpacity(1);
     }
 }
 
-// --- 5. NORMAL BOOT (Post-Password) ---
+// --- 5. NORMAL BOOT (Post-Password or Unencrypted) ---
 fun display_normal_callback() {
     is_normal_mode = 1;
     
-    // Clear bullets
+    // Hide bullets
     for (i = 0; bullet_sprites[i]; i++) {
         bullet_sprites[i].SetOpacity(0);
     }
     
-    // Show loading text
-    loading_text = Image.Text("Decrypting and starting system...", 1.0, 1.0, 1.0);
+    // Generic loading text
+    loading_text = Image.Text("Starting system...", text_r, text_g, text_b);
     prompt_text_sprite.SetImage(loading_text);
     prompt_text_sprite.SetX(screen_width / 2 - loading_text.GetWidth() / 2);
-    // Explicitly set Y here just in case normal mode fires after a resolution change
-    prompt_text_sprite.SetY(screen_height / 2 - loading_text.GetHeight()); 
+    prompt_text_sprite.SetY(screen_height / 2 - loading_text.GetHeight() / 2); 
 }
 
-// --- 6. REFRESH & RESCALE (Handles KMS Resolution Changes) ---
+// --- 6. REFRESH & RESCALE ---
 fun refresh_callback() {
     if (Window.GetWidth() != screen_width || Window.GetHeight() != screen_height) {
         screen_width = Window.GetWidth();
@@ -103,7 +111,6 @@ fun refresh_callback() {
         
         draw_background();
         
-        // Redraw active UI to recenter it
         if (current_status != "") update_status_callback(current_status);
         if (is_normal_mode) {
             display_normal_callback();
