@@ -67,6 +67,8 @@
           python313Packages.botocore
           python313Packages.awscrt
           pre-commit
+          android-tools
+          transmission_4-qt
           #
           htop
           nixfmt
