@@ -30,9 +30,13 @@
             swap = {
               size = "16G";
               content = {
-                type = "swap";
-                randomEncryption = true;
-                priority = 100;
+                type = "luks";
+                name = "swap-encrypted";
+                settings.allowDiscards = true;
+                passwordFile = "/tmp/luks.key";
+                content = {
+                  type = "swap";
+                };
               };
             };
             main = {
