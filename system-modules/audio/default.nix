@@ -9,8 +9,9 @@
     pipewire = lib.mkIf config.systemOptions.enableAudio {
       enable = true;
       pulse.enable = true;
-      alsa.enable = false;
+      alsa.enable = true;
       jack.enable = false;
+      wireplumber.enable = true;
     };
   };
 
