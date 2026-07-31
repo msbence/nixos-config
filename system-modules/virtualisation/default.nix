@@ -25,6 +25,9 @@
 
     vmware.host = lib.mkIf (config.systemOptions.virtualizationType == "vmware") {
       enable = true;
+      extraPackages = with pkgs; [
+        open-vm-tools
+      ];
     };
   };
 
@@ -34,6 +37,7 @@
 
   users.users.${config.userOptions.username}.extraGroups =
     lib.optionals (config.systemOptions.containerizationType == "docker") [ "docker" ]
+    ++ lib.optionals (config.systemOptions.virtualizationType == "vmware") [ "vmware" ]
     ++ lib.optionals (config.systemOptions.virtualizationType == "kvm") [
       "kvm"
       "libvirtd"

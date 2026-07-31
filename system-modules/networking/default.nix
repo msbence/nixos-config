@@ -5,7 +5,9 @@
 }:
 let
   vpnEncConfigDir = ../../secrets/vpn;
-  vpnEncConfigFiles = lib.filterAttrs (vpnName: type: lib.hasSuffix ".nmconnection" vpnName) (builtins.readDir vpnEncConfigDir);
+  vpnEncConfigFiles = lib.filterAttrs (vpnName: type: lib.hasSuffix ".nmconnection" vpnName) (
+    builtins.readDir vpnEncConfigDir
+  );
 
   vpnSecrets = lib.mapAttrs' (vpnName: type: {
     name = "vpn/${vpnName}";
