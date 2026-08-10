@@ -10,7 +10,7 @@
   systemOptions.enableFirewall = false;
 
   systemOptions.bootloaderType = "refind";
-  systemOptions.bootloaderTimeout = 4;
+  systemOptions.bootloaderTimeout = 2;
   services.openssh.enable = true;
 
   themeOptions.colorScheme = "brown";

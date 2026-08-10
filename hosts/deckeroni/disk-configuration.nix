@@ -30,15 +30,7 @@
             swap = {
               size = "16G";
               content = {
-                type = "luks";
-                name = "swap-encrypted";
-                settings.allowDiscards = true;
-                passwordFile = "/tmp/luks.key";
-		enrollFido2 = true;
-		enrollRecovery = false;
-                content = {
-                  type = "swap";
-                };
+                type = "swap";
               };
             };
             main = {
@@ -47,9 +39,8 @@
                 type = "luks";
                 name = "main-encrypted";
                 settings.allowDiscards = true;
+		settings.crypttabExtraOpts = [ "fido2-device=auto" "tpm2-device=auto" ];
                 passwordFile = "/tmp/luks.key";
-		enrollFido2 = true;
-		enrollRecovery = false;
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
