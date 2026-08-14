@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   systemOptions.systemStateVersion = "26.05";
   userOptions.homeManagerStateVersion = "26.05";
@@ -16,4 +16,18 @@
   themeOptions.colorScheme = "brown";
 
   home-manager.users.${config.userOptions.username}.programs.git.signing.signByDefault = false;
+
+  # steam deck stuff -> to be ported to the options/module system
+
+#  services.logind.settings.Login.HandlePowerKey = "suspend";
+
+  boot.kernelPackages = pkgs.linuxPackages;
+  programs.hyprland.enable = true;
+  systemOptions.enableAutologin = false;
+  jovian.steam.enable = true;
+  jovian.steamos.useSteamOSConfig = true;
+  jovian.devices.steamdeck.enable = true;
+  jovian.steam.autoStart = true;
+  jovian.steam.desktopSession = "hyprland";
+  jovian.steam.user = "raptor";
 }

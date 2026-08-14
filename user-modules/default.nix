@@ -130,7 +130,7 @@
           ethtool
           pwgen
           usbutils
-          minikube
+          #minikube
           kubernetes-helm
           terraform-docs
           s3cmd
