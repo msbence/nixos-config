@@ -11,6 +11,7 @@
   home.hyprdynamicmonitors = {
     enable = true;
     installExamples = false;
+    systemdTarget = "hyprland-session.target";
 
     extraFiles = {
       "hyprdynamicmonitors/profiles" = ./profiles;

@@ -25,8 +25,13 @@
   programs.hyprland.enable = true;
   systemOptions.enableAutologin = false;
   jovian.steam.enable = true;
+  jovian.decky-loader.enable = true;  
+  jovian.decky-loader.user = "raptor";
+  preservation.preserveAt."/persisted".directories = [ "/var/lib/decky-loader" ];
   jovian.steamos.useSteamOSConfig = true;
   jovian.devices.steamdeck.enable = true;
+  jovian.devices.steamdeck.autoUpdate = true;
+  jovian.devices.steamdeck.enableOsFanControl = false;  # full of bugs
   jovian.steam.autoStart = true;
   jovian.steam.desktopSession = "hyprland";
   jovian.steam.user = "raptor";

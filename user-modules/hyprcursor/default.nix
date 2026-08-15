@@ -4,6 +4,7 @@
 }:
 {
   home.pointerCursor = {
+    enable = true;
     hyprcursor.enable = true;
     package = themeOptions.cursorTheme.package;
     name = themeOptions.cursorTheme.name;

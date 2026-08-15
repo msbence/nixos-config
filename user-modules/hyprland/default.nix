@@ -124,6 +124,14 @@
         touchpad = {
           natural_scroll = false;
         };
+
+        # steamdeck specific
+        tablet = {
+          transform = 3;
+        };
+        touchdevice = {
+          transform = 3;
+        };
       };
 
       general = {
