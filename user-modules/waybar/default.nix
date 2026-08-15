@@ -51,10 +51,18 @@ in
         ];
         modules-right = [
           "mpris"
-          "pulseaudio"
+          "group/hw-audio"
           "bluetooth"
           "group/networking"
         ];
+
+        "group/hw-audio" = {
+          "orientation" = "horizontal";
+          "modules" = [
+            "pulseaudio"
+            "custom/logitech"
+          ];
+        };
 
         "group/networking" = {
           "orientation" = "horizontal";
@@ -123,6 +131,14 @@ in
           exec = "${vpn-status}/bin/vpn-status";
           interval = 5;
           on-click = "${vpn-menu}/bin/vpn-menu";
+          tooltip = false;
+        };
+
+        "custom/logitech" = {
+          format = "󰠇 {}%";
+          hide-empty-text = true;
+          exec = "headsetcontrol -o json | jq -r '.devices[].battery.level' | sed s/-1//";
+          interval = 120;
           tooltip = false;
         };
 
