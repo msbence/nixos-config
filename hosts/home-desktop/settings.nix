@@ -7,7 +7,7 @@ let
   set-rgb = pkgs.writeScriptBin "set-rgb" ''
     #!/bin/sh
 
-    COLOR="E06501"
+    COLOR="E06501"  # TODO: set from themeOptions
 
     sleep 2
 
@@ -22,24 +22,27 @@ in
   userOptions.homeManagerStateVersion = "25.11";
 
   systemOptions.deviceType = "desktop";
-  systemOptions.deviceIsVirtual = false;
   systemOptions.hasRgbLeds = true;
   systemOptions.sensorTempCpu = "/sys/devices/platform/asus-ec-sensors/hwmon/hwmon7/temp1_input";
   systemOptions.sensorTempDisk = "/sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input";
 
-  systemOptions.enableFirewall = false;
-  systemOptions.virtualizationType = "vmware"; # not surprised, broadcom doesn't think wayland needs to be supported
-
-  systemOptions.bootloaderType = "refind";
-  systemOptions.bootloaderTimeout = 4;
   services.openssh.enable = true;
+  systemOptions.enableFirewall = false;
 
-  themeOptions.colorScheme = "brown";
+  systemOptions.virtualizationType = "vmware";
+
+  environment.systemPackages = [ pkgs.unstable.headsetcontrol ];
+  services.udev.packages = [ pkgs.unstable.headsetcontrol ]; # For udev rules
+
+  systemd.tmpfiles.rules = [
+    # Type Path        Mode UID                            GID    Age Argument
+    "d     /games/nvme 0755 ${config.userOptions.username} users  -   -"
+    "d     /games/sata 0755 ${config.userOptions.username} users  -   -"
+    "d     /raid1      0755 ${config.userOptions.username} users  -   -"
+  ];
 
   home-manager.users.${config.userOptions.username} = {
     programs = {
-      git.signing.signByDefault = false;
-
       waybar.settings.bottomBar."custom/display" = {
         "menu" = "on-click";
         "menu-file" = ../../user-modules/waybar/menus/display.xml;
@@ -53,25 +56,7 @@ in
     };
   };
 
-  systemd.tmpfiles.rules = [
-    # Type Path        Mode UID                            GID    Age Argument
-    "d     /games/nvme 0755 ${config.userOptions.username} users  -   -"
-    "d     /games/sata 0755 ${config.userOptions.username} users  -   -"
-    "d     /raid1      0755 ${config.userOptions.username} users  -   -"
-  ];
-
-  ###
-
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
-
-  environment.systemPackages = [ pkgs.unstable.headsetcontrol ];
-  services.udev.packages = [ pkgs.unstable.headsetcontrol ]; # For udev rules
-
+  # TODO: refactor this to system-modules
   systemd.services.set-rgb = {
     enable = true;
     description = "set-rgb";

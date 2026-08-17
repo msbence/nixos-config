@@ -4,25 +4,14 @@
   userOptions.homeManagerStateVersion = "26.05";
 
   systemOptions.deviceType = "laptop";
-  systemOptions.deviceIsVirtual = false;
-  systemOptions.hasRgbLeds = false;
 
-  systemOptions.enableFirewall = false;
-
-  systemOptions.bootloaderType = "refind";
   systemOptions.bootloaderTimeout = 2;
   services.openssh.enable = true;
-
-  themeOptions.colorScheme = "brown";
 
   home-manager.users.${config.userOptions.username}.programs.git.signing.signByDefault = false;
 
   # steam deck stuff -> to be ported to the options/module system
-
-  #  services.logind.settings.Login.HandlePowerKey = "suspend";
-
   boot.kernelPackages = pkgs.linuxPackages;
-  programs.hyprland.enable = true;
   systemOptions.enableAutologin = false;
   jovian.steam.enable = true;
   jovian.decky-loader.enable = true;

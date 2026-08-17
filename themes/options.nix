@@ -18,7 +18,7 @@
         "brown"
       ];
       description = "The color that dominates in the theme";
-      default = "blue";
+      default = "brown";
     };
 
     base16ColorScheme = mkOption {

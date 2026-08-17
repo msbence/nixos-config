@@ -56,12 +56,12 @@
         "systemd-boot"
         "refind"
       ];
-      default = "systemd-boot";
+      default = if config.systemOptions.deviceType == "server" then "systemd-boot" else "refind";
       description = "The type of bootloader to use";
     };
     bootloaderTimeout = mkOption {
       type = types.int;
-      default = if config.systemOptions.bootloaderType == "refind" then -1 else 0;
+      default = if config.systemOptions.deviceType == "server" then 1 else 4;
       description = "Timeout for the bootloader";
     };
     bootloaderGenerations = mkOption {
@@ -115,6 +115,7 @@
       default = "1.6";
       description = "Scaling factor for Steam";
     };
+    enableSunshine = mkEnableOption "Activates the Sunshine streaming server";
     ###<
     ###> HARDWARE
     enableFirmwareUpdates = mkOption {

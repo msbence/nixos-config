@@ -26,6 +26,13 @@
     gamemode.enable = true;
   };
 
+  services.sunshine = lib.mkIf config.systemOptions.enableSunshine {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
   environment.systemPackages = lib.mkIf config.systemOptions.enableSteam [
     pkgs.steam-run
     pkgs.gamescope-wsi
