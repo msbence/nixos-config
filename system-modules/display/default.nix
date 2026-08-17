@@ -5,9 +5,11 @@
   ...
 }:
 lib.mkIf (config.systemOptions.windowManager != "none") {
+  programs.hyprland.enable = (config.systemOptions.windowManager == "hyprland");
+
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
+    config.common.default = [ "wlr" "gtk" ];
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 
