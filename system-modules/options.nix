@@ -133,6 +133,16 @@
       description = "Enable libinput and touchpad support";
     };
     hasRgbLeds = mkEnableOption "Denotes if the HW has RGB leds";
+    sensorTempCpu = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Path to CPU coretemp sensor (eg. /sys/devices/platform/asus-ec-sensors/hwmon/hwmon7/temp1_input)";
+    };
+    sensorTempDisk = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Path to primary disk temperature sensor (eg. /sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input)";
+    };
     ###<
     ###> IMPERMANENCE
     impermanenceType = mkOption {

@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   systemOptions,
   ...
@@ -302,8 +303,8 @@ in
           "tooltip" = false;
         };
 
-        "temperature" = {
-          "hwmon-path" = [ "/sys/devices/platform/asus-ec-sensors/hwmon/hwmon7/temp1_input" ];
+        "temperature" = lib.mkIf (systemOptions.sensorTempCpu != null) {
+          "hwmon-path" = [ systemOptions.sensorTempCpu ];
           "format" = "{temperatureC}°C";
           "tooltip" = false;
         };
@@ -325,10 +326,8 @@ in
           "tooltip" = false;
         };
 
-        "temperature#disk" = {
-          "hwmon-path" = [
-            "/sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input"
-          ];
+        "temperature#disk" = lib.mkIf (systemOptions.sensorTempDisk != null) {
+          "hwmon-path" = [ systemOptions.sensorTempDisk ];
           "format" = "{temperatureC}°C";
           "tooltip" = false;
         };

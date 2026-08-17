@@ -24,6 +24,8 @@ in
   systemOptions.deviceType = "desktop";
   systemOptions.deviceIsVirtual = false;
   systemOptions.hasRgbLeds = true;
+  systemOptions.sensorTempCpu = "/sys/devices/platform/asus-ec-sensors/hwmon/hwmon7/temp1_input";
+  systemOptions.sensorTempDisk = "/sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input";
 
   systemOptions.enableFirewall = false;
   systemOptions.virtualizationType = "vmware"; # not surprised, broadcom doesn't think wayland needs to be supported
