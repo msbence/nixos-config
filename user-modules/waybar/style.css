@@ -51,7 +51,7 @@ window#waybar.bottomBar {
 /* gaps between pills (top) */
 #bluetooth,
 #networking,
-#pulseaudio,
+#hw-audio,
 #custom-user {
     margin-left: 8px;
 }
@@ -60,7 +60,6 @@ window#waybar.bottomBar {
 /* single module items */
 #bluetooth,
 #mpris,
-#pulseaudio,
 #custom-user,
 #custom-hostname,
 #battery {
