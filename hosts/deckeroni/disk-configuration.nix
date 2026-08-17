@@ -39,7 +39,10 @@
                 type = "luks";
                 name = "main-encrypted";
                 settings.allowDiscards = true;
-		settings.crypttabExtraOpts = [ "fido2-device=auto" "tpm2-device=auto" ];
+                settings.crypttabExtraOpts = [
+                  "fido2-device=auto"
+                  "tpm2-device=auto"
+                ];
                 passwordFile = "/tmp/luks.key";
                 content = {
                   type = "btrfs";

@@ -34,7 +34,22 @@ in
 
   themeOptions.colorScheme = "brown";
 
-  home-manager.users.${config.userOptions.username}.programs.git.signing.signByDefault = false;
+  home-manager.users.${config.userOptions.username} = {
+    programs = {
+      git.signing.signByDefault = false;
+
+      waybar.settings.bottomBar."custom/display" = {
+        "menu" = "on-click";
+        "menu-file" = ../../user-modules/waybar/menus/display.xml;
+        "menu-actions" = {
+          "single" =
+            "sed -i 's/desktop-all/desktop-single/g' /home/${config.userOptions.username}/.config/hyprdynamicmonitors/config.toml";
+          "all" =
+            "sed -i 's/desktop-single/desktop-all/g' /home/${config.userOptions.username}/.config/hyprdynamicmonitors/config.toml";
+        };
+      };
+    };
+  };
 
   systemd.tmpfiles.rules = [
     # Type Path        Mode UID                            GID    Age Argument

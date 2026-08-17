@@ -248,14 +248,6 @@ in
           "exec" =
             "cat ${config.home.homeDirectory}/.config/current_screen_layout | tr '[:lower:]' '[:upper:]'";
           "interval" = 5;
-          "menu" = "on-click"; # TODO: this needs rework! not all hosts need this, but multiple may have different layouts
-          "menu-file" = ./menus/display.xml;
-          "menu-actions" = {
-            "single" =
-              "sed -i 's/desktop-all/desktop-single/g' ${config.home.homeDirectory}/.config/hyprdynamicmonitors/config.toml";
-            "all" =
-              "sed -i 's/desktop-single/desktop-all/g' ${config.home.homeDirectory}/.config/hyprdynamicmonitors/config.toml";
-          };
           "tooltip" = false;
         };
 
