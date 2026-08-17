@@ -6,7 +6,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;  # comes from system-modules
+    package = null; # comes from system-modules
 
     plugins = [
       pkgs.hyprlandPlugins.hy3

@@ -27,6 +27,7 @@ in
   systemOptions.sensorTempDisk = "/sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input";
 
   services.openssh.enable = true;
+  systemOptions.enableSunshine = true;
   systemOptions.enableFirewall = false;
 
   systemOptions.virtualizationType = "vmware";

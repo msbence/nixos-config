@@ -16,6 +16,7 @@ active-nixpkgs.lib.nixosSystem {
     inherit
       inputs
       systemArchitecture
+      useUnstableChannels
       active-home-manager
       active-stylix
       ;
@@ -26,9 +27,9 @@ active-nixpkgs.lib.nixosSystem {
 
   modules = [
     ./hardware-configuration.nix
-    inputs.jovian-nixos.nixosModules.jovian
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
+    inputs.jovian-nixos.nixosModules.jovian
     ./disk-configuration.nix
     ../../user-modules/options.nix
     ../../themes/default.nix

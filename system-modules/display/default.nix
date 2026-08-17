@@ -9,7 +9,10 @@ lib.mkIf (config.systemOptions.windowManager != "none") {
 
   xdg.portal = {
     enable = true;
-    config.common.default = [ "wlr" "gtk" ];
+    config.common.default = [
+      "wlr"
+      "gtk"
+    ];
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 

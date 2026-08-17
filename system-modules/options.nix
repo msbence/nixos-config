@@ -24,6 +24,7 @@
       type = types.enum [
         "desktop"
         "laptop"
+        "handheld"
         "server"
       ];
       description = "Machine role, controls most defaults";
@@ -31,6 +32,12 @@
     deviceIsVirtual = mkOption {
       type = types.bool;
       default = if config.systemOptions.deviceType == "server" then true else false;
+      description = "Is the device a virtual machine?";
+    };
+    deviceIsSteamDeck = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Is the device a Steam Deck?";
     };
     systemStateVersion = mkOption {
       type = types.str;
@@ -215,7 +222,11 @@
     ###> SECURITY
     enableAutologin = mkOption {
       type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then false else true;
+      default =
+        if (config.systemOptions.deviceType == "server" || config.systemOptions.deviceIsSteamDeck) then
+          false
+        else
+          true;
       description = "Enable automatic login (one password will be presented anyhow due to FDE)";
     };
     enableGpg = mkOption {

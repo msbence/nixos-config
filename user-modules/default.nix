@@ -39,6 +39,8 @@
       programs.home-manager.enable = true;
       programs.bash.enable = true; # required for working home session envvars
 
+      xdg.portal.config.common.default = "*";
+
       home = {
         stateVersion = config.userOptions.homeManagerStateVersion;
 
