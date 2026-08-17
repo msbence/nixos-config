@@ -26,7 +26,7 @@ active-nixpkgs.lib.nixosSystem {
 
   modules = [
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e15-intel
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
