@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   systemOptions,
   ...
@@ -51,10 +52,18 @@ in
         ];
         modules-right = [
           "mpris"
-          "pulseaudio"
+          "group/hw-audio"
           "bluetooth"
           "group/networking"
         ];
+
+        "group/hw-audio" = {
+          "orientation" = "horizontal";
+          "modules" = [
+            "pulseaudio"
+            "custom/logitech"
+          ];
+        };
 
         "group/networking" = {
           "orientation" = "horizontal";
@@ -123,6 +132,14 @@ in
           exec = "${vpn-status}/bin/vpn-status";
           interval = 5;
           on-click = "${vpn-menu}/bin/vpn-menu";
+          tooltip = false;
+        };
+
+        "custom/logitech" = {
+          format = "󰠇 {}%";
+          hide-empty-text = true;
+          exec = "headsetcontrol -o json | jq -r '.devices[].battery.level' | sed s/-1//";
+          interval = 120;
           tooltip = false;
         };
 
@@ -232,14 +249,6 @@ in
           "exec" =
             "cat ${config.home.homeDirectory}/.config/current_screen_layout | tr '[:lower:]' '[:upper:]'";
           "interval" = 5;
-          "menu" = "on-click"; # TODO: this needs rework! not all hosts need this, but multiple may have different layouts
-          "menu-file" = ./menus/display.xml;
-          "menu-actions" = {
-            "single" =
-              "sed -i 's/desktop-all/desktop-single/g' ${config.home.homeDirectory}/.config/hyprdynamicmonitors/config.toml";
-            "all" =
-              "sed -i 's/desktop-single/desktop-all/g' ${config.home.homeDirectory}/.config/hyprdynamicmonitors/config.toml";
-          };
           "tooltip" = false;
         };
 
@@ -294,8 +303,8 @@ in
           "tooltip" = false;
         };
 
-        "temperature" = {
-          "hwmon-path" = [ "/sys/devices/platform/asus-ec-sensors/hwmon/hwmon7/temp1_input" ];
+        "temperature" = lib.mkIf (systemOptions.sensorTempCpu != null) {
+          "hwmon-path" = [ systemOptions.sensorTempCpu ];
           "format" = "{temperatureC}°C";
           "tooltip" = false;
         };
@@ -317,10 +326,8 @@ in
           "tooltip" = false;
         };
 
-        "temperature#disk" = {
-          "hwmon-path" = [
-            "/sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input"
-          ];
+        "temperature#disk" = lib.mkIf (systemOptions.sensorTempDisk != null) {
+          "hwmon-path" = [ systemOptions.sensorTempDisk ];
           "format" = "{temperatureC}°C";
           "tooltip" = false;
         };

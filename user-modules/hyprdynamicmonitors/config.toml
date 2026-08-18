@@ -29,6 +29,14 @@ post_apply_exec = "echo 'laptop' > ~/.config/current_screen_layout && systemctl 
 [[profiles.lenovo-dr.conditions.required_monitors]]
 description = "Lenovo Group Limited 0x40BA"
 
+[profiles.steam-deck]
+config_file = "profiles/steam-deck.conf"
+config_file_type = "static"
+post_apply_exec = "echo 'steam deck' > ~/.config/current_screen_layout && systemctl --user restart waybar"
+
+[[profiles.steam-deck.conditions.required_monitors]]
+description = "Valve Corporation ANX7530 U 0x00000001"
+
 [profiles.bc]
 config_file = "profiles/bc.conf"
 config_file_type = "static"

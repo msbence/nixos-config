@@ -24,6 +24,7 @@
       type = types.enum [
         "desktop"
         "laptop"
+        "handheld"
         "server"
       ];
       description = "Machine role, controls most defaults";
@@ -31,6 +32,12 @@
     deviceIsVirtual = mkOption {
       type = types.bool;
       default = if config.systemOptions.deviceType == "server" then true else false;
+      description = "Is the device a virtual machine?";
+    };
+    deviceIsSteamDeck = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Is the device a Steam Deck?";
     };
     systemStateVersion = mkOption {
       type = types.str;
@@ -56,12 +63,12 @@
         "systemd-boot"
         "refind"
       ];
-      default = "systemd-boot";
+      default = if config.systemOptions.deviceType == "server" then "systemd-boot" else "refind";
       description = "The type of bootloader to use";
     };
     bootloaderTimeout = mkOption {
       type = types.int;
-      default = if config.systemOptions.bootloaderType == "refind" then -1 else 0;
+      default = if config.systemOptions.deviceType == "server" then 1 else 4;
       description = "Timeout for the bootloader";
     };
     bootloaderGenerations = mkOption {
@@ -115,6 +122,7 @@
       default = "1.6";
       description = "Scaling factor for Steam";
     };
+    enableSunshine = mkEnableOption "Activates the Sunshine streaming server";
     ###<
     ###> HARDWARE
     enableFirmwareUpdates = mkOption {
@@ -133,6 +141,16 @@
       description = "Enable libinput and touchpad support";
     };
     hasRgbLeds = mkEnableOption "Denotes if the HW has RGB leds";
+    sensorTempCpu = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Path to CPU coretemp sensor (eg. /sys/devices/platform/asus-ec-sensors/hwmon/hwmon7/temp1_input)";
+    };
+    sensorTempDisk = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Path to primary disk temperature sensor (eg. /sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input)";
+    };
     ###<
     ###> IMPERMANENCE
     impermanenceType = mkOption {
@@ -204,7 +222,11 @@
     ###> SECURITY
     enableAutologin = mkOption {
       type = types.bool;
-      default = if config.systemOptions.deviceType == "server" then false else true;
+      default =
+        if (config.systemOptions.deviceType == "server" || config.systemOptions.deviceIsSteamDeck) then
+          false
+        else
+          true;
       description = "Enable automatic login (one password will be presented anyhow due to FDE)";
     };
     enableGpg = mkOption {

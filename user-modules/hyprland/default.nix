@@ -6,6 +6,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null; # comes from system-modules
 
     plugins = [
       pkgs.hyprlandPlugins.hy3
@@ -123,6 +124,14 @@
 
         touchpad = {
           natural_scroll = false;
+        };
+
+        # steamdeck specific
+        tablet = {
+          transform = 3;
+        };
+        touchdevice = {
+          transform = 3;
         };
       };
 

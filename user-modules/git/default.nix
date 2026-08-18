@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  systemOptions,
   ...
 }:
 {
@@ -20,7 +21,11 @@
 
     signing = {
       key = "2928 40BC 9898 2B6F FFB7  F4BC 6DA3 A9F8 6933 73A0";
-      signByDefault = lib.mkDefault (config.systemOptions.deviceType != "server");
+      signByDefault = lib.mkDefault (
+        systemOptions.deviceType != "server"
+        && systemOptions.deviceIsVirtual == false
+        && systemOptions.deviceIsSteamDeck == false
+      );
     };
 
     ignores = [

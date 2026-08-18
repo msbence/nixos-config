@@ -16,6 +16,7 @@ active-nixpkgs.lib.nixosSystem {
     inherit
       inputs
       systemArchitecture
+      useUnstableChannels
       active-home-manager
       active-stylix
       ;
