@@ -55,7 +55,8 @@ in
           "group/hw-audio"
           "bluetooth"
           "group/networking"
-        ];
+        ]
+        ++ lib.optionals (systemOptions.hasTouchscreen) [ "custom/powermenu" ];
 
         "group/hw-audio" = {
           "orientation" = "horizontal";
@@ -162,6 +163,12 @@ in
           "format" = "󰱓  {ipaddr}/{cidr}";
           "format-disconnected" = "󰅛";
           "tooltip" = false;
+        };
+
+        "custom/powermenu" = {
+          format = if systemOptions.deviceIsSteamDeck then "  󰊴  " else "  ⏻  ";
+          on-click = "wleave";
+          tooltip = false;
         };
 
         "pulseaudio" = {

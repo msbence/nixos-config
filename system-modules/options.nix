@@ -141,6 +141,11 @@
       description = "Enable libinput and touchpad support";
     };
     hasRgbLeds = mkEnableOption "Denotes if the HW has RGB leds";
+    hasTouchscreen = mkOption {
+      type = types.bool;
+      default = if config.systemOptions.deviceIsSteamDeck then true else false;
+      description = "Enable touchscreen support";
+    };
     sensorTempCpu = mkOption {
       type = types.nullOr types.str;
       default = null;

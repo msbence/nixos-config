@@ -1,7 +1,10 @@
-{ ... }:
+{
+  systemOptions,
+  ...
+}:
 {
   services.hypridle = {
-    enable = true;
+    enable = systemOptions.hasTouchscreen == false; # hyprlock has no OSK support, disable autolock
 
     settings = {
       general = {

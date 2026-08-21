@@ -1,6 +1,8 @@
 {
   pkgs,
   config,
+  lib,
+  systemOptions,
   ...
 }:
 {
@@ -40,7 +42,8 @@
 
       exec-once = [
         "hyprctl dispatch workspace 1"
-      ];
+      ]
+      ++ lib.optionals (systemOptions.hasTouchscreen) [ "wvkbd-mobintl" ];
 
       bind = [
         "$mod, Return, exec, $terminal"
