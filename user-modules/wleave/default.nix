@@ -62,13 +62,15 @@ in
           keybind = "a";
           icon = ./icons/apps.svg;
         }
-        (lib.optionalAttrs (systemOptions.deviceIsSteamDeck == false) {
+      ]
+      ++ lib.optionals (systemOptions.deviceIsSteamDeck) [
+        {
           label = "steamui";
           action = "${hyprland-logout}/bin/hyprland-logout";
           text = "Back to Gaming Mode";
           keybind = "g";
           icon = ./icons/steam.svg;
-        })
+        }
       ];
     };
     style = ''
