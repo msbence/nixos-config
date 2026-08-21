@@ -1,5 +1,6 @@
 {
   config,
+  systemOptions,
   ...
 }:
 {
@@ -27,6 +28,8 @@
         theme = "default";
         hide_quick_activation = true;
         hide_action_hints = true;
+        click_to_close = if (systemOptions.hasTouchscreen) then true else false;
+        as_window = if (systemOptions.hasTouchscreen) then true else false;
         providers = {
           default = [
             "desktopapplications"
