@@ -8,4 +8,6 @@
 
   systemOptions.bootloaderTimeout = 2;
   services.openssh.enable = true;
+
+  systemOptions.virtualizationType = "vmware";
 }

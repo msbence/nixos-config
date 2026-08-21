@@ -19,9 +19,9 @@ in
     enable = true;
     settings = {
       no-version-info = true;
-      column-spacing = "25px";
-      row-spacing = "25px";
-      margin = if (systemOptions.hasTouchscreen) then "10%" else "20%";
+      column-spacing = if (systemOptions.hasTouchscreen) then "5px" else "25px";
+      row-spacing = if (systemOptions.hasTouchscreen) then "5px" else "25px";
+      margin = if (systemOptions.hasTouchscreen) then "2%" else "20%";
       margin-top = if (systemOptions.hasTouchscreen) then "16%" else "32%";
       margin-bottom = if (systemOptions.hasTouchscreen) then "16%" else "32%";
       buttons-per-row = if (systemOptions.hasTouchscreen) then "1/2" else "1/1";

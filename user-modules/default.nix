@@ -149,7 +149,7 @@
             virt-manager
             wl-clipboard
           ]
-          ++ lib.optionals (config.systemOptions.hasTouchscreen == false) [ wvkbd ];
+          ++ lib.optionals (config.systemOptions.hasTouchscreen) [ wvkbd ];
       };
     };
   };
