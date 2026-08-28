@@ -10,8 +10,15 @@ let
   hyprland-logout = pkgs.writeScriptBin "hyprland-logout" ''
     #!/bin/sh
 
-    ${pkgs.hyprland}/bin/hyprctl dispatch exit
-    ${pkgs.systemd}/bin/loginctl terminate-user ${userOptions.username}
+    systemctl --user unset-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP
+    steamosctl switch-to-game-mode
+    sudo systemd-run --system sh -c '
+      loginctl terminate-user raptor
+      sleep 2
+      rm -rf /tmp/.X0-lock /tmp/.X11-unix/X0 /tmp/.X1-lock /tmp/.X11-unix/X1
+      rm -rf /run/user/1000/wayland-* /run/user/1000/hypr
+      systemctl restart display-manager.service
+    '
   '';
 in
 {
