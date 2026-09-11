@@ -32,6 +32,8 @@ in
 
   systemOptions.virtualizationType = "vmware";
 
+  systemOptions.enableLocalLlmTools = true;
+
   environment.systemPackages = [ pkgs.unstable.headsetcontrol ];
   services.udev.packages = [ pkgs.unstable.headsetcontrol ]; # For udev rules
 

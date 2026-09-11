@@ -168,6 +168,18 @@
       description = "Enables and sets impermanence method used";
     };
     ###<
+    ###> LLM
+    enableLocalLlmTools = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable local LLM tools (llama-cpp)";
+    };
+    LocalLlmModelDir = mkOption {
+      type = types.str;
+      default = "/llm-models/";
+      description = "Models directory for llama-cpp";
+    };
+    ###<
     ###> LOCALE
     keyboardLayout = mkOption {
       type = types.str;
