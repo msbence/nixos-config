@@ -47,8 +47,8 @@
         };
 
         monospace = {
-          package = pkgs.source-code-pro;
-          name = "Source Code Pro Medium";
+          package = pkgs.nerd-fonts.sauce-code-pro;
+          name = "SauceCodePro Nerd Font";
         };
 
         emoji = {
