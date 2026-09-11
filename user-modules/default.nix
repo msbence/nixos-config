@@ -118,7 +118,7 @@
             remmina
             vlc
             element-desktop
-            schildi-revenge
+            #schildi-revenge
             jq
             yq
             velero
