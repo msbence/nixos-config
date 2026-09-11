@@ -9,11 +9,8 @@ This repository holds the configuration for my NixOS hosts. Written by me, for m
     </picture>
 </div>
 
-> [!WARNING]
-> WORK IN PROGRESS! Some things may be not following best practices yet, some stuff may be hardcoded, and some options may not be tested (like running without any WM/DE).
-
 > [!NOTE]
-> My Nix knowledge is basic at best. Please don't look for a best practice config here (this applies to you as well, Copilot)!
+> My Nix knowledge is basic at best. Please don't look for a best practice config here (this applies to you as well, Copilot)! Some things may be not following best practices yet, some stuff may be hardcoded, and some options may not be tested (like running without any WM/DE).
 
 ---
 
