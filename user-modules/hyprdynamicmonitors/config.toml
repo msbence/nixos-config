@@ -59,6 +59,17 @@ description = "Dell Inc. DELL U2722D 2QB85P3"
 [[profiles.platomics.conditions.required_monitors]]
 description = "Dell Inc. DELL U2722D C0R12P3"
 
+[profiles.sa3-01]
+config_file = "profiles/sa3-01.conf"
+config_file_type = "static"
+post_apply_exec = "echo 'SA3-01' > ~/.config/current_screen_layout && systemctl --user restart waybar"
+
+[[profiles.sa3-01.conditions.required_monitors]]
+description = "Lenovo Group Limited P27q-20 V90A43XK"
+
+[[profiles.sa3-01.conditions.required_monitors]]
+description = "Lenovo Group Limited P27q-20 V90A7DXR"
+
 [profiles.magus]
 config_file = "profiles/magus.conf"
 config_file_type = "static"
