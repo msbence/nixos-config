@@ -148,6 +148,7 @@
             anydesk
             virt-manager
             wl-clipboard
+	    teamspeak6-client
           ]
           ++ lib.optionals (config.systemOptions.hasTouchscreen) [ wvkbd ];
       };
