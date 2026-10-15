@@ -35,7 +35,12 @@ in
   systemOptions.enableLocalLlmTools = true;
 
   environment.systemPackages = [ pkgs.unstable.headsetcontrol ];
-  services.udev.packages = [ pkgs.unstable.headsetcontrol ]; # For udev rules
+  services.udev.packages = [
+    pkgs.unstable.headsetcontrol
+    pkgs.teensy-udev-rules
+    pkgs.platformio-core.udev
+    pkgs.openocd
+  ];
 
   systemd.tmpfiles.rules = [
     # Type Path        Mode UID                            GID    Age Argument

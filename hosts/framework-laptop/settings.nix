@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   ...
 }:
 {
@@ -9,4 +10,8 @@
   systemOptions.deviceType = "laptop";
 
   services.tlp.enable = lib.mkForce false;
+
+  services.udev.packages = [
+    pkgs.teensy-udev-rules
+  ];
 }

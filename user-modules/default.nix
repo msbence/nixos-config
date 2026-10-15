@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  useUnstableChannels,
   active-home-manager,
   active-stylix,
   ...
@@ -113,12 +114,10 @@
             xdg-desktop-portal-wlr
             gimp
             k9s
-            pgadmin4
             rclone
             remmina
             vlc
-            element-desktop
-            #schildi-revenge
+            fluffychat
             jq
             yq
             velero
@@ -134,7 +133,9 @@
             ethtool
             pwgen
             usbutils
-            #minikube
+            #platformio
+            platformio-core
+            teensy-loader-cli
             kubernetes-helm
             terraform-docs
             s3cmd
@@ -148,9 +149,13 @@
             anydesk
             virt-manager
             wl-clipboard
-	    teamspeak6-client
+            teamspeak6-client
           ]
-          ++ lib.optionals (config.systemOptions.hasTouchscreen) [ wvkbd ];
+          ++ lib.optionals (config.systemOptions.hasTouchscreen) [ wvkbd ]
+          # packages that are broken on unstable, but at least should have on stable
+          ++ lib.optionals (useUnstableChannels == false) [
+            pgadmin4
+          ];
       };
     };
   };
