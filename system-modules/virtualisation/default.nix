@@ -33,6 +33,12 @@
 
   environment.systemPackages = lib.optionals (config.systemOptions.virtualizationType == "kvm") [
     pkgs.virt-viewer
+  ]
+  ++ lib.optionals (config.systemOptions.containerizationType == "docker") [
+    pkgs.docker-compose
+  ]
+  ++ lib.optionals (config.systemOptions.containerizationType == "podman") [
+    pkgs.podman-compose
   ];
 
   users.users.${config.userOptions.username}.extraGroups =

@@ -150,7 +150,13 @@
             virt-manager
             wl-clipboard
             teamspeak6-client
+
+	    unstable.antigravity-ide
             #unstable.cline
+
+            unstable.wordcraft
+            unstable.gridcraft
+            unstable.deckcraft
           ]
           ++ lib.optionals (config.systemOptions.hasTouchscreen) [ wvkbd ]
           # packages that are broken on unstable, but at least should have on stable
