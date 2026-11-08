@@ -37,6 +37,8 @@ in
 
   systemOptions.enableLocalLlmTools = true;
 
+  services.logind.settings.Login.HandlePowerKey = "ignore"; # I have cats
+
   environment.systemPackages = [ pkgs.unstable.headsetcontrol ];
   services.udev.packages = [
     pkgs.unstable.headsetcontrol
