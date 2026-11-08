@@ -28,5 +28,17 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  #hardware.amdgpu.initrd.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
+  };
+  hardware.amdgpu.opencl.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    rocmPackages.amdsmi
+    rocmPackages.rocminfo
+    amdgpu_top
+  ];
 }

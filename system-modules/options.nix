@@ -176,7 +176,7 @@
     };
     LocalLlmModelDir = mkOption {
       type = types.str;
-      default = "/llm-models/";
+      default = "/llm-models";
       description = "Models directory for llama-cpp";
     };
     ###<
