@@ -9,6 +9,8 @@
 
   systemOptions.deviceType = "laptop";
 
+  themeOptions.colorScheme = "blue";
+
   services.tlp.enable = lib.mkForce false;
 
   services.udev.packages = [

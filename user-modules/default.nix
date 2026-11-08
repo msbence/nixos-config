@@ -146,10 +146,11 @@
             packer
             expect
             gettext
-            anydesk
+            #anydesk
             virt-manager
             wl-clipboard
             teamspeak6-client
+            #unstable.cline
           ]
           ++ lib.optionals (config.systemOptions.hasTouchscreen) [ wvkbd ]
           # packages that are broken on unstable, but at least should have on stable

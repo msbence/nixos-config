@@ -7,7 +7,8 @@ let
   set-rgb = pkgs.writeScriptBin "set-rgb" ''
     #!/bin/sh
 
-    COLOR="E06501"  # TODO: set from themeOptions
+    #COLOR="E06501"  # TODO: set from themeOptions
+    COLOR="2222FF"  # TODO: set from themeOptions
 
     sleep 2
 
@@ -25,6 +26,8 @@ in
   systemOptions.hasRgbLeds = true;
   systemOptions.sensorTempCpu = "/sys/devices/platform/asus-ec-sensors/hwmon/hwmon7/temp1_input";
   systemOptions.sensorTempDisk = "/sys/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1/hwmon3/temp1_input";
+
+  themeOptions.colorScheme = "blue";
 
   services.openssh.enable = true;
   systemOptions.enableSunshine = true;

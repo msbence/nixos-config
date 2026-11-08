@@ -14,7 +14,6 @@
       gitlab.gitlab-workflow
       hashicorp.terraform
       ms-azuretools.vscode-docker
-      ms-kubernetes-tools.vscode-kubernetes-tools
       ms-python.debugpy
       ms-python.python
       ms-python.vscode-python-envs
@@ -35,6 +34,8 @@
       }))
       # Nix
       jnoortheen.nix-ide
+    ] ++ [
+      pkgs.unstable.vscode-extensions.saoudrizwan.claude-dev # Cline
     ];
 
     profiles.default.userSettings = {
