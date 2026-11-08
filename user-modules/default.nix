@@ -151,7 +151,7 @@
             wl-clipboard
             teamspeak6-client
 
-	    unstable.antigravity-ide
+	        unstable.antigravity-ide
             #unstable.cline
 
             unstable.wordcraft
