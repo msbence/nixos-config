@@ -48,7 +48,9 @@ lib.mkMerge [
     ];
 
     services.udev.extraRules = lib.mkIf config.systemOptions.enableSteam ''
-      SUBSYSTEM=="input", ATTRS{idVendor}=="2dc8", ATTRS{idProduct}=="301c", MODE="0660", GROUP="input"
+      SUBSYSTEM=="input", ATTRS{idVendor}=="2dc8", ATTRS{idProduct}=="301c", MODE="0660", GROUP="input" # Steam Deck controller
+      # Steam Controller 2026
+      # 8BitDo Ultimate
     '';
 
     environment.sessionVariables = lib.mkIf config.systemOptions.enableSteam {
@@ -59,16 +61,16 @@ lib.mkMerge [
   (lib.optionalAttrs (useUnstableChannels && options ? jovian) {
     # if on unstable and jovian available, import, and check if needs activation as well
     # ugly but works :)
-    jovian = lib.mkIf (config.systemOptions.deviceIsSteamDeck) {
+    jovian = lib.mkIf (config.systemOptions.enableSteamOSExperience) {
       steam.enable = true;
       steam.autoStart = true;
       steam.user = config.userOptions.username;
       steam.desktopSession = config.systemOptions.windowManager;
-      decky-loader.enable = true;
+      decky-loader.enable = config.systemOptions.deviceIsSteamDeck;
       decky-loader.user = config.userOptions.username;
       steamos.useSteamOSConfig = true;
-      devices.steamdeck.enable = true;
-      devices.steamdeck.autoUpdate = true;
+      devices.steamdeck.enable = config.systemOptions.deviceIsSteamDeck;
+      devices.steamdeck.autoUpdate = config.systemOptions.deviceIsSteamDeck;
       devices.steamdeck.enableOsFanControl = false; # full of bugs
     };
   })

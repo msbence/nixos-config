@@ -117,6 +117,7 @@
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Install Steam and related packages";
     };
+    enableSteamOSExperience = mkEnableOption "Makes Steam start by default (SteamOS; depends on jovian!)";
     steamScale = mkOption {
       type = types.str;
       default = "1.6";
