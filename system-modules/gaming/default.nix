@@ -48,7 +48,9 @@ lib.mkMerge [
     ];
 
     services.udev.extraRules = lib.mkIf config.systemOptions.enableSteam ''
-      SUBSYSTEM=="input", ATTRS{idVendor}=="2dc8", ATTRS{idProduct}=="301c", MODE="0660", GROUP="input" # Steam Deck controller
+      # Steam Deck controller
+      SUBSYSTEM=="input", ATTRS{idVendor}=="2dc8", ATTRS{idProduct}=="301c", MODE="0660", GROUP="input"
+
       # Steam Controller 2026
       # 8BitDo Ultimate
     '';

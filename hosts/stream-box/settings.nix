@@ -7,6 +7,9 @@
   systemOptions.enableSteamOSExperience = true;
   systemOptions.deviceIsSteamDeck = false;
 
-  systemOptions.bootloaderTimeout = 2;
+  themeOptions.colorScheme = "blue";
+
+  systemOptions.bootloaderType = "systemd-boot";
+  #systemOptions.bootloaderTimeout = 0;
   services.openssh.enable = true;
 }

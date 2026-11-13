@@ -38,7 +38,7 @@
     future-hyprcursor.url = "github:mvayk/nix-future-hyprcursor";
 
     disko = {
-      url = "github:nix-community/disko/latest";
+      url = "github:nix-community/disko/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

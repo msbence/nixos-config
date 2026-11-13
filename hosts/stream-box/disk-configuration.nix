@@ -13,7 +13,7 @@
     disk = {
       disk0 = {
         type = "disk";
-        device = "/dev/disk/by-id/TO-BE-DETERMINED";
+        device = "/dev/disk/by-id/nvme-WDS100T3X0C-00SJG0_1908E6800487";
         content = {
           type = "gpt";
           partitions = {

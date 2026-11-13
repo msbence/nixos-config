@@ -40,8 +40,8 @@
     };
 
     initrd = {
-      systemd.enable = true;
-      verbose = if config.systemOptions.enablePlymouth then false else true;
+#      systemd.enable = true;
+#      verbose = if config.systemOptions.enablePlymouth then false else true;
     };
 
     initrd.systemd.services.rollback = lib.mkIf (config.systemOptions.impermanenceType == "btrfs") {
