@@ -99,6 +99,7 @@
       type = types.enum [
         "none"
         "hyprland"
+        "gamescope"
       ];
       default = if config.systemOptions.deviceType == "server" then "none" else "hyprland";
       description = "Sets the window manager to use";
@@ -117,7 +118,11 @@
       default = if config.systemOptions.deviceType == "server" then false else true;
       description = "Install Steam and related packages";
     };
-    enableSteamOSExperience = mkEnableOption "Makes Steam start by default (SteamOS; depends on jovian!)";
+    enableSteamOSExperience = mkOption {
+      type = types.bool;
+      default = config.systemOptions.deviceIsSteamDeck;
+      description = "Makes Steam start by default (SteamOS; depends on jovian!)";
+    };
     steamScale = mkOption {
       type = types.str;
       default = "1.6";

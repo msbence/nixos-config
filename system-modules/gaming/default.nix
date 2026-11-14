@@ -15,6 +15,8 @@ lib.mkMerge [
         remotePlay.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
 
+        gamescopeSession.enable = config.systemOptions.enableSteamOSExperience;
+
         protontricks.enable = true;
         extraCompatPackages = with pkgs; [
           proton-ge-bin
@@ -24,6 +26,7 @@ lib.mkMerge [
 
       gamescope = {
         enable = true;
+        enableWsi = true;
         capSysNice = false;
       };
 

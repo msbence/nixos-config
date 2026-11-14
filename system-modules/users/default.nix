@@ -25,8 +25,8 @@
     ];
   };
 
-  services.greetd =
-    lib.mkIf (config.systemOptions.enableAutologin && config.systemOptions.windowManager == "hyprland")
+  services.greetd = lib.mkMerge [
+    (lib.mkIf (config.systemOptions.enableAutologin && config.systemOptions.windowManager == "hyprland")
       {
         enable = true;
         settings = {
@@ -39,5 +39,20 @@
             user = "greeter";
           };
         };
-      };
+      }
+    )
+
+    (lib.mkIf
+      (config.systemOptions.enableAutologin && config.systemOptions.windowManager == "gamescope")
+      {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${lib.getExe pkgs.gamescope} -e -f --xwayland-count 2 --hdr-enabled --hdr-itm-enabled -- ${lib.getExe pkgs.steam} -gamepadui -steamdeck -steamos3 > /dev/null 2>&1";
+            user = "${config.userOptions.username}";
+          };
+        };
+      }
+    )
+  ];
 }

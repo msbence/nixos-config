@@ -5,11 +5,9 @@
 
   systemOptions.deviceType = "desktop";
   systemOptions.enableSteamOSExperience = true;
-  systemOptions.deviceIsSteamDeck = false;
+  systemOptions.windowManager = "gamescope";
 
-  themeOptions.colorScheme = "blue";
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  systemOptions.bootloaderType = "systemd-boot";
-  #systemOptions.bootloaderTimeout = 0;
   services.openssh.enable = true;
 }

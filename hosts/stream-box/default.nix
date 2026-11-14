@@ -4,7 +4,7 @@
 }:
 let
   systemArchitecture = "x86_64-linux";
-  useUnstableChannels = true;
+  useUnstableChannels = false;
 
   active-nixpkgs = if useUnstableChannels then inputs.nixpkgs-unstable else inputs.nixpkgs;
   active-home-manager =
@@ -29,7 +29,6 @@ active-nixpkgs.lib.nixosSystem {
     ./hardware-configuration.nix
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
-    inputs.jovian-nixos.nixosModules.jovian
     ./disk-configuration.nix
     ../../user-modules/options.nix
     ../../themes/default.nix
