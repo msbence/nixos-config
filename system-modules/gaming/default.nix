@@ -26,8 +26,7 @@ lib.mkMerge [
 
       gamescope = {
         enable = true;
-        enableWsi = true;
-        capSysNice = false;
+        capSysNice = true;
       };
 
       gamemode.enable = true;
@@ -48,6 +47,10 @@ lib.mkMerge [
       pkgs.steam-run
       pkgs.gamescope-wsi
       pkgs.mangohud
+
+     (pkgs.writeShellScriptBin "steam" ''
+       exec ${pkgs.steam}/bin/steam -pipewire "$@"
+     '')
     ];
 
     services.udev.extraRules = lib.mkIf config.systemOptions.enableSteam ''
