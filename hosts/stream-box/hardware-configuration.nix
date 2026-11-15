@@ -18,9 +18,6 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
   };
   hardware.amdgpu.opencl.enable = true;
 }
