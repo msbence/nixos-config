@@ -150,6 +150,7 @@
             virt-manager
             wl-clipboard
             teamspeak6-client
+            savvycan
 
             unstable.antigravity-ide
             #unstable.cline
