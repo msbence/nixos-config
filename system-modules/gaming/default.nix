@@ -26,11 +26,15 @@ lib.mkMerge [
 
       gamescope = {
         enable = true;
-        capSysNice = true;
+        capSysNice = lib.mkDefault false;
       };
 
       gamemode.enable = true;
     };
+
+    users.users.${config.userOptions.username}.extraGroups =
+      lib.optionals (config.systemOptions.enableSteam)
+        [ "gamemode" ];
 
     preservation.preserveAt."/persisted".directories =
       lib.optionals (config.systemOptions.deviceIsSteamDeck)
@@ -45,12 +49,11 @@ lib.mkMerge [
 
     environment.systemPackages = lib.mkIf config.systemOptions.enableSteam [
       pkgs.steam-run
-      pkgs.gamescope-wsi
       pkgs.mangohud
 
-     (pkgs.writeShellScriptBin "steam" ''
-       exec ${pkgs.steam}/bin/steam -pipewire "$@"
-     '')
+      (pkgs.writeShellScriptBin "steam" ''
+        exec ${pkgs.steam}/bin/steam -pipewire "$@"
+      '')
     ];
 
     services.udev.extraRules = lib.mkIf config.systemOptions.enableSteam ''

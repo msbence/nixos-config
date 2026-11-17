@@ -7,6 +7,7 @@
 {
   sops.secrets.user-raptor-password.neededForUsers = true;
 
+  programs.zsh.enable = true;
   users.users.${config.userOptions.username} = {
     isNormalUser = true;
     shell = pkgs.zsh;

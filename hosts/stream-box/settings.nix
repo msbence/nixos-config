@@ -6,6 +6,7 @@
   systemOptions.deviceType = "desktop";
   systemOptions.enableSteamOSExperience = true;
   systemOptions.windowManager = "gamescope";
+  programs.gamescope.capSysNice = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

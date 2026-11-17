@@ -6,7 +6,17 @@
 }:
 {
   programs = {
-    nix-ld.enable = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        libinput
+        libxkbcommon
+        libxcb
+        libx11
+        mesa
+        wayland
+      ];
+    };
   };
 
   services = {
