@@ -6,8 +6,11 @@
   systemOptions.deviceType = "handheld";
   systemOptions.deviceIsSteamDeck = true;
 
+  systemOptions.bootloaderType = "systemd-boot";
   systemOptions.bootloaderTimeout = 2;
   services.openssh.enable = true;
 
-  systemOptions.virtualizationType = "vmware";
+  themeOptions.colorScheme = "blue";
+
+#  systemOptions.virtualizationType = "vmware";
 }
